@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Plus+Jakarta+Sans:wght@700;800&amp;family=Courier+Prime&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        try {
+            tailwind.config = {
+                darkMode: "class",
+                theme: {
+                    extend: {
+                        "colors": {
+                            "surface-bright": "#2a3a4f",
+                            "outline-variant": "#46464c",
+                            "surface-container-high": "#1b2b3f",
+                            "inverse-surface": "#d3e4fe",
+                            "error": "#ffb4ab",
+                            "background": "#031427",
+                            "secondary-fixed": "#e2e2e2",
+                            "tertiary-fixed-dim": "#b4c5ff",
+                            "inverse-on-surface": "#213145",
+                            "tertiary": "#b4c5ff",
+                            "surface-tint": "#c3c6d4",
+                            "tertiary-container": "#000c30",
+                            "on-secondary": "#2f3131",
+                            "on-surface": "#d3e4fe",
+                            "on-tertiary-container": "#3b72fb",
+                            "surface-container-low": "#0b1c30",
+                            "surface-container": "#102034",
+                            "inverse-primary": "#5a5e6a",
+                            "on-secondary-fixed-variant": "#454747",
+                            "secondary-fixed-dim": "#c6c6c7",
+                            "cobalt-electric": "#2563EB",
+                            "on-primary-fixed": "#171b26",
+                            "on-background": "#d3e4fe",
+                            "surface-container-lowest": "#000f21",
+                            "primary-fixed": "#dfe2f1",
+                            "tertiary-fixed": "#dbe1ff",
+                            "surface-variant": "#26364a",
+                            "on-primary-container": "#787b88",
+                            "surface-container-highest": "#26364a",
+                            "surface-dim": "#031427",
+                            "on-tertiary": "#002a78",
+                            "on-primary-fixed-variant": "#434652",
+                            "obsidian-deep": "#0B0F19",
+                            "surface-border": "rgba(100, 116, 139, 0.3)",
+                            "on-error-container": "#ffdad6",
+                            "secondary-container": "#454747",
+                            "primary": "#c3c6d4",
+                            "on-tertiary-fixed": "#00174b",
+                            "on-surface-variant": "#c6c6cc",
+                            "error-container": "#93000a",
+                            "on-secondary-container": "#b4b5b5",
+                            "surface": "#031427",
+                            "on-tertiary-fixed-variant": "#003ea8",
+                            "secondary": "#c6c6c7",
+                            "primary-container": "#0b0f19",
+                            "on-error": "#690005",
+                            "on-primary": "#2c303b",
+                            "steel-cool": "#64748B",
+                            "outline": "#909096",
+                            "on-secondary-fixed": "#1a1c1c",
+                            "primary-fixed-dim": "#c3c6d4"
+                        },
+                        "borderRadius": {
+                            "DEFAULT": "0.25rem",
+                            "lg": "0.5rem",
+                            "xl": "0.75rem",
+                            "full": "9999px"
+                        },
+                        "spacing": {
+                            "unit": "4px",
+                            "grid-cols": "12",
+                            "margin-mobile": "16px",
+                            "margin-desktop": "48px",
+                            "gutter": "24px"
+                        },
+                        "fontFamily": {
+                            "body-md": ["Inter"],
+                            "mono-data": ["Courier Prime"],
+                            "headline-md": ["Plus Jakarta Sans"],
+                            "headline-lg-mobile": ["Plus Jakarta Sans"],
+                            "headline-xl": ["Plus Jakarta Sans"],
+                            "headline-lg": ["Plus Jakarta Sans"],
+                            "label-caps": ["Inter"],
+                            "body-lg": ["Inter"],
+                            "body-sm": ["Inter"]
+                        },
+                        "fontSize": {
+                            "body-md": ["16px", {"lineHeight": "1.5", "letterSpacing": "0em", "fontWeight": "400"}],
+                            "mono-data": ["14px", {"lineHeight": "1", "letterSpacing": "0em", "fontWeight": "400"}],
+                            "headline-md": ["20px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                            "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                            "headline-xl": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "800"}],
+                            "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                            "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.08em", "fontWeight": "600"}],
+                            "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400"}],
+                            "body-sm": ["14px", {"lineHeight": "1.5", "letterSpacing": "0.01em", "fontWeight": "400"}]
+                        }
+                    },
+                },
+            }
+        } catch (_e) {}
+    </script>
+<style>
+        .hero-slider-item {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+            z-index: 0;
+        }
+        .hero-slider-item.active {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md overflow-x-hidden bg-background text-on-surface">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full h-20 bg-background z-50 border-b border-surface-border flex justify-between items-center px-12 md:px-[48px] mx-auto">
+<div class="font-headline-md text-headline-md font-bold tracking-tight text-on-surface">SECURITYLINK</div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="text-cobalt-electric font-bold border-b-2 border-cobalt-electric transition-colors" href="#">Home</a>
+<a class="text-on-surface-variant font-medium hover:text-cobalt-electric transition-colors" href="#">About</a>
+<a class="text-on-surface-variant font-medium hover:text-cobalt-electric transition-colors" href="#">Services</a>
+<a class="text-on-surface-variant font-medium hover:text-cobalt-electric transition-colors" href="#">Gallery</a>
+<a class="text-on-surface-variant font-medium hover:text-cobalt-electric transition-colors" href="#">Equipment</a>
+<a class="text-on-surface-variant font-medium hover:text-cobalt-electric transition-colors" href="#">Achievement</a>
+<a class="text-on-surface-variant font-medium hover:text-cobalt-electric transition-colors" href="#">Contact</a>
+</div>
+<button class="bg-cobalt-electric text-white px-6 py-2 font-bold hover:opacity-80 transition-opacity rounded-none">Get a Consultation</button>
+</nav>
+<!-- YOLO Hero: Technical Core / HUD Layout -->
+<main class="relative min-h-screen pt-20 flex flex-col items-center justify-center overflow-hidden">
+<!-- Image Carousel Background -->
+<div class="absolute inset-0 z-0" id="hero-slider">
+<div class="hero-slider-item active" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA6-4NZAUy50zTRviIoXza9OUAtRFcIPwsmcHfsJftg4bOz81yHtPE52NPf8IHo1DXXkIgYrOS9FzqMZqZh681BEsbhEFhDFM_Lt80LRmm2zpy3kZ9_umZ_eL7hwDfkCCUsvNJbRUtY0SqmD8W4THA4YZE-Uk5ZqwIr6km8G1yudOUyYHqZnWqibeW8rjGLiT1jyt2e0CYAB5yHFb5DAlIc_YvUlYKEyZXr90kOBv3PacjU5LSzom3Di2eIK7e5Iiiexe4');"></div>
+<div class="hero-slider-item" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDcijNSB6NTUZ9baDtfckUjOK6JhUjNcaDJ-P-0UjLx9Cd-hfeBDO2gQM4L0W3V_u5CF63XfkL2yNcP9Qr8yygbKkBxoPmJF2vz3oYbbj2AA87hbKQKkjqEZhiZ0WoM7KoonYxG5RZTjRMLSxc83CtB0CZeDJtAgHMmxd0hpXPxi-L3WOn724WUoB9UYzdhq9mOe2maZC3Aakhwoc97HOpNV5dns4K379PkO3l-ToImH65Wgrkke461VeyMRZFteUSPDSI');"></div>
+<div class="hero-slider-item" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBYhhKWM-GADbQ2Ohmi0Ll3D8SEzL2kgRp9aYGgVrtnD95YmkeHUHqdoNtG9aPmg_cMzRC1eszlGj9qzE8Ua5KV0TH1FQUO2hShlW0HvzBno52fdN9s3XtPa3fAH7iSlzJysM2rVC64MSNJN-z9n7JLyPVJfkD_yC0qzFMbwJ0UEDt3qqLLraP9A4_IwMz_QugSpZSfVXWkt-w_-aBr771kYYTek1YThcobtTONuQHTTo6j8OSRciHmvb6GP1bY0lLWirg');"></div>
+<div class="hero-slider-item" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDC5dNUpgr8CfLu-EzW-T17BTYWU9tOPFjdN5xK6T7uBg9bnz5NQy0tU8-2VTLze7pWhfNP6k81k_tkqBDejNFT8wSHnw-VMWuQfFubqfGAPXO0mCqhRKOh5xdqVokYlDkyh277Y461sM2u2U6cohw1_91P3BRocnL4sbJ3AQmvESGSup16HIy8YDzowHmJoRtogaItWkOGr77fxxVxgI0h_jUWFSD0nvlRpN_vbNLDPXCdEEfme0B5L6g4gWG6jSE_at8');"></div>
+<div class="hero-slider-item" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDcOMrJai_n9Zacync3GWbA2H3wKe5GT_-xLHFe6iUXohyw26iuw1OKxd2R9-HD1TeZ4xoocOggSMNL3Evmh1IDKZ8YdYeIpmoiUzdf8lUtoSkXDF1URVm7qBU8ykwoTz_U2DXwyWFWPMwWbW0atUWAlrY_d61CKHvfIav4UPn6WKvE5vi5fWceQv3S-jZYU981r-rwLEA8UHd-PCQw76YMkbOuJlcTr0nPERENf5BbKeO7YwLLT439wAToHpspz5qAWrs');"></div>
+<!-- Overlays for legibility -->
+<div class="absolute inset-0 bg-gradient-to-b from-background/90 via-background/40 to-background/90 mix-blend-multiply z-10"></div>
+<div class="absolute inset-0 bg-black/30 z-10"></div>
+<!-- Scanning Line Animation Effect -->
+<div class="absolute inset-0 pointer-events-none opacity-20 z-20" style="background: repeating-linear-gradient(0deg, transparent, transparent 1px, rgba(37, 99, 235, 0.1) 1px, rgba(37, 99, 235, 0.1) 2px); background-size: 100% 4px;"></div>
+</div>
+<!-- HUD Brackets / Technical Frame -->
+<div class="relative z-30 w-full max-w-[1400px] px-6 md:px-12 flex flex-col items-center">
+<!-- Top HUD Data -->
+<div class="w-full flex justify-between items-end mb-12 border-x-2 border-t-2 border-cobalt-electric/30 p-6 relative backdrop-blur-sm bg-background/10 -mt-12">
+<div class="absolute -top-1 -left-1 w-4 h-4 border-t-2 border-l-2 border-cobalt-electric"></div>
+<div class="absolute -top-1 -right-1 w-4 h-4 border-t-2 border-r-2 border-cobalt-electric"></div>
+<div class="flex flex-col gap-2">
+<span class="font-mono-data text-xs text-cobalt-electric tracking-widest uppercase">System Protocol: Active</span>
+<div class="font-mono-data text-[10px] text-on-surface-variant/80 leading-tight">
+                    LAT: 23.8103° N <br/> LONG: 90.4125° E
+                </div>
+</div>
+<div class="hidden md:flex gap-12">
+<div class="text-right">
+<div class="font-mono-data text-2xl text-cobalt-electric font-bold">12,000+</div>
+<div class="font-label-caps text-[10px] text-on-surface-variant uppercase">Personnel</div>
+</div>
+<div class="text-right">
+<div class="font-mono-data text-2xl text-cobalt-electric font-bold">24/7</div>
+<div class="font-label-caps text-[10px] text-on-surface-variant uppercase">Command</div>
+</div>
+</div>
+</div>
+<!-- Center Content -->
+<div class="text-center max-w-4xl py-12 relative">
+<!-- Decorative Crosshair -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] pointer-events-none opacity-10">
+<div class="absolute top-1/2 left-0 w-full h-[1px] bg-cobalt-electric"></div>
+<div class="absolute left-1/2 top-0 w-[1px] h-full bg-cobalt-electric"></div>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 border border-cobalt-electric rounded-full"></div>
+</div>
+<h1 class="font-headline-xl text-headline-xl md:text-[64px] text-white uppercase tracking-tighter mb-8 leading-[0.95] drop-shadow-2xl">
+                Securing Capital, <br/>
+<span class="text-cobalt-electric">Enterprise</span>, and Key <br/>
+                Infrastructure
+            </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto mb-12 drop-shadow-lg">
+                Industry-leading protection for corporate assets and critical facilities. We deliver technical authority through disciplined guarding and intelligent systems.
+            </p>
+<div class="flex flex-col sm:flex-row gap-6 justify-center">
+<button class="bg-cobalt-electric text-white px-12 py-5 font-bold text-lg uppercase tracking-widest hover:scale-105 transition-all shadow-[0_0_30px_rgba(37,99,235,0.4)] rounded-none">
+                    Initiate Protocol
+                </button>
+<button class="border-2 border-on-surface/30 text-on-surface px-12 py-5 font-bold text-lg uppercase tracking-widest hover:bg-on-surface hover:text-obsidian-deep transition-all backdrop-blur-md rounded-none">
+                    View Service Matrix
+                </button>
+</div>
+</div>
+<!-- Bottom HUD Data Feeds -->
+<div class="w-full grid grid-cols-2 md:grid-cols-4 gap-4 mt-12 border-x-2 border-b-2 border-cobalt-electric/30 p-6 relative backdrop-blur-sm bg-background/10">
+<div class="absolute -bottom-1 -left-1 w-4 h-4 border-b-2 border-l-2 border-cobalt-electric"></div>
+<div class="absolute -bottom-1 -right-1 w-4 h-4 border-b-2 border-r-2 border-cobalt-electric"></div>
+<div class="flex flex-col border-r border-surface-border/30 last:border-0 pr-4">
+<span class="font-mono-data text-xl text-on-surface font-bold">500+</span>
+<span class="font-label-caps text-[10px] text-on-surface-variant uppercase">Fleet Units</span>
+</div>
+<div class="flex flex-col border-r border-surface-border/30 last:border-0 pr-4">
+<span class="font-mono-data text-xl text-on-surface font-bold">15 YRS</span>
+<span class="font-label-caps text-[10px] text-on-surface-variant uppercase">Excellence</span>
+</div>
+<div class="flex flex-col border-r border-surface-border/30 last:border-0 pr-4">
+<span class="font-mono-data text-xl text-on-surface font-bold">100%</span>
+<span class="font-label-caps text-[10px] text-on-surface-variant uppercase">Compliance</span>
+</div>
+<div class="flex flex-col">
+<span class="font-mono-data text-xl text-on-surface font-bold text-cobalt-electric animate-pulse">LIVE</span>
+<span class="font-label-caps text-[10px] text-on-surface-variant uppercase">Threat Intel</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Quick Portal (Bento Grid) -->
+<section class="bg-obsidian-deep px-12 md:px-[48px] py-24 border-x border-surface-border mx-auto max-w-[1920px]">
+<div class="mb-16">
+<span class="font-label-caps text-label-caps text-cobalt-electric uppercase tracking-[0.2em]">Service Framework</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mt-4 uppercase">Specialized Operational Divisions</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Guarding: Large Block -->
+<div class="md:col-span-8 group border border-surface-border hover:border-cobalt-electric transition-colors p-8 flex flex-col justify-between min-h-[450px] relative overflow-hidden">
+<div class="relative z-10">
+<span class="material-symbols-outlined text-cobalt-electric text-4xl mb-6">shield</span>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-4 uppercase">Elite Guarding</h3>
+<p class="text-on-surface-variant max-w-md">Our officers are selected for corporate environments, providing a visible deterrent while maintaining a premium concierge experience.</p>
+</div>
+<div class="relative z-10 mt-8">
+<a class="flex items-center gap-2 font-bold text-on-surface group-hover:text-cobalt-electric transition-colors" href="#">
+                    Protocol Documentation
+                    <span class="material-symbols-outlined">arrow_forward</span>
+</a>
+</div>
+<div class="absolute bottom-0 right-0 w-1/2 h-full opacity-10 group-hover:opacity-20 transition-opacity">
+<img alt="Security professional uniform detail" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-JGpDMfjW17bOEy7uBpToGjagROHIfWmNfnoB60LnxktgPAechNT1v7eAebY3v5Ase51_avAvyy7HYByo8CS_PgqPGbzZYdtBY8VpQnBBmeH-QAX_Swy055PpNhlBDo1vlQPZkPf3qLV-Ak_Dxsgs37A45TvE4C_Cn0N-gDl8ZgVS84pSrQlg63b-v_Vvk9298NgJ8eUQM02qxRlU2PWzSuZQ_X9obwnTjfKkeYEHQsZUNOjnbty8VQ"/>
+</div>
+</div>
+<!-- Logistics -->
+<div class="md:col-span-4 group border border-surface-border hover:border-cobalt-electric transition-colors p-8 flex flex-col justify-between min-h-[450px]">
+<div>
+<span class="material-symbols-outlined text-cobalt-electric text-4xl mb-6">local_shipping</span>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-4 uppercase">Secure Logistics</h3>
+<p class="text-on-surface-variant">High-value asset transportation using armored, low-profile vehicles equipped with real-time GPS tracking.</p>
+</div>
+<div class="mt-8">
+<a class="flex items-center gap-2 font-bold text-on-surface group-hover:text-cobalt-electric transition-colors" href="#">
+                    Transit Matrix
+                    <span class="material-symbols-outlined">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Systems -->
+<div class="md:col-span-12 group border border-surface-border hover:border-cobalt-electric transition-colors p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-8 bg-surface-container-low">
+<div class="flex gap-6 items-start">
+<span class="material-symbols-outlined text-cobalt-electric text-4xl">sensors</span>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2 uppercase">Integrated Systems</h3>
+<p class="text-on-surface-variant max-w-xl">Advanced surveillance, biometric access control, and AI-driven perimeter detection synchronized with our centralized command.</p>
+</div>
+</div>
+<button class="bg-on-surface text-obsidian-deep px-8 py-3 font-bold uppercase tracking-wider whitespace-nowrap hover:bg-cobalt-electric hover:text-white transition-all rounded-none">
+                System Audit
+            </button>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="w-full bg-background border-t border-surface-border px-12 md:px-[48px] py-24 border-x border-surface-border mx-auto max-w-[1920px]">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter mb-16">
+<div class="space-y-6">
+<div class="font-headline-md text-headline-md font-bold text-on-surface">SECURITYLINK</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-xs">
+                The leading provider of industrial security and high-risk asset protection for global enterprises.
+            </p>
+</div>
+<div>
+<h4 class="font-label-caps text-label-caps text-on-surface font-semibold mb-6 uppercase">Locations</h4>
+<ul class="space-y-4 font-body-sm text-body-sm text-on-surface-variant">
+<li><a class="hover:text-cobalt-electric transition-colors" href="#">Uttara Model Town, Dhaka</a></li>
+<li><a class="hover:text-cobalt-electric transition-colors" href="#">Divisions</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-caps text-label-caps text-on-surface font-semibold mb-6 uppercase">Corporate</h4>
+<ul class="space-y-4 font-body-sm text-body-sm text-on-surface-variant">
+<li><a class="hover:text-cobalt-electric transition-colors" href="#">Compliance</a></li>
+<li><a class="hover:text-cobalt-electric transition-colors" href="#">Career Protocol</a></li>
+<li><a class="hover:text-cobalt-electric transition-colors" href="#">Annual Report</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-caps text-label-caps text-on-surface font-semibold mb-6 uppercase">Legal</h4>
+<ul class="space-y-4 font-body-sm text-body-sm text-on-surface-variant">
+<li><a class="hover:text-cobalt-electric transition-colors" href="#">Privacy Policy</a></li>
+<li><a class="hover:text-cobalt-electric transition-colors" href="#">Service Level Agreement</a></li>
+</ul>
+</div>
+</div>
+<div class="pt-12 border-t border-surface-border flex flex-col md:flex-row justify-between items-center gap-6">
+<span class="font-body-sm text-body-sm text-on-surface-variant opacity-60">© 2024 SECURITYLINK. All rights reserved.</span>
+<div class="flex gap-6">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-cobalt-electric transition-colors">public</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-cobalt-electric transition-colors">security</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-cobalt-electric transition-colors">verified_user</span>
+</div>
+</div>
+</footer>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Hero Slider Logic
+        const slides = document.querySelectorAll('.hero-slider-item');
+        let currentSlide = 0;
+        const slideInterval = 10000; // 10 seconds
+
+        function nextSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+
+        setInterval(nextSlide, slideInterval);
+
+        // Technical readout simulation (Optional refinement)
+        console.log('System Protocol: Active. Initializing hero sequence.');
+    });
+</script>
+</body></html>

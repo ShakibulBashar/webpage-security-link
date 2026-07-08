@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+@theme {
+  /* --- YOUR CUSTOM COLORS --- */
+  --color-background: #031427;
+  --color-cobalt-electric: #2563EB;
+  --color-obsidian-deep: #0B0F19;
+  --color-on-surface: #d3e4fe;
+  --color-on-surface-variant: #c6c6cc;
+  --color-surface-border: rgba(100, 116, 139, 0.3);
+  --color-surface-container-low: #0b1c30;
+  --color-surface-container-high: #1b2b3f;
+  --color-surface-bright: #2a3a4f;
+  --color-inverse-surface: #d3e4fe;
+  --color-tertiary: #b4c5ff;
+
+  /* --- YOUR CUSTOM FONTS --- */
+  --font-body-md: "Inter", sans-serif;
+  --font-body-lg: "Inter", sans-serif;
+  --font-body-sm: "Inter", sans-serif;
+  --font-label-caps: "Inter", sans-serif;
+  --font-headline-md: "Plus Jakarta Sans", sans-serif;
+  --font-headline-lg: "Plus Jakarta Sans", sans-serif;
+  --font-headline-xl: "Plus Jakarta Sans", sans-serif;
+  --font-mono-data: "Courier Prime", monospace;
+}
+
+/* --- YOUR SLIDER ANIMATION --- */
+.hero-slider-item {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center 25%; 
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+    z-index: 0;
+}
+
+.hero-slider-item.active {
+    opacity: 1;
+}
