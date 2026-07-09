@@ -16,11 +16,11 @@ export default function Header() {
     <>
       <style>{`
         @keyframes pedestal {
-          0%, 100% { transform: rotateY(-55deg); }
-          50% { transform: rotateY(55deg); }
+          0%, 100% { transform: rotateY(-35deg); }
+          50% { transform: rotateY(35deg); }
         }
         .logo-pedestal {
-          animation: pedestal 6s ease-in-out infinite;
+          animation: pedestal 10s ease-in-out infinite;
         }
         @keyframes squeeze {
           0% { transform: translateX(-120%) skewX(-20deg); opacity: 0; }
@@ -57,7 +57,7 @@ export default function Header() {
           </div>
         </div>
 
-        {/* Nav Links — Jakarta Sans + Clean Convex Active */}
+        {/* Nav Links */}
         <div className="hidden lg:flex items-center bg-surface-container-low/50 backdrop-blur-md rounded-full px-2 py-1.5 border border-transparent [background-clip:padding-box] relative before:absolute before:inset-0 before:rounded-full before:p-[1px] before:bg-gradient-to-r before:from-cobalt-electric/40 before:via-surface-border before:to-cobalt-electric/40 before:-z-10">
           {navLinks.map((link) => (
             <a
@@ -66,7 +66,7 @@ export default function Header() {
               className={`
                 relative px-4 py-2 text-[15px] font-bold tracking-wide uppercase transition-all duration-300 rounded-full font-[family-name:var(--font-jakarta)]
                 ${link.active
-                  ? 'bg-cobalt-electric text-white shadow-[inset_0_1px_1px_rgba(255,255,255,0.35),0_3px_0_0_#1e40af,0_4px_8px_rgba(37,99,235,0.35)] -translate-y-[1px]'
+                  ? 'bg-[#1e3a5f] text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.15),0_2px_0_0_#0f172a] -translate-y-[1px]'
                   : 'text-on-surface-variant hover:text-white hover:bg-surface-container-high hover:-translate-y-[2px] hover:shadow-[0_4px_12px_rgba(37,99,235,0.15)]'
                 }
               `}
@@ -76,7 +76,7 @@ export default function Header() {
           ))}
         </div>
 
-        {/* CTA — Interactive Squeeze Pulse */}
+        {/* CTA */}
         <button
           className="
             relative overflow-hidden bg-gradient-to-r from-amber-500 to-orange-600 text-white px-7 py-2.5 font-bold text-sm uppercase tracking-widest

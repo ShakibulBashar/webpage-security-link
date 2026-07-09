@@ -41,6 +41,6 @@ yarn-error.log*
 next-env.d.ts
 
 # generated artifacts
-/webpage/dist/
+dist/
 *.sst
 *.meta
