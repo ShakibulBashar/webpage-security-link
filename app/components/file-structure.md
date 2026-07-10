@@ -1,0 +1,45 @@
+```
+└── 📁webpage
+    └── 📁app
+        └── 📁components
+            ├── footer.js
+            ├── header.js
+        ├── globals.css
+        ├── homepage-2.html
+        ├── homepage.html
+        ├── layout.js
+        ├── page.js
+    └── 📁public
+        ├── file.svg
+        ├── globe.svg
+        ├── hero1.jpg
+        ├── hero10.JPG
+        ├── hero11.jpg
+        ├── hero12.JPG
+        ├── hero13.jpg
+        ├── hero14.jpg
+        ├── hero15.jpg
+        ├── hero16.JPG
+        ├── hero2.jpg
+        ├── hero3.jpg
+        ├── hero4.jpg
+        ├── hero5.jpg
+        ├── hero6.jpg
+        ├── hero7.jpg
+        ├── hero8.jpg
+        ├── hero9.JPG
+        ├── logo.png
+        ├── next.svg
+        ├── vercel.svg
+        ├── window.svg
+    ├── .gitignore
+    ├── AGENTS.md
+    ├── CLAUDE.md
+    ├── eslint.config.mjs
+    ├── jsconfig.json
+    ├── next.config.mjs
+    ├── package-lock.json
+    ├── package.json
+    ├── postcss.config.mjs
+    └── README.md
+```

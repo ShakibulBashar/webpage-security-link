@@ -1,26 +1,26 @@
-'use client';
-import Image from 'next/image';
+"use client";
+import Image from "next/image";
 
 export default function Header() {
   const navLinks = [
-    { label: 'Home', href: '#', active: true },
-    { label: 'About', href: '#' },
-    { label: 'Services', href: '#' },
-    { label: 'Gallery', href: '#' },
-    { label: 'Equipment', href: '#' },
-    { label: 'Achievement', href: '#' },
-    { label: 'Contact', href: '#' },
+    { label: "Home", href: "/", active: true },
+    { label: "About", href: "/about" },
+    { label: "Services", href: "/services" },
+    { label: "Gallery", href: "/gallery" },
+    { label: "Equipment", href: "/equipment" },
+    { label: "Achievement", href: "/achievement" },
+    { label: "Contact", href: "/contact" },
   ];
 
   return (
     <>
       <style>{`
         @keyframes pedestal {
-          0%, 100% { transform: rotateY(-35deg); }
-          50% { transform: rotateY(35deg); }
+          from { transform: rotateY(0deg); }
+          to { transform: rotateY(360deg); }
         }
         .logo-pedestal {
-          animation: pedestal 10s ease-in-out infinite;
+          animation: pedestal 12s linear infinite;
         }
         @keyframes squeeze {
           0% { transform: translateX(-120%) skewX(-20deg); opacity: 0; }
@@ -28,23 +28,47 @@ export default function Header() {
           50% { transform: translateX(120%) skewX(-20deg); opacity: 0; }
           100% { transform: translateX(-120%) skewX(-20deg); opacity: 0; }
         }
+        
         .shimmer-squeeze {
           animation: squeeze 2.5s ease-in-out infinite;
         }
+
+        @keyframes blink {
+  0% { transform: translateX(-100%) skewX(-15deg); }
+  20% { transform: translateX(200%) skewX(-15deg); }
+  100% { transform: translateX(200%) skewX(-15deg); }
+}
+.shimmer-blink {
+  animation: blink 2s ease-in-out infinite;
+}
+
       `}</style>
 
       <nav className="fixed top-0 w-full h-20 bg-background/85 backdrop-blur-xl z-50 border-b border-surface-border/40 flex justify-between items-center px-6 md:px-10 lg:px-12 mx-auto">
         {/* Brand */}
         <div className="flex items-center gap-3 h-full">
-          <div className="relative w-[64px] h-[64px] shrink-0 [perspective:400px]">
-            <div className="w-full h-full [transform-style:preserve-3d] logo-pedestal">
-              <Image
-                src="/logo.png"
-                alt="SECURITYLINK"
-                fill
-                className="object-contain drop-shadow-[0_0_12px_rgba(37,99,235,0.3)]"
-                priority
-              />
+          <div className="relative w-[90px] h-[70px] shrink-0 [perspective:400px]">
+            <div className="relative w-full h-full [transform-style:preserve-3d] logo-pedestal">
+              {/* FRONT FACE */}
+              <div className="absolute inset-0 [backface-visibility:hidden]">
+                <Image
+                  src="/logo.png"
+                  alt="SECURITYLINK"
+                  fill
+                  className="object-contain drop-shadow-[0_0_12px_rgba(37,99,235,0.3)]"
+                  priority
+                />
+              </div>
+              {/* BACK FACE — rotated 180° so it faces outward when the parent spins around */}
+              <div className="absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)]">
+                <Image
+                  src="/logo.png"
+                  alt="SECURITYLINK"
+                  fill
+                  className="object-contain drop-shadow-[0_0_12px_rgba(37,99,235,0.3)]"
+                  priority
+                />
+              </div>
             </div>
           </div>
           <div className="flex flex-col justify-center">
@@ -65,9 +89,10 @@ export default function Header() {
               href={link.href}
               className={`
                 relative px-4 py-2 text-[15px] font-bold tracking-wide uppercase transition-all duration-300 rounded-full font-[family-name:var(--font-jakarta)]
-                ${link.active
-                  ? 'bg-[#1e3a5f] text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.15),0_2px_0_0_#0f172a] -translate-y-[1px]'
-                  : 'text-on-surface-variant hover:text-white hover:bg-surface-container-high hover:-translate-y-[2px] hover:shadow-[0_4px_12px_rgba(37,99,235,0.15)]'
+                ${
+                  link.active
+                    ? "bg-[#1e3a5f] text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.15),0_2px_0_0_#0f172a] -translate-y-[1px]"
+                    : "text-on-surface-variant hover:text-white hover:bg-surface-container-high hover:-translate-y-[2px] hover:shadow-[0_4px_12px_rgba(37,99,235,0.15)]"
                 }
               `}
             >
@@ -89,7 +114,7 @@ export default function Header() {
           "
         >
           <span className="relative z-10">Get a Consultation</span>
-          <span className="absolute inset-0 shimmer-squeeze bg-gradient-to-r from-transparent via-white/30 to-transparent" />
+          <span className="absolute top-0 -left-full w-full h-full shimmer-blink bg-gradient-to-r from-transparent via-white to-transparent skew-x-12" />
         </button>
       </nav>
     </>
