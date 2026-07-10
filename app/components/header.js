@@ -1,11 +1,22 @@
 "use client";
 import Image from "next/image";
+import { useState } from "react";
 
 export default function Header() {
+  const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
+
   const navLinks = [
     { label: "Home", href: "/", active: true },
     { label: "About", href: "/about" },
-    { label: "Services", href: "/services" },
+    { 
+      label: "Services", 
+      href: "/services",
+      dropdown: [
+        { label: "Guard Division", href: "/services/guard" },
+        { label: "Logistics Division", href: "/services/logistics" },
+        { label: "Risk Management Division", href: "/services/risk-management" },
+      ]
+    },
     { label: "Gallery", href: "/gallery" },
     { label: "Equipment", href: "/equipment" },
     { label: "Achievement", href: "/achievement" },
@@ -84,20 +95,39 @@ export default function Header() {
         {/* Nav Links */}
         <div className="hidden lg:flex items-center bg-surface-container-low/50 backdrop-blur-md rounded-full px-2 py-1.5 border border-transparent [background-clip:padding-box] relative before:absolute before:inset-0 before:rounded-full before:p-[1px] before:bg-gradient-to-r before:from-cobalt-electric/40 before:via-surface-border before:to-cobalt-electric/40 before:-z-10">
           {navLinks.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              className={`
-                relative px-4 py-2 text-[15px] font-bold tracking-wide uppercase transition-all duration-300 rounded-full font-[family-name:var(--font-jakarta)]
-                ${
-                  link.active
-                    ? "bg-[#1e3a5f] text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.15),0_2px_0_0_#0f172a] -translate-y-[1px]"
-                    : "text-on-surface-variant hover:text-white hover:bg-surface-container-high hover:-translate-y-[2px] hover:shadow-[0_4px_12px_rgba(37,99,235,0.15)]"
-                }
-              `}
-            >
-              {link.label}
-            </a>
+            <div key={link.label} className="relative group">
+              <a
+                href={link.href}
+                className={`
+                  relative px-4 py-2 text-[15px] font-bold tracking-wide uppercase transition-all duration-300 rounded-full font-[family-name:var(--font-jakarta)] flex items-center gap-1
+                  ${
+                    link.active
+                      ? "bg-[#1e3a5f] text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.15),0_2px_0_0_#0f172a] -translate-y-[1px]"
+                      : "text-on-surface-variant hover:text-white hover:bg-surface-container-high hover:-translate-y-[2px] hover:shadow-[0_4px_12px_rgba(37,99,235,0.15)]"
+                  }
+                `}
+              >
+                {link.label}
+                {link.dropdown && (
+                  <span className="material-symbols-outlined text-sm">expand_more</span>
+                )}
+              </a>
+
+              {/* Dropdown Menu */}
+              {link.dropdown && (
+                <div className="absolute left-0 mt-0 w-48 bg-surface-container-low border border-surface-border rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50">
+                  {link.dropdown.map((item) => (
+                    <a
+                      key={item.label}
+                      href={item.href}
+                      className="block px-4 py-2.5 text-sm text-on-surface-variant hover:text-cobalt-electric hover:bg-surface-container-high transition-colors font-bold uppercase tracking-wide"
+                    >
+                      {item.label}
+                    </a>
+                  ))}
+                </div>
+              )}
+            </div>
           ))}
         </div>
 
