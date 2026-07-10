@@ -11,19 +11,19 @@ export default function LogisticsDivision() {
       title: "Industrial Cleaning",
       icon: "factory",
       desc: "Heavy-duty facility maintenance with degreasing, equipment care, and compliance standards.",
-      image: "/hero13.jpg"
+      features: ["Degreasing & deep cleaning", "Equipment maintenance", "Compliance certification", "Waste management"]
     },
     {
       title: "Hospital Cleaning",
       icon: "local_hospital",
       desc: "Medical-grade sanitization with biohazard protocols and infection control expertise.",
-      image: "/hero12.JPG"
+      features: ["Biohazard protocols", "Infection control", "Medical standards", "Emergency response"]
     },
     {
       title: "Corporate Cleaning",
       icon: "business",
       desc: "Professional office maintenance with eco-friendly products and flexible scheduling.",
-      image: "/hero11.jpg"
+      features: ["Eco-friendly products", "Flexible scheduling", "Office maintenance", "Green practices"]
     }
   ];
 
@@ -61,9 +61,10 @@ export default function LogisticsDivision() {
               backgroundPosition: "center",
             }}
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/70 to-background/50" />
-          <div className="absolute inset-0 bg-gradient-to-b from-background/80 to-background/40" />
-          <div className="absolute inset-0 rigid-grid opacity-30" />
+          {/* Lighter Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-background/50 to-background/30" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background/60 to-background/20" />
+          <div className="absolute inset-0 rigid-grid opacity-20" />
         </div>
 
         <div className="relative z-10 h-full flex flex-col items-center justify-center px-6 md:px-12 py-32">
@@ -114,53 +115,12 @@ export default function LogisticsDivision() {
         </div>
       </main>
 
-      {/* BREADCRUMB */}
-      <div className="bg-obsidian-deep border-t border-surface-border px-6 md:px-12 py-4 sticky top-20 z-40">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex items-center gap-2 text-sm text-on-surface-variant">
-            <a href="/" className="hover:text-cobalt-electric transition-colors">Home</a>
-            <span>/</span>
-            <span className="text-cobalt-electric font-bold">Logistics Division</span>
-          </div>
-        </div>
-      </div>
-
       {/* CONTENT */}
       <section className="bg-background border-x border-surface-border mx-auto max-w-[1920px] w-full">
         <div className="max-w-6xl mx-auto px-6 md:px-12 py-24">
-          {/* OVERVIEW */}
-          <div className="mb-32 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-            <div>
-              <div className="inline-block mb-6">
-                <span className="font-mono-data text-xs text-cobalt-electric uppercase tracking-widest bg-cobalt-electric/10 px-4 py-2 border border-cobalt-electric/30">
-                  Integrated Support
-                </span>
-              </div>
-              <h2 className="font-headline-lg text-4xl md:text-5xl text-on-surface uppercase tracking-tighter mb-8 leading-tight">
-                Beyond Security: Complete Facility Solutions
-              </h2>
-              <p className="text-on-surface-variant text-lg leading-relaxed mb-6">
-                SecurityLink's Logistics Division extends our commitment beyond security. We provide integrated facility management enabling clients to focus on core business while we handle critical support operations.
-              </p>
-              <div className="border-l-4 border-cobalt-electric pl-6 py-4 bg-surface-container-low/40">
-                <p className="text-on-surface italic">
-                  "Professional support services delivered with the same excellence that defines our security operations."
-                </p>
-              </div>
-            </div>
-            <div className="relative group glow-border rounded-lg overflow-hidden h-96">
-              <Image
-                src="/hero13.jpg"
-                alt="Logistics Division facility management operations"
-                fill
-                className="object-cover group-hover:scale-105 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-obsidian-deep/80 to-transparent" />
-            </div>
-          </div>
-
-          {/* SERVICE GRID */}
-          <div className="mb-32 border-t border-surface-border pt-24">
+          
+          {/* SECTION 1: CORE SERVICES MATRIX */}
+          <div className="mb-32">
             <div className="mb-16">
               <span className="font-mono-data text-xs text-cobalt-electric uppercase tracking-widest bg-cobalt-electric/10 px-4 py-2 border border-cobalt-electric/30 inline-block mb-6">
                 Core Offerings
@@ -173,37 +133,65 @@ export default function LogisticsDivision() {
               {services.map((service, idx) => (
                 <div
                   key={idx}
-                  onClick={() => setActiveService(idx)}
-                  className={`cursor-pointer transition-all duration-300 border rounded-lg overflow-hidden group ${
+                  className={`border transition-all duration-300 p-8 cursor-pointer group ${
                     activeService === idx
-                      ? "border-cobalt-electric glow-border"
+                      ? "border-cobalt-electric glow-border bg-surface-container-low"
                       : "border-surface-border hover:border-cobalt-electric"
                   }`}
+                  onClick={() => setActiveService(idx)}
                 >
-                  <div className="relative h-64 overflow-hidden bg-surface-container-low">
-                    <Image
-                      src={service.image}
-                      alt={service.title}
-                      fill
-                      className="object-cover group-hover:scale-110 transition-transform duration-500 opacity-40"
-                    />
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <span className="material-symbols-outlined text-cobalt-electric text-7xl opacity-30">
-                        {service.icon}
-                      </span>
-                    </div>
+                  <div className="flex items-start gap-4 mb-6">
+                    <span className="material-symbols-outlined text-cobalt-electric text-5xl group-hover:scale-110 transition-transform">
+                      {service.icon}
+                    </span>
+                    <h3 className="font-bold text-on-surface text-lg uppercase tracking-wide mt-1">{service.title}</h3>
                   </div>
-                  <div className="p-8">
-                    <h3 className="font-bold text-on-surface mb-3 uppercase text-lg tracking-wide">{service.title}</h3>
-                    <p className="text-on-surface-variant leading-relaxed">{service.desc}</p>
+                  <p className="text-on-surface-variant leading-relaxed mb-6">{service.desc}</p>
+                  <div className="space-y-2">
+                    {service.features.map((feature, fidx) => (
+                      <div key={fidx} className="flex gap-2">
+                        <span className="material-symbols-outlined text-cobalt-electric text-sm flex-shrink-0">check</span>
+                        <span className="text-on-surface-variant text-sm">{feature}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* EMERGING SERVICES */}
-          <div className="border-t border-surface-border pt-24">
+          {/* SECTION 2: SERVICE CAPABILITIES */}
+          <div className="mb-32 border-t border-surface-border pt-24">
+            <div className="mb-16">
+              <span className="font-mono-data text-xs text-cobalt-electric uppercase tracking-widest bg-cobalt-electric/10 px-4 py-2 border border-cobalt-electric/30 inline-block mb-6">
+                Capabilities
+              </span>
+              <h2 className="font-headline-lg text-4xl md:text-5xl text-on-surface uppercase tracking-tighter leading-tight">
+                Integrated Facility Solutions
+              </h2>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {[
+                { icon: "cleaning_services", title: "Deep Cleaning", desc: "Comprehensive facility sanitization using industrial-grade equipment and eco-friendly products." },
+                { icon: "health_and_safety", title: "Health & Safety", desc: "Compliance with international health standards and safety protocols for all environments." },
+                { icon: "schedule", title: "Flexible Scheduling", desc: "24/7 availability with customizable service windows to minimize operational disruption." },
+                { icon: "verified", title: "Quality Assurance", desc: "Regular inspections and performance monitoring ensuring consistent service excellence." },
+                { icon: "recycling", title: "Waste Management", desc: "Proper disposal and recycling protocols aligned with environmental regulations." },
+                { icon: "trending_up", title: "Continuous Improvement", desc: "Feedback mechanisms and process optimization for enhanced service delivery." }
+              ].map((item, idx) => (
+                <div key={idx} className="border border-surface-border p-8 hover:border-cobalt-electric transition-all hover:shadow-[0_0_20px_rgba(37,99,235,0.2)] group glow-border">
+                  <span className="material-symbols-outlined text-cobalt-electric text-4xl mb-4 block group-hover:scale-110 transition-transform">
+                    {item.icon}
+                  </span>
+                  <h3 className="font-bold text-on-surface mb-3 uppercase text-sm tracking-wide">{item.title}</h3>
+                  <p className="text-on-surface-variant text-sm leading-relaxed">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* SECTION 3: EMERGING SERVICE LINES */}
+          <div className="mb-32 border-t border-surface-border pt-24">
             <div className="mb-16">
               <span className="font-mono-data text-xs text-cobalt-electric uppercase tracking-widest bg-cobalt-electric/10 px-4 py-2 border border-cobalt-electric/30 inline-block mb-6">
                 Future Capabilities
@@ -213,14 +201,14 @@ export default function LogisticsDivision() {
               </h2>
             </div>
             <p className="text-on-surface-variant text-lg mb-12 leading-relaxed max-w-3xl">
-              SecurityLink is actively developing additional logistics capabilities to provide comprehensive facility management solutions.
+              SecurityLink is actively developing additional logistics capabilities to provide comprehensive facility management solutions tailored to evolving client needs.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {[
-                { icon: "elevator", title: "Lift Servicing", desc: "Preventive maintenance and emergency servicing for elevator systems." },
-                { icon: "power", title: "Power Sub-Station", desc: "Technical maintenance ensuring uninterrupted power supply." },
-                { icon: "receipt", title: "Bill Deposition", desc: "Secure handling and timely deposit of financial transactions." },
-                { icon: "more_horiz", title: "Custom Solutions", desc: "Tailored logistics services for unique operational requirements." }
+                { icon: "elevator", title: "Lift Servicing", desc: "Preventive maintenance and emergency servicing for elevator systems ensuring safety and reliability." },
+                { icon: "power", title: "Power Sub-Station", desc: "Technical maintenance ensuring uninterrupted power supply and system optimization." },
+                { icon: "receipt", title: "Bill Deposition", desc: "Secure handling and timely deposit of financial transactions with audit trails." },
+                { icon: "more_horiz", title: "Custom Solutions", desc: "Tailored logistics services for unique operational requirements and specialized needs." }
               ].map((item, idx) => (
                 <div key={idx} className="border border-surface-border p-8 hover:border-cobalt-electric transition-all hover:shadow-[0_0_20px_rgba(37,99,235,0.2)] group glow-border">
                   <div className="flex items-start gap-6">
@@ -236,21 +224,75 @@ export default function LogisticsDivision() {
               ))}
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* CTA */}
-      <section className="bg-obsidian-deep border-t border-surface-border py-20 md:py-32">
-        <div className="max-w-4xl mx-auto px-6 md:px-12 text-center">
-          <h2 className="font-headline-lg text-4xl md:text-5xl text-on-surface uppercase tracking-tighter mb-8">
-            Streamline Your Facility Operations
-          </h2>
-          <p className="text-on-surface-variant text-lg mb-12 leading-relaxed">
-            Let SecurityLink's Logistics Division handle your facility management needs with professional excellence.
-          </p>
-          <button className="bg-gradient-to-r from-amber-500 to-orange-600 text-white px-10 py-4 font-bold uppercase tracking-widest hover:shadow-[0_0_40px_rgba(245,158,11,0.7)] transition-all transform hover:scale-105 active:scale-95 text-lg">
-            Request Service Quote
-          </button>
+          {/* SECTION 4: OVERVIEW & INTEGRATION */}
+          <div className="border-t border-surface-border pt-24">
+            <div className="mb-16">
+              <span className="font-mono-data text-xs text-cobalt-electric uppercase tracking-widest bg-cobalt-electric/10 px-4 py-2 border border-cobalt-electric/30 inline-block mb-6">
+                Integration
+              </span>
+              <h2 className="font-headline-lg text-4xl md:text-5xl text-on-surface uppercase tracking-tighter leading-tight">
+                Beyond Security: Complete Facility Solutions
+              </h2>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+              <div>
+                <p className="text-on-surface-variant text-lg leading-relaxed mb-6">
+                  SecurityLink's Logistics Division extends our commitment beyond security. We provide integrated facility management enabling clients to focus on core business while we handle critical support operations with professional excellence.
+                </p>
+                <div className="border-l-4 border-cobalt-electric pl-6 py-4 bg-surface-container-low/40 mb-8">
+                  <p className="text-on-surface italic">
+                    "Professional support services delivered with the same excellence that defines our security operations."
+                  </p>
+                </div>
+                <div className="space-y-4">
+                  <div className="flex gap-4">
+                    <span className="material-symbols-outlined text-cobalt-electric flex-shrink-0">handshake</span>
+                    <div>
+                      <h4 className="font-bold text-on-surface mb-1">Seamless Integration</h4>
+                      <p className="text-on-surface-variant text-sm">Works alongside our security services for comprehensive facility management.</p>
+                    </div>
+                  </div>
+                  <div className="flex gap-4">
+                    <span className="material-symbols-outlined text-cobalt-electric flex-shrink-0">shield</span>
+                    <div>
+                      <h4 className="font-bold text-on-surface mb-1">Trusted Partner</h4>
+                      <p className="text-on-surface-variant text-sm">Same rigorous standards and professional approach as our core security division.</p>
+                    </div>
+                  </div>
+                  <div className="flex gap-4">
+                    <span className="material-symbols-outlined text-cobalt-electric flex-shrink-0">speed</span>
+                    <div>
+                      <h4 className="font-bold text-on-surface mb-1">Operational Efficiency</h4>
+                      <p className="text-on-surface-variant text-sm">Streamlined processes and coordinated scheduling reduce overhead and complexity.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="border border-surface-border p-6 bg-surface-container-low/30 hover:border-cobalt-electric transition-all">
+                  <span className="material-symbols-outlined text-cobalt-electric text-5xl mb-4 block">eco</span>
+                  <h4 className="font-bold text-on-surface mb-2 uppercase text-sm">Eco-Friendly</h4>
+                  <p className="text-on-surface-variant text-xs">Sustainable practices and green cleaning products for environmental responsibility.</p>
+                </div>
+                <div className="border border-surface-border p-6 bg-surface-container-low/30 hover:border-cobalt-electric transition-all">
+                  <span className="material-symbols-outlined text-cobalt-electric text-5xl mb-4 block">verified_user</span>
+                  <h4 className="font-bold text-on-surface mb-2 uppercase text-sm">Certified Teams</h4>
+                  <p className="text-on-surface-variant text-xs">Trained and certified personnel ensuring professional service delivery standards.</p>
+                </div>
+                <div className="border border-surface-border p-6 bg-surface-container-low/30 hover:border-cobalt-electric transition-all">
+                  <span className="material-symbols-outlined text-cobalt-electric text-5xl mb-4 block">schedule</span>
+                  <h4 className="font-bold text-on-surface mb-2 uppercase text-sm">24/7 Support</h4>
+                  <p className="text-on-surface-variant text-xs">Round-the-clock availability for emergency services and urgent facility needs.</p>
+                </div>
+                <div className="border border-surface-border p-6 bg-surface-container-low/30 hover:border-cobalt-electric transition-all">
+                  <span className="material-symbols-outlined text-cobalt-electric text-5xl mb-4 block">assessment</span>
+                  <h4 className="font-bold text-on-surface mb-2 uppercase text-sm">Quality Control</h4>
+                  <p className="text-on-surface-variant text-xs">Regular audits and performance reviews ensuring consistent service excellence.</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </>
