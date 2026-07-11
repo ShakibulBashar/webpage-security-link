@@ -1,3 +1,4 @@
+// Logistics Division Page of Service Section
 "use client";
 
 import Image from "next/image";
@@ -201,7 +202,7 @@ export default function LogisticsDivision() {
                 <div className="absolute -top-px -left-px w-2 h-2 border-t border-l border-cobalt-electric" />
                 <div className="absolute -bottom-px -right-px w-2 h-2 border-b border-r border-cobalt-electric" />
                 <p className="text-on-surface text-xs italic leading-relaxed">
-                  "Clean premises signal operational discipline. We treat facility management with the same rigor as perimeter security."
+                  &quot;Clean premises signal operational discipline. We treat facility management with the same rigor as perimeter security.&quot;
                 </p>
                 <div className="mt-2 flex items-center gap-2">
                   <div className="w-4 h-[1px] bg-cobalt-electric/50" />
