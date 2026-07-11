@@ -42,6 +42,7 @@ export default function Header() {
         { label: "About Ourself", href: "/about/about-us" },
         { label: "Achievements & Recognition", href: "/about/achievements" },
         { label: "Managing Director's Profile", href: "/about/md" },
+        { label: "Gallery", href: "/gallery" },
       ],
     },
     {
@@ -54,7 +55,6 @@ export default function Header() {
         { label: "Equipments Division", href: "/services/equipments" },
       ],
     },
-    { label: "Gallery", href: "/gallery" },
     {
       label: "Selection ",
       
@@ -63,6 +63,7 @@ export default function Header() {
         { label: "Training Activities", href: "/s&t/training" },
       ],
     },
+    { label: "Contact", href: "/contact" },
   ];
 
   return (
@@ -167,8 +168,9 @@ export default function Header() {
 
           {/* Right Side: CTA + Hamburger */}
           <div className="flex items-center gap-3 shrink-0">
-            {/* Desktop CTA — Contact */}
+            {/* Desktop CTA — Get a Consultation */}
             <button
+              onClick={() => window.open("https://wa.me/8801777740983", "_blank", "noopener,noreferrer")}
               className="
                 hidden md:block relative overflow-hidden bg-gradient-to-r from-amber-500 to-orange-600 text-white px-4 py-2.5 font-bold text-xs xl:text-sm uppercase tracking-widest
                 shadow-[0_0_20px_rgba(245,158,11,0.35),0_4px_0_0_#9a3412]
@@ -179,7 +181,7 @@ export default function Header() {
                 transition-all duration-200 rounded-none
               "
             >
-              <span className="relative z-10">Contact Us</span>
+              <span className="relative z-10">Get a Consultation</span>
               <span className="absolute top-0 -left-full w-full h-full shimmer-blink bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-12" />
             </button>
 
@@ -298,7 +300,10 @@ export default function Header() {
 
             <div className="mt-6 pt-6 border-t border-surface-border/30">
               <button
-                onClick={() => setMobileMenuOpen(false)}
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  window.open("https://wa.me/8801777740983", "_blank", "noopener,noreferrer");
+                }}
                 className="
                   w-full relative overflow-hidden bg-gradient-to-r from-amber-500 to-orange-600 text-white px-7 py-3.5 font-bold text-sm uppercase tracking-widest
                   shadow-[0_0_20px_rgba(245,158,11,0.35),0_4px_0_0_#9a3412]
@@ -307,7 +312,7 @@ export default function Header() {
                   transition-all duration-200 rounded-none
                 "
               >
-                <span className="relative z-10">Contact</span>
+                <span className="relative z-10">Get a Consultation</span>
               </button>
             </div>
           </div>
