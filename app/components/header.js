@@ -56,8 +56,8 @@ export default function Header() {
     },
     { label: "Gallery", href: "/gallery" },
     {
-      label: "Selection and Training",
-      href: "/selection-and-training",
+      label: "Selection ",
+      
       dropdown: [
         { label: "Selection Procedure", href: "/s&t/selection" },
         { label: "Training Activities", href: "/s&t/training" },
