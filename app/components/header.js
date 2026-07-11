@@ -59,7 +59,7 @@ export default function Header() {
       label: "Selection and Training",
       href: "/selection-and-training",
       dropdown: [
-        { label: "Selection Procedure", href: "/s&s/selection" },
+        { label: "Selection Procedure", href: "/s&t/selection" },
         { label: "Training Activities", href: "/s&t/training" },
       ],
     },
@@ -80,10 +80,10 @@ export default function Header() {
 
       {/* WRAPPER: nav bar + mobile overlay share this ref */}
       <div ref={navRef} className="fixed top-0 w-full z-50">
-        <nav className="h-20 bg-background/85 backdrop-blur-xl border-b border-surface-border/40 flex justify-between items-center px-4 md:px-6 lg:px-8">
+        <nav className="h-20 bg-background/85 backdrop-blur-xl border-b border-surface-border/40 flex justify-between items-center px-4 md:px-8 lg:px-4">
           {/* Brand */}
           <div className="flex items-center gap-2 h-full shrink-0 min-w-0">
-            <div className="relative w-[52px] h-[42px] md:w-[60px] md:h-[48px] lg:w-[90px] lg:h-[65px] shrink-0">
+            <div className="relative w-[52px] h-[42px] md:w-[60px] md:h-[48px] lg:w-[70px] lg:h-[60px] xl:w-[80px] xl:h-[65px] shrink-0">
               <Image
                 src="/logo.png"
                 alt="SECURITYLINK"
@@ -93,10 +93,10 @@ export default function Header() {
               />
             </div>
             <div className="flex flex-col justify-center min-w-0">
-              <span className="font-headline-md text-[20px] md:text-[30px] lg:text-[36px] font-bold tracking-tight text-on-surface uppercase leading-none truncate">
+              <span className="font-headline-md text-[18px] md:text-[30px] xl:text-[32px] font-bold tracking-tight text-on-surface uppercase leading-none truncate">
                 SECURITY<span className="text-cobalt-electric">LINK</span>
               </span>
-              <span className="font-label-caps text-[12px] md:text-[12px] lg:text-[12px] text-on-surface-variant tracking-[0.2em] uppercase mt-1 opacity-60 truncate">
+              <span className="font-label-caps text-[10px] md:text-[12px]  text-on-surface-variant tracking-[0.2em] uppercase mt-1 opacity-60 truncate">
                 If You&apos;re quality conscious
               </span>
             </div>
@@ -116,7 +116,7 @@ export default function Header() {
                   {link.dropdown ? (
                     <span
                       className={`
-                        relative px-3 xl:px-4 py-2 text-[13px] lg:text-[18px] font-bold tracking-wide uppercase transition-all duration-300 rounded-full font-[family-name:var(--font-jakarta)] flex items-center gap-1 cursor-default select-none
+                        relative px-3  py-2 text-[13px] lg:text-[15px] xl:text-[17px] font-bold tracking-wide uppercase transition-all duration-300 rounded-full font-[family-name:var(--font-jakarta)] flex items-center gap-1 cursor-default select-none
                         ${isActive
                           ? "bg-[#1e3a5f] text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.15),0_2px_0_0_#0f172a] -translate-y-[1px]"
                           : "text-on-surface-variant group-hover:text-white group-hover:bg-surface-container-high group-hover:-translate-y-[2px] group-hover:shadow-[0_4px_12px_rgba(37,99,235,0.15)]"
@@ -170,7 +170,7 @@ export default function Header() {
             {/* Desktop CTA — Contact */}
             <button
               className="
-                hidden md:block relative overflow-hidden bg-gradient-to-r from-amber-500 to-orange-600 text-white px-5 xl:px-7 py-2.5 font-bold text-xs xl:text-sm uppercase tracking-widest
+                hidden md:block relative overflow-hidden bg-gradient-to-r from-amber-500 to-orange-600 text-white px-4 py-2.5 font-bold text-xs xl:text-sm uppercase tracking-widest
                 shadow-[0_0_20px_rgba(245,158,11,0.35),0_4px_0_0_#9a3412]
                 hover:shadow-[0_0_30px_rgba(245,158,11,0.55),0_4px_0_0_#9a3412]
                 hover:-translate-y-0.5
