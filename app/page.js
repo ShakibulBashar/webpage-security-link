@@ -63,7 +63,7 @@ export default function Home() {
 
     // --- 1. HERO SLIDER ---
     const heroSlides = document.querySelectorAll(".hero-slider-item");
-    let currentHeroSlide = 2;
+    let currentHeroSlide = 0;
 
     function nextHeroSlide() {
       if (heroSlides.length) {
@@ -189,7 +189,7 @@ export default function Home() {
           {heroImages.map((img, idx) => (
             <div
               key={idx}
-              className={`hero-slider-item ${idx === 2 ? "active" : ""}`}
+              className={`hero-slider-item ${idx === 0 ? "active" : ""}`}
               style={{ backgroundImage: `url('${img}')` }}
             />
           ))}
