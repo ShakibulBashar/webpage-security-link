@@ -1,4 +1,5 @@
 // Selection Procedure — recruitment & selection standards of SecurityLink
+import Image from "next/image";
 import {
   ClipboardCheck,
   Dumbbell,
@@ -297,35 +298,32 @@ export default function SelectionProcedurePage() {
         </div>
       </section>
 
-      {/* WHAT WE LOOK FOR — split with the single image container */}
+      {/* WHAT WE LOOK FOR — split with the image container */}
       <section className="bg-background">
-        <div className="max-w-6xl mx-auto px-6 md:px-12 py-24 md:py-32">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-stretch">
-            {/* IMAGE CONTAINER — upload your photo as /public/selection.jpg */}
-            <div className="lg:col-span-6 order-1">
-              <div className="relative h-full min-h-[360px] md:min-h-[480px] border border-cobalt-electric/30 overflow-hidden group">
-                {/* fallback layers (visible until image is added) */}
-                <div className="absolute inset-0 bg-gradient-to-br from-surface-container-low to-obsidian-deep" />
-                <div className="absolute inset-0 rigid-grid opacity-40" />
-                {/* your image — replace the path below with your file in /public */}
-                <div
-                  className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
-                  style={{ backgroundImage: "url('/selection.jpg')" }}
+        <div className="max-w-6xl mx-auto px-3 md:px-4 py-10 md:py-14">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-8 items-center">
+            {/* IMAGE CONTAINER — 697×518 px */}
+            <div className="lg:col-span-7 order-1">
+              <div className="relative w-full aspect-[697/518] border border-cobalt-electric/30 overflow-hidden group bg-surface-container-low">
+                <Image
+                  src="/recruitment.png"
+                  alt="SecurityLink recruitment"
+                  fill
+                  className="object-contain p-2 transition-transform duration-700 group-hover:scale-[1.02]"
                 />
-                <div className="absolute inset-0 ring-1 ring-inset ring-cobalt-electric/20" />
-                {/* viewfinder corner brackets */}
-                <div className="absolute top-3 left-3 w-6 h-6 border-t-2 border-l-2 border-cobalt-electric/60" />
-                <div className="absolute top-3 right-3 w-6 h-6 border-t-2 border-r-2 border-cobalt-electric/60" />
-                <div className="absolute bottom-3 left-3 w-6 h-6 border-b-2 border-l-2 border-cobalt-electric/60" />
-                <div className="absolute bottom-3 right-3 w-6 h-6 border-b-2 border-r-2 border-cobalt-electric/60" />
-                <div className="absolute bottom-4 left-4 font-mono-data text-[10px] text-cobalt-electric/70 uppercase tracking-[0.25em]">
+                <div className="absolute inset-0 ring-1 ring-inset ring-cobalt-electric/20 pointer-events-none" />
+                <div className="absolute top-3 left-3 w-5 h-5 border-t-2 border-l-2 border-cobalt-electric/60" />
+                <div className="absolute top-3 right-3 w-5 h-5 border-t-2 border-r-2 border-cobalt-electric/60" />
+                <div className="absolute bottom-3 left-3 w-5 h-5 border-b-2 border-l-2 border-cobalt-electric/60" />
+                <div className="absolute bottom-3 right-3 w-5 h-5 border-b-2 border-r-2 border-cobalt-electric/60" />
+                <div className="absolute bottom-3 left-3 font-mono-data text-[9px] text-cobalt-electric/70 uppercase tracking-[0.25em]">
                   REC &bull; SELECTION
                 </div>
               </div>
             </div>
 
             {/* attributes list */}
-            <div className="lg:col-span-7 order-2">
+            <div className="lg:col-span-5 order-2">
               <span className="font-mono-data text-xs text-cobalt-electric uppercase tracking-[0.2em]">
                 What We Look For
               </span>

@@ -220,12 +220,12 @@ export default function Home() {
               <span className="text-cobalt-electric">Enterprise</span>, and Key Infrastructure
             </h1>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <button className="bg-cobalt-electric text-white px-8 py-3 font-bold text-base uppercase tracking-widest hover:scale-105 transition-all shadow-[0_0_30px_rgba(37,99,235,0.4)] rounded-none">
-                Initiate Protocol
-              </button>
-              <button className="border-2 border-on-surface/30 text-on-surface px-8 py-3 font-bold text-base uppercase tracking-widest hover:bg-on-surface hover:text-obsidian-deep transition-all backdrop-blur-md rounded-none">
-                View Service Matrix
-              </button>
+              <a href="/services/guard" className="inline-block bg-cobalt-electric text-white px-8 py-3 font-bold text-base uppercase tracking-widest hover:scale-105 transition-all shadow-[0_0_30px_rgba(37,99,235,0.4)] rounded-none">
+                Guard Division Services
+              </a>
+              <a href="/services/logistics" className="inline-block border-2 border-on-surface/30 text-on-surface px-8 py-3 font-bold text-base uppercase tracking-widest hover:bg-on-surface hover:text-obsidian-deep transition-all backdrop-blur-md rounded-none">
+                 Logistic Division Services
+              </a>
             </div>
           </div>
 
