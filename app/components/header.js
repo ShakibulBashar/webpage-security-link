@@ -1,12 +1,14 @@
 "use client";
 import Image from "next/image";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 
 export default function Header() {
   const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
+  const pathname = usePathname();
 
   const navLinks = [
-    { label: "Home", href: "/", active: true },
+    { label: "Home", href: "/" },
     { label: "About", href: "/about" },
     { 
       label: "Services", 
@@ -87,31 +89,49 @@ export default function Header() {
               SECURITY<span className="text-cobalt-electric">LINK</span>
             </span>
             <span className="font-label-caps text-[10px] text-on-surface-variant tracking-[0.2em] uppercase mt-1 opacity-60">
-              Corporate Asset Protection
+              If Your&apos;e quality conscious
             </span>
           </div>
         </div>
 
         {/* Nav Links */}
         <div className="hidden lg:flex items-center bg-surface-container-low/50 backdrop-blur-md rounded-full px-2 py-1.5 border border-transparent [background-clip:padding-box] relative before:absolute before:inset-0 before:rounded-full before:p-[1px] before:bg-gradient-to-r before:from-cobalt-electric/40 before:via-surface-border before:to-cobalt-electric/40 before:-z-10">
-          {navLinks.map((link) => (
+          {navLinks.map((link) => {
+            const isActive = link.dropdown
+              ? link.dropdown.some((item) => pathname.startsWith(item.href))
+              : link.href === "/"
+                ? pathname === "/"
+                : pathname.startsWith(link.href);
+
+            return (
             <div key={link.label} className="relative group">
-              <a
-                href={link.href}
-                className={`
-                  relative px-4 py-2 text-[15px] font-bold tracking-wide uppercase transition-all duration-300 rounded-full font-[family-name:var(--font-jakarta)] flex items-center gap-1
-                  ${
-                    link.active
+              {link.dropdown ? (
+                <span
+                  className={`
+                    relative px-4 py-2 text-[15px] font-bold tracking-wide uppercase transition-all duration-300 rounded-full font-[family-name:var(--font-jakarta)] flex items-center gap-1 cursor-default
+                    ${isActive
+                      ? "bg-[#1e3a5f] text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.15),0_2px_0_0_#0f172a] -translate-y-[1px]"
+                      : "text-on-surface-variant group-hover:text-white group-hover:bg-surface-container-high group-hover:-translate-y-[2px] group-hover:shadow-[0_4px_12px_rgba(37,99,235,0.15)]"
+                    }
+                  `}
+                >
+                  {link.label}
+                  <span className="material-symbols-outlined text-sm">expand_more</span>
+                </span>
+              ) : (
+                <a
+                  href={link.href}
+                  className={`
+                    relative px-4 py-2 text-[15px] font-bold tracking-wide uppercase transition-all duration-300 rounded-full font-[family-name:var(--font-jakarta)] flex items-center gap-1
+                    ${isActive
                       ? "bg-[#1e3a5f] text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.15),0_2px_0_0_#0f172a] -translate-y-[1px]"
                       : "text-on-surface-variant hover:text-white hover:bg-surface-container-high hover:-translate-y-[2px] hover:shadow-[0_4px_12px_rgba(37,99,235,0.15)]"
-                  }
-                `}
-              >
-                {link.label}
-                {link.dropdown && (
-                  <span className="material-symbols-outlined text-sm">expand_more</span>
-                )}
-              </a>
+                    }
+                  `}
+                >
+                  {link.label}
+                </a>
+              )}
 
               {/* Dropdown Menu */}
               {link.dropdown && (
@@ -120,7 +140,11 @@ export default function Header() {
                     <a
                       key={item.label}
                       href={item.href}
-                      className="block px-4 py-2.5 text-sm text-on-surface-variant hover:text-cobalt-electric hover:bg-surface-container-high transition-colors font-bold uppercase tracking-wide"
+                      className={`block px-4 py-2.5 text-sm font-bold uppercase tracking-wide transition-colors ${
+                        pathname.startsWith(item.href)
+                          ? "text-cobalt-electric bg-surface-container-high"
+                          : "text-on-surface-variant hover:text-cobalt-electric hover:bg-surface-container-high"
+                      }`}
                     >
                       {item.label}
                     </a>
@@ -128,7 +152,8 @@ export default function Header() {
                 </div>
               )}
             </div>
-          ))}
+          );
+          })}
         </div>
 
         {/* CTA */}
