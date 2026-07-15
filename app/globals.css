@@ -14,22 +14,22 @@
   --color-inverse-surface: #d3e4fe;
   --color-tertiary: #b4c5ff;
 
-  /* --- YOUR CUSTOM FONTS --- */
-  --font-body-md: "Inter", sans-serif;
-  --font-body-lg: "Inter", sans-serif;
-  --font-body-sm: "Inter", sans-serif;
-  --font-label-caps: "Inter", sans-serif;
-  --font-headline-md: "Plus Jakarta Sans", sans-serif;
-  --font-headline-lg: "Plus Jakarta Sans", sans-serif;
-  --font-headline-xl: "Plus Jakarta Sans", sans-serif;
-  --font-mono-data: "Courier Prime", monospace;
+  /* --- FONTS: wired to CSS variables from layout.js --- */
+  --font-body-md: var(--font-body), sans-serif;
+  --font-body-lg: var(--font-body), sans-serif;
+  --font-body-sm: var(--font-body), sans-serif;
+  --font-label-caps: var(--font-body), sans-serif;
+  --font-headline-md: var(--font-headline), sans-serif;
+  --font-headline-lg: var(--font-headline), sans-serif;
+  --font-headline-xl: var(--font-headline), sans-serif;
+  --font-mono-data: var(--font-mono), monospace;
 }
 
+/* --- Keep all your existing styles below --- */
 .hero-slider-item {
     position: absolute;
     inset: 0;
     background-size: cover;
-    background-position: center 20%;
     opacity: 0;
     transition: opacity 1.5s ease-in-out;
     z-index: 0;
@@ -45,4 +45,40 @@
 }
 .elite-slider-item.active {
     opacity: 1;
+}
+
+/* --- Scroll Reveal System --- */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+[data-reveal="left"]  { transform: translateX(-32px); }
+[data-reveal="right"] { transform: translateX(32px); }
+[data-reveal="scale"] { transform: scale(0.94); }
+[data-reveal].reveal-visible {
+  opacity: 1;
+  transform: translate(0) scale(1);
+}
+
+[data-reveal-child] {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--stagger-delay, 0ms);
+}
+[data-reveal-child].reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal],
+  [data-reveal-child] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
 }

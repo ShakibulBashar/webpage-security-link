@@ -55,7 +55,7 @@ export default function AchievementsPage() {
       `}</style>
 
       {/* HERO — CSS only, no image dependency */}
-      <main className="relative min-h-[88vh] pt-20 overflow-hidden flex items-end">
+      <main className="relative min-h-[88vh] pt-20 overflow-hidden flex items-end"> 
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-b from-obsidian-deep via-background to-background" />
           <div className="absolute inset-0 rigid-grid opacity-40" />
@@ -91,15 +91,24 @@ export default function AchievementsPage() {
               Credentials and client acknowledgement, earned on individual sites rather than in
               marketing copy.
             </p>
+            <p className="font-mono-data text-xs text-on-surface-variant/60 uppercase tracking-[0.15em] rise" style={{ animationDelay: "0.25s" }}>
+              ASIS International &bull; CPP Board Certified &bull; Bangladesh Chapter Chairman
+            </p>
+            <p className="font-mono-data text-xs text-on-surface-variant/60 uppercase tracking-[0.15em] rise" style={{ animationDelay: "0.3s" }}>
+              IPSA Member &bull; ARC Training Accredited &bull; NTMC System Design Partner
+            </p>
 
             <div
-              className="grid grid-cols-3 gap-4 mt-12 rise"
-              style={{ animationDelay: "0.3s" }}
+              className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-12 rise"
+              style={{ animationDelay: "0.35s" }}
             >
               {[
                 { v: "CPP", l: "Certified" },
                 { v: "IPSA", l: "Member" },
                 { v: "ARC", l: "Training" },
+                { v: "NTMC", l: "System Design" },
+                { v: "DCC", l: "Licensed" },
+                { v: "ASIS", l: "Chairman" },
               ].map((s, i) => (
                 <div
                   key={i}
@@ -147,7 +156,7 @@ export default function AchievementsPage() {
 
       {/* LETTERS OF RECOGNITION */}
       <section className="bg-background">
-        <div className="max-w-6xl mx-auto px-6 md:px-12 py-20 md:py-28">
+        <div className="max-w-auto mx-auto px-6 md:px-8 lg:px-24 py-8 md:py-12 lg:py-16">
           <div className="mb-16 max-w-2xl">
             <span className="font-mono-data text-xs text-cobalt-electric uppercase tracking-[0.2em]">
               Letters of Recognition

@@ -74,6 +74,21 @@ export default function AboutUsPage() {
         }
         .rise { animation: rise 0.9s cubic-bezier(0.16,1,0.3,1) both; }
 
+        @keyframes scan {
+          0% { transform: translateY(-100%); opacity: 0; }
+          10% { opacity: 1; }
+          90% { opacity: 1; }
+          100% { transform: translateY(2400%); opacity: 0; }
+        }
+        .scan-line { animation: scan 6s linear infinite; }
+
+        .rigid-grid {
+          background-image:
+            linear-gradient(to right, rgba(100,116,139,0.18) 1px, transparent 1px),
+            linear-gradient(rgba(100,116,139,0.18) 1px, transparent 1px);
+          background-size: 48px 48px;
+        }
+
         .chain-line {
           background-image: repeating-linear-gradient(
             to right,
@@ -94,26 +109,24 @@ export default function AboutUsPage() {
         }
       `}</style>
 
-      {/* HERO */}
-      <main className="relative min-h-[86vh] pt-20 overflow-hidden flex items-end">
+      {/* HERO — CSS only, no image dependency */}
+      <main className="relative min-h-[88vh]  overflow-hidden flex items-center border-b border-surface-border">
         <div className="absolute inset-0">
-          <Image
-            src="/hero16.JPG"
-            alt="SecurityLink guard team standing in formation outside a client facility"
-            fill
-            priority
-            className="object-cover"
-            style={{
-              objectPosition: "center 2%" 
-              
-            }}
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background/20" />
-          <div className="absolute inset-0 bg-background/30" />
+          <div className="absolute inset-0 bg-gradient-to-b from-obsidian-deep via-background to-background" />
+          <div className="absolute inset-0 rigid-grid opacity-40" />
+          {/* radial glows */}
+          <div className="absolute -top-20 -left-20 w-[480px] h-[480px] bg-cobalt-electric/15 rounded-full blur-[120px]" />
+          <div className="absolute top-1/3 right-0 w-[420px] h-[420px] bg-cobalt-electric/10 rounded-full blur-[120px]" />
+          {/* ghosted recognition count */}
+          <span className="absolute right-4 md:right-12 top-24 font-headline-xl text-[180px] md:text-[280px] font-bold text-cobalt-electric/[0.08] leading-none select-none pointer-events-none whitespace-nowrap">
+            13+<br />Yrs
+          </span>
+          {/* scan line */}
+          <div className="absolute left-0 right-0 top-0 h-px bg-gradient-to-r from-transparent via-cobalt-electric/60 to-transparent scan-line" />
         </div>
 
-        <div className="relative z-10 w-full px-6 md:px-12 pb-20 pt-40">
-          <div className="max-w-5xl mx-auto w-full">
+        <div className="relative z-10 w-full px-6 md:px-12 pb-20 pt-48 border-b border-surface-border/30">
+          <div className="max-w-5xl w-full">
             <div className="flex items-center gap-3 mb-6 rise">
               <span className="h-px w-8 bg-cobalt-electric" />
               <span className="font-mono-data text-xs text-cobalt-electric uppercase tracking-[0.2em]">
@@ -136,32 +149,64 @@ export default function AboutUsPage() {
               have before &mdash; a security partner built around its people, not just its
               contracts.
             </p>
+            <p className="font-mono-data text-xs text-on-surface-variant/60 uppercase tracking-[0.15em] rise" style={{ animationDelay: "0.25s" }}>
+              ASIS International &bull; CPP Board Certified &bull; Bangladesh Chapter Chairman
+            </p>
+            <p className="font-mono-data text-xs text-on-surface-variant/60 uppercase tracking-[0.15em] rise" style={{ animationDelay: "0.3s" }}>
+              IPSA Member &bull; ARC Training Accredited &bull; NTMC System Design Partner
+            </p>
+
+            <div
+              className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-12 rise"
+              style={{ animationDelay: "0.35s" }}
+            >
+              {[
+                { v: "13+", l: "Years" },
+                { v: "4", l: "Divisions" },
+                { v: "CPP", l: "Certified" },
+                { v: "IPSA", l: "Member" },
+                { v: "NTMC", l: "System Design" },
+                { v: "DCC", l: "Licensed" },
+              ].map((s, i) => (
+                <div
+                  key={i}
+                  className="border border-cobalt-electric/30 bg-obsidian-deep/60 backdrop-blur-sm p-4"
+                >
+                  <div className="flex items-center gap-2">
+                    <span className="font-mono-data text-xl md:text-2xl text-cobalt-electric font-bold">
+                      {s.v}
+                    </span>
+                    <span className="text-[11px] text-on-surface-variant uppercase tracking-widest">
+                      {s.l}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </main>
 
       {/* PHILOSOPHY */}
       <section className="bg-background">
-        <div className="max-w-6xl mx-auto px-6 md:px-12 py-24 md:py-32">
+        <div className="max-w-auto mx-auto px-4 md:px-10 lg:px-24 py-8 md:py-12 lg:py-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
             <div className="lg:col-span-7">
-              <h2 className="font-headline-lg text-3xl md:text-4xl text-on-surface uppercase tracking-tight mb-8 leading-tight">
+              <h2 className="font-headline-lg text-3xl md:text-4xl lg:text-5xl text-on-surface uppercase tracking-tight mb-8 leading-tight">
                 Why we exist
               </h2>
-              <div className="space-y-6 font-body-md text-base md:text-lg text-on-surface-variant leading-relaxed">
+              <div className="space-y-6 font-body-md text-base md:text-lg xl:text-xl text-on-surface-variant leading-relaxed">
                 <p>
                   Our mission is to ensure the complete satisfaction of every quality-conscious
                   client &mdash; through customised training for our staff, careful team building,
-                  constant monitoring, honest response to client feedback, and an evaluation system
-                  that actually holds people to it.
+                  constant monitoring, honest response to client feedback.
                 </p>
                 <p>
                   Much of the security services industry runs on thin margins and short-term
                   thinking, which leaves little room to invest in the people doing the work. We built
                   SecurityLink around the opposite bet: that a company which trains, supervises and
                   genuinely looks after its guards is the one that ends up protecting your premises
-                  properly. We follow a differentiation strategy while keeping our pricing fair,
-                  aiming for a global standard of service under Total Quality Management.
+                  properly. 
                 </p>
               </div>
             </div>
@@ -261,7 +306,7 @@ export default function AboutUsPage() {
 
       {/* STRENGTHS */}
       <section className="bg-background">
-        <div className="max-w-6xl mx-auto px-6 md:px-12 py-24 md:py-32">
+        <div className="max-w-auto mx-auto px-4 md:px-8 lg:px-24 py-8 lg:py-16">
           <div className="mb-16 max-w-2xl">
             <span className="font-mono-data text-xs text-cobalt-electric uppercase tracking-[0.2em]">
               Our Strengths
@@ -305,7 +350,7 @@ export default function AboutUsPage() {
 
       {/* WELFARE */}
       <section className="bg-obsidian-deep border-t border-surface-border">
-        <div className="max-w-6xl mx-auto px-6 md:px-12 py-24 md:py-32">
+        <div className="max-w-auto mx-auto px-4 md:px-8 lg:px-24 py-8 md:py-12 lg:py-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             <div className="lg:col-span-6 order-2 lg:order-1">
               <span className="font-mono-data text-xs text-cobalt-electric uppercase tracking-[0.2em]">
@@ -332,7 +377,7 @@ export default function AboutUsPage() {
             <div className="lg:col-span-6 order-1 lg:order-2">
               <div className="relative h-72 md:h-96 border border-surface-border overflow-hidden">
                 <Image
-                  src="/hero14.JPG"
+                  src="/hero33.JPG"
                   alt="SecurityLink guard stationed at a client compound gate"
                   fill
                   className="object-cover"
@@ -345,13 +390,13 @@ export default function AboutUsPage() {
 
       {/* CREDENTIALS STRIP */}
       <section className="bg-background border-t border-surface-border">
-        <div className="max-w-6xl mx-auto px-6 md:px-12 py-10">
-          <div className="flex flex-col md:flex-row flex-wrap gap-x-10 gap-y-3 font-mono-data text-xs text-on-surface-variant/70 uppercase tracking-wider">
+        <div className="max-w-auto mx-auto px-6 md:px-12 py-10">
+          <div className="flex flex-col lg:flex-row justify-evenly flex-wrap gap-x-10 gap-y-3 font-mono-data text-xs text-on-surface-variant/70 uppercase tracking-wider">
             <span>Certificate of Incorporation No. C-110972/13</span>
             <span className="hidden md:inline text-surface-border">&bull;</span>
             <span>Dhaka City Corporation Trade License No. 0340619</span>
             <span className="hidden md:inline text-surface-border">&bull;</span>
-            <span>Banker: Bank Asia, Dhanmondi Branch</span>
+            
           </div>
         </div>
       </section>
