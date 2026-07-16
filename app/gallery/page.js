@@ -24,39 +24,63 @@ function hashKey(value) {
 }
 
 const CAPTION_TITLES = [
-  "Quiet Horizon",
-  "Golden Drift",
-  "Still Frame",
-  "Soft Light Study",
-  "Wandering Mood",
-  "Faded Memory",
-  "Open Air",
-  "Muted Tones",
-  "Passing Moment",
-  "Gentle Contrast",
-  "Distant Calm",
-  "Warm Static",
-  "Slow Afternoon",
-  "Loose Thoughts",
-  "Hidden Corner",
-  "Late Glow",
+  "On Watch",
+  "Standing Guard",
+  "Eyes on the Feed",
+  "Morning Muster",
+  "In Formation",
+  "Post Assigned",
+  "Gate Duty",
+  "Inside the Control Room",
+  "Sharp Turnout",
+  "Boots On, Ready",
+  "Perimeter Check",
+  "Shift Change",
+  "Command & Coordination",
+  "Guard of Honour",
+  "At the Entrance",
+  "Screens & Surveillance",
+  "Lined Up",
+  "Team on Site",
+  "Detail Deployed",
+  "Watchful Hours",
+  "Uniform & Discipline",
+  "Checkpoint Covered",
+  "The Night Shift",
+  "First-Aid Ready",
+  "Drill Day",
+  "Briefing Done",
+  "Steady Presence",
+  "Holding the Corner",
+  "Client Site Handover",
+  "Ceremony Detail",
+  "Escort Formation",
+  "Roll Call",
+  "Beret & Boots",
+  "Front and Centre",
+  "Quiet Vigilance",
+  "Safe Hands",
+  "The Long Watch",
+  "Site Secured",
+  "Present and Correct",
+  "Well Turned Out",
 ];
 
 const CAPTION_SUBTITLES = [
-  "captured somewhere between here and there",
-  "a small scene, no story attached",
-  "just the vibe, nothing more",
-  "light doing its own thing",
-  "found, framed, and left alone",
-  "a mood more than a place",
-  "half a memory, half a guess",
-  "kept simple on purpose",
+  "another day on the beat",
+  "nothing slips past this line-up",
+  "focus first, everything else after",
+  "looking sharp, staying sharper",
+  "all quiet, just the way we like it",
+  "the calm behind the scenes",
+  "showing up, suited up",
+  "watching so no one has to worry",
 ];
 
-function buildCaption(id) {
-  const key = hashKey(id);
-  const title = CAPTION_TITLES[key % CAPTION_TITLES.length];
-  const subtitle = CAPTION_SUBTITLES[(key >> 3) % CAPTION_SUBTITLES.length];
+function buildCaption(index) {
+  const title = CAPTION_TITLES[index % CAPTION_TITLES.length];
+  const subtitle =
+    CAPTION_SUBTITLES[Math.floor(index / CAPTION_TITLES.length) % CAPTION_SUBTITLES.length];
   return { title, subtitle };
 }
 
@@ -102,9 +126,9 @@ export default async function GalleryPage() {
     return aHash - bHash;
   });
 
-  const images = sorted.map((image) => ({
+  const images = sorted.map((image, index) => ({
     ...image,
-    caption: buildCaption(image.id),
+    caption: buildCaption(index),
   }));
 
   return (
