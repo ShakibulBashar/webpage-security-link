@@ -1,6 +1,6 @@
 import { readdir } from "node:fs/promises";
 import path from "node:path";
-import Image from "next/image";
+import GalleryGrid from "./gallery-grid";
 
 const IMAGE_EXTENSIONS = new Set([
   ".jpg",
@@ -13,42 +13,6 @@ const IMAGE_EXTENSIONS = new Set([
   ".tif",
   ".tiff",
 ]);
-
-const VAGUE_CAPTIONS = [
-  "Shift briefing before perimeter assignment",
-  "Routine watch near the outer gate",
-  "Movement tracked across the checkpoint lane",
-  "Patrol team rotating after long hours",
-  "Deployment prep in controlled low light",
-  "Unit handover between active posts",
-  "Visibility check before the next round",
-  "Entry flow under close supervision",
-  "Command update before field response",
-  "Position held during access screening",
-  "Short pause between active rounds",
-  "Route confirmed prior to dispatch",
-  "Coverage maintained at the outer block",
-  "Brief coordination before patrol split",
-  "Late shift presence at fixed post",
-  "Status check during controlled access",
-  "Operational silence around secured zone",
-  "Perimeter line observed without interruption",
-  "Guard unit staged for night cycle",
-  "Monitoring point active through transition",
-  "Response team aligned near the corridor",
-  "Ground movement logged by field unit",
-  "Transit area watched during peak flow",
-  "Post maintained through uncertain visibility",
-];
-
-const CARD_PATTERNS = [
-  "aspect-[4/3]",
-  "aspect-square",
-  "aspect-[3/2]",
-  "aspect-[5/4]",
-  "aspect-[4/5]",
-  "aspect-[6/5]",
-];
 
 function hashKey(value) {
   let hash = 0;
@@ -83,14 +47,12 @@ async function getImagesFromFolder(folderName) {
 }
 
 export default async function GalleryPage() {
-  const [imagesOne, imagesTwo, imageOneAlt, imageTwoAlt] = await Promise.all([
+  const [imagesOne, imagesTwo] = await Promise.all([
     getImagesFromFolder("images-1"),
     getImagesFromFolder("images-2"),
-    getImagesFromFolder("image-1"),
-    getImagesFromFolder("image-2"),
   ]);
 
-  const uniqueImages = [...imagesOne, ...imagesTwo, ...imageOneAlt, ...imageTwoAlt].filter(
+  const uniqueImages = [...imagesOne, ...imagesTwo].filter(
     (image, index, list) => list.findIndex((item) => item.id === image.id) === index
   );
 
@@ -111,35 +73,7 @@ export default async function GalleryPage() {
       </div>
 
       <section className="relative z-10 mx-auto w-full max-w-[1680px] px-4 md:px-6 xl:px-10">
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 xl:gap-5">
-          {images.map((image, index) => {
-            const cardAspect = CARD_PATTERNS[index % CARD_PATTERNS.length];
-            const caption = VAGUE_CAPTIONS[index % VAGUE_CAPTIONS.length];
-
-            return (
-              <figure
-                key={image.id}
-                className={`group ${cardAspect} relative overflow-hidden rounded-xl border border-slate-200/20 bg-slate-900/70 shadow-[0_16px_48px_rgba(2,6,23,0.5)]`}
-              >
-                <div className="absolute inset-0 p-1.5">
-                  <div className="relative h-full w-full overflow-hidden rounded-lg border border-slate-300/25">
-                    <Image
-                      src={image.src}
-                      alt={caption}
-                      fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1536px) 33vw, 25vw"
-                      className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
-                    />
-                    <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_top,rgba(2,6,23,0.86)_0%,rgba(2,6,23,0.56)_24%,rgba(2,6,23,0.16)_58%,rgba(2,6,23,0.28)_100%)]" />
-                    <figcaption className="absolute inset-x-0 bottom-0 z-10 border-t border-slate-200/25 bg-slate-950/65 px-3 py-2.5 text-[12px] font-semibold tracking-[0.02em] text-slate-100 backdrop-blur-sm md:px-4 md:text-[13px]">
-                      {caption}
-                    </figcaption>
-                  </div>
-                </div>
-              </figure>
-            );
-          })}
-        </div>
+        <GalleryGrid images={images} />
       </section>
     </main>
   );
