@@ -23,6 +23,43 @@ function hashKey(value) {
   return Math.abs(hash);
 }
 
+const CAPTION_TITLES = [
+  "Quiet Horizon",
+  "Golden Drift",
+  "Still Frame",
+  "Soft Light Study",
+  "Wandering Mood",
+  "Faded Memory",
+  "Open Air",
+  "Muted Tones",
+  "Passing Moment",
+  "Gentle Contrast",
+  "Distant Calm",
+  "Warm Static",
+  "Slow Afternoon",
+  "Loose Thoughts",
+  "Hidden Corner",
+  "Late Glow",
+];
+
+const CAPTION_SUBTITLES = [
+  "captured somewhere between here and there",
+  "a small scene, no story attached",
+  "just the vibe, nothing more",
+  "light doing its own thing",
+  "found, framed, and left alone",
+  "a mood more than a place",
+  "half a memory, half a guess",
+  "kept simple on purpose",
+];
+
+function buildCaption(id) {
+  const key = hashKey(id);
+  const title = CAPTION_TITLES[key % CAPTION_TITLES.length];
+  const subtitle = CAPTION_SUBTITLES[(key >> 3) % CAPTION_SUBTITLES.length];
+  return { title, subtitle };
+}
+
 function toPublicSrc(folder, fileName) {
   return `/${folder}/${encodeURIComponent(fileName)}`;
 }
@@ -56,7 +93,7 @@ export default async function GalleryPage() {
     (image, index, list) => list.findIndex((item) => item.id === image.id) === index
   );
 
-  const images = uniqueImages.sort((a, b) => {
+  const sorted = uniqueImages.sort((a, b) => {
     const aHash = hashKey(a.id);
     const bHash = hashKey(b.id);
     if (aHash === bHash) {
@@ -64,6 +101,11 @@ export default async function GalleryPage() {
     }
     return aHash - bHash;
   });
+
+  const images = sorted.map((image) => ({
+    ...image,
+    caption: buildCaption(image.id),
+  }));
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-[#020816] pt-20 pb-16">
