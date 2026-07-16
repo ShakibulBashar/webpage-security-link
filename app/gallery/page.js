@@ -1,6 +1,6 @@
 import { readdir } from "node:fs/promises";
 import path from "node:path";
-import Image from "next/image";
+import GalleryGrid from "./gallery-grid";
 
 const IMAGE_EXTENSIONS = new Set([
   ".jpg",
@@ -14,42 +14,6 @@ const IMAGE_EXTENSIONS = new Set([
   ".tiff",
 ]);
 
-const VAGUE_CAPTIONS = [
-  "Shift briefing before perimeter assignment",
-  "Routine watch near the outer gate",
-  "Movement tracked across the checkpoint lane",
-  "Patrol team rotating after long hours",
-  "Deployment prep in controlled low light",
-  "Unit handover between active posts",
-  "Visibility check before the next round",
-  "Entry flow under close supervision",
-  "Command update before field response",
-  "Position held during access screening",
-  "Short pause between active rounds",
-  "Route confirmed prior to dispatch",
-  "Coverage maintained at the outer block",
-  "Brief coordination before patrol split",
-  "Late shift presence at fixed post",
-  "Status check during controlled access",
-  "Operational silence around secured zone",
-  "Perimeter line observed without interruption",
-  "Guard unit staged for night cycle",
-  "Monitoring point active through transition",
-  "Response team aligned near the corridor",
-  "Ground movement logged by field unit",
-  "Transit area watched during peak flow",
-  "Post maintained through uncertain visibility",
-];
-
-const CARD_PATTERNS = [
-  "aspect-[4/3]",
-  "aspect-square",
-  "aspect-[3/2]",
-  "aspect-[5/4]",
-  "aspect-[4/5]",
-  "aspect-[6/5]",
-];
-
 function hashKey(value) {
   let hash = 0;
   for (let i = 0; i < value.length; i += 1) {
@@ -57,6 +21,67 @@ function hashKey(value) {
     hash |= 0;
   }
   return Math.abs(hash);
+}
+
+const CAPTION_TITLES = [
+  "On Watch",
+  "Standing Guard",
+  "Eyes on the Feed",
+  "Morning Muster",
+  "In Formation",
+  "Post Assigned",
+  "Gate Duty",
+  "Inside the Control Room",
+  "Sharp Turnout",
+  "Boots On, Ready",
+  "Perimeter Check",
+  "Shift Change",
+  "Command & Coordination",
+  "Guard of Honour",
+  "At the Entrance",
+  "Screens & Surveillance",
+  "Lined Up",
+  "Team on Site",
+  "Detail Deployed",
+  "Watchful Hours",
+  "Uniform & Discipline",
+  "Checkpoint Covered",
+  "The Night Shift",
+  "First-Aid Ready",
+  "Drill Day",
+  "Briefing Done",
+  "Steady Presence",
+  "Holding the Corner",
+  "Client Site Handover",
+  "Ceremony Detail",
+  "Escort Formation",
+  "Roll Call",
+  "Beret & Boots",
+  "Front and Centre",
+  "Quiet Vigilance",
+  "Safe Hands",
+  "The Long Watch",
+  "Site Secured",
+  "Present and Correct",
+  "Well Turned Out",
+];
+
+const CAPTION_SUBTITLES = [
+  "another day on the beat",
+  "nothing slips past this line-up",
+  "focus first, everything else after",
+  "looking sharp, staying sharper",
+  "all quiet, just the way we like it",
+  "the calm behind the scenes",
+  "showing up, suited up",
+  "watching so no one has to worry",
+];
+
+function buildCaption(index) {
+  const title = CAPTION_TITLES[index % CAPTION_TITLES.length];
+  const subtitle =
+    CAPTION_SUBTITLES[Math.floor(index / CAPTION_TITLES.length) % CAPTION_SUBTITLES.length];
+  return { title, subtitle };
 }
 
 function toPublicSrc(folder, fileName) {
@@ -83,18 +108,16 @@ async function getImagesFromFolder(folderName) {
 }
 
 export default async function GalleryPage() {
-  const [imagesOne, imagesTwo, imageOneAlt, imageTwoAlt] = await Promise.all([
+  const [imagesOne, imagesTwo] = await Promise.all([
     getImagesFromFolder("images-1"),
     getImagesFromFolder("images-2"),
-    getImagesFromFolder("image-1"),
-    getImagesFromFolder("image-2"),
   ]);
 
-  const uniqueImages = [...imagesOne, ...imagesTwo, ...imageOneAlt, ...imageTwoAlt].filter(
+  const uniqueImages = [...imagesOne, ...imagesTwo].filter(
     (image, index, list) => list.findIndex((item) => item.id === image.id) === index
   );
 
-  const images = uniqueImages.sort((a, b) => {
+  const sorted = uniqueImages.sort((a, b) => {
     const aHash = hashKey(a.id);
     const bHash = hashKey(b.id);
     if (aHash === bHash) {
@@ -102,6 +125,11 @@ export default async function GalleryPage() {
     }
     return aHash - bHash;
   });
+
+  const images = sorted.map((image, index) => ({
+    ...image,
+    caption: buildCaption(index),
+  }));
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-[#020816] pt-20 pb-16">
@@ -111,35 +139,7 @@ export default async function GalleryPage() {
       </div>
 
       <section className="relative z-10 mx-auto w-full max-w-[1680px] px-4 md:px-6 xl:px-10">
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 xl:gap-5">
-          {images.map((image, index) => {
-            const cardAspect = CARD_PATTERNS[index % CARD_PATTERNS.length];
-            const caption = VAGUE_CAPTIONS[index % VAGUE_CAPTIONS.length];
-
-            return (
-              <figure
-                key={image.id}
-                className={`group ${cardAspect} relative overflow-hidden rounded-xl border border-slate-200/20 bg-slate-900/70 shadow-[0_16px_48px_rgba(2,6,23,0.5)]`}
-              >
-                <div className="absolute inset-0 p-1.5">
-                  <div className="relative h-full w-full overflow-hidden rounded-lg border border-slate-300/25">
-                    <Image
-                      src={image.src}
-                      alt={caption}
-                      fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1536px) 33vw, 25vw"
-                      className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
-                    />
-                    <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_top,rgba(2,6,23,0.86)_0%,rgba(2,6,23,0.56)_24%,rgba(2,6,23,0.16)_58%,rgba(2,6,23,0.28)_100%)]" />
-                    <figcaption className="absolute inset-x-0 bottom-0 z-10 border-t border-slate-200/25 bg-slate-950/65 px-3 py-2.5 text-[12px] font-semibold tracking-[0.02em] text-slate-100 backdrop-blur-sm md:px-4 md:text-[13px]">
-                      {caption}
-                    </figcaption>
-                  </div>
-                </div>
-              </figure>
-            );
-          })}
-        </div>
+        <GalleryGrid images={images} />
       </section>
     </main>
   );
