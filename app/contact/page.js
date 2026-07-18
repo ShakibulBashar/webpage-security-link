@@ -22,10 +22,10 @@ import { useScrollReveal, useStaggerReveal } from "../hooks/useScrollReveal";
 const MOBILE_NUMBERS = ["+8801777740993", "+8801777740984", "+8801777740897"];
 
 const INQUIRY_TYPES = [
-  "Guard Division",
-  "Risk Management",
-  "Security Equipment",
-  "Logistic Division",
+  "Manned Guarding Division",
+  "Risk Advisory",
+  "Security Technology",
+  "Logistics Services",
   "General Enquiry",
 ];
 

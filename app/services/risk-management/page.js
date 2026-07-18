@@ -85,7 +85,7 @@ export default function RiskManagementDivision() {
               className="font-headline-xl text-5xl md:text-7xl text-white uppercase tracking-tighter mb-6 leading-tight drop-shadow-2xl slide-in"
               style={{ animationDelay: "0.1s" }}
             >
-              Risk Management Division
+              Risk Advisory
             </h1>
 
             <p
@@ -167,7 +167,7 @@ export default function RiskManagementDivision() {
             <div className="relative group glow-border rounded-lg overflow-hidden h-96">
               <Image
                 src="/hero10.JPG"
-                alt="Risk Management Division security consulting"
+                alt="Risk Advisory security consulting"
                 fill
                 className="object-cover group-hover:scale-105 transition-transform duration-500"
               />
@@ -263,7 +263,7 @@ export default function RiskManagementDivision() {
                   Experienced Security Professionals
                 </h2>
                 <p className="text-on-surface-variant text-lg leading-relaxed mb-8">
-                  SecurityLink&apos;s Risk Management Division is staffed by certified security
+                  SecurityLink&apos;s Risk Advisory is staffed by certified security
                   consultants with over 30 years of combined field experience. Our team has worked across
                   diverse sectors and threat environments.
                 </p>
@@ -297,7 +297,7 @@ export default function RiskManagementDivision() {
               <div className="relative group glow-border rounded-lg overflow-hidden h-96">
                 <Image
                   src="/hero8.jpg"
-                  alt="Risk Management Division consulting team"
+                  alt="Risk Advisory consulting team"
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
                 />
@@ -315,7 +315,7 @@ export default function RiskManagementDivision() {
             Transform Your Security Strategy
           </h2>
           <p className="text-on-surface-variant text-lg mb-12 leading-relaxed">
-            Engage SecurityLink&apos;s Risk Management Division to develop a comprehensive, integrated
+            Engage SecurityLink&apos;s Risk Advisory to develop a comprehensive, integrated
             security approach tailored to your organization&apos;s unique threat profile.
           </p>
           <button className="bg-gradient-to-r from-amber-500 to-orange-600 text-white px-10 py-4 font-bold uppercase tracking-widest hover:shadow-[0_0_40px_rgba(245,158,11,0.7)] transition-all transform hover:scale-105 active:scale-95 text-lg">

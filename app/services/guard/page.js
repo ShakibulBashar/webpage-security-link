@@ -86,7 +86,7 @@ export default function GuardDivision() {
               className="font-headline-xl text-4xl md:text-5xl text-white uppercase tracking-tighter mb-4 leading-tight drop-shadow-2xl slide-in"
               style={{ animationDelay: "0.1s" }}
             >
-              Guard Division
+              Manned Guarding Division
             </h1>
 
             {/* Subtitle */}

@@ -108,7 +108,7 @@ export default function LogisticsDivision() {
               className="font-headline-xl text-3xl md:text-5xl text-white uppercase tracking-tighter mb-4 leading-tight drop-shadow-2xl slide-in"
               style={{ animationDelay: "0.1s" }}
             >
-              Logistics Division
+              Logistics Services
             </h1>
 
             <p

@@ -335,14 +335,14 @@ export default function EquipmentDivision() {
       <section className="bg-obsidian-deep py-14 border-x border-t border-surface-border mx-auto relative">
         <div className="container mx-auto px-6 md:px-12 lg:px-16 flex flex-col sm:flex-row items-center justify-between gap-6 border border-surface-border bg-surface-container-low px-6 py-8 md:px-10">
           <p className="text-on-surface-variant font-body-sm max-w-lg text-center sm:text-left">
-            Equipment is only as good as the plan behind it. Our Risk Management team runs the
+            Equipment is only as good as the plan behind it. Our Risk Advisory team runs the
             site survey that decides what actually belongs on this schedule.
           </p>
           <a
             href="/services/risk-management"
             className="inline-flex items-center gap-2 font-bold text-on-surface hover:text-cobalt-electric transition-colors whitespace-nowrap"
           >
-            Risk Management Division
+            Risk Advisory
             <span className="material-symbols-outlined">arrow_forward</span>
           </a>
         </div>

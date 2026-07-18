@@ -6,17 +6,12 @@ import Link from "next/link";
 import { ArrowRight, ArrowLeft, ArrowUpRight } from "lucide-react";
 import { useScrollReveal, useStaggerReveal } from "./hooks/useScrollReveal";
 // app/layout.js
-import { Space_Grotesk, Inter } from 'next/font/google';
+import { Space_Grotesk } from 'next/font/google';
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
   variable: '--font-headline',
   weight: ['500', '700'],
-});
-
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-body',
 });
 
 // Tailwind font family settings belong in tailwind.config.js
@@ -157,47 +152,48 @@ export default function Home() {
     const section = document.getElementById("process-section");
     if (!section) return;
 
+    function resetCircles(circles, signal, dir) {
+      circles.forEach((c) => c.classList.remove("active"));
+      if (signal) {
+        signal.style.transition = "none";
+        signal.style[dir] = "0%";
+      }
+    }
+
+    function playStep(circles, signal, dir) {
+      if (!signal || !circles.length) return;
+      const segmentDuration = 2000;
+      const total = (circles.length - 1) * segmentDuration;
+
+      setTimeout(() => {
+        circles[0].classList.add("active");
+        signal.style.transition = `${dir} ${total}ms linear`;
+        signal.style[dir] = "100%";
+        for (let i = 1; i < circles.length; i++) {
+          setTimeout(() => circles[i].classList.add("active"), i * segmentDuration);
+        }
+      }, 50);
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            const segmentDuration = 1200;
-
-            // Animate vertical layout (sm/md screens)
             const vLayout = section.querySelector(".lg\\:hidden");
             const vCircles = vLayout ? vLayout.querySelectorAll(".process-circle") : [];
             const signalV = section.querySelector('.process-signal-v[data-signal="v"]');
 
-            if (signalV && vCircles.length) {
-              const vTotal = (vCircles.length - 1) * segmentDuration;
-              setTimeout(() => {
-                vCircles[0].classList.add("active");
-                signalV.style.transition = `height ${vTotal}ms linear`;
-                signalV.style.height = "100%";
-                for (let i = 1; i < vCircles.length; i++) {
-                  setTimeout(() => vCircles[i].classList.add("active"), i * segmentDuration);
-                }
-              }, 50);
-            }
-
-            // Animate horizontal layout (lg screens)
             const hLayout = section.querySelector(".hidden.lg\\:block");
             const hCircles = hLayout ? hLayout.querySelectorAll(".process-circle") : [];
             const signalH = section.querySelector('.process-signal-h[data-signal="h"]');
 
-            if (signalH && hCircles.length) {
-              const hTotal = (hCircles.length - 1) * segmentDuration;
-              setTimeout(() => {
-                hCircles[0].classList.add("active");
-                signalH.style.transition = `width ${hTotal}ms linear`;
-                signalH.style.width = "100%";
-                for (let i = 1; i < hCircles.length; i++) {
-                  setTimeout(() => hCircles[i].classList.add("active"), i * segmentDuration);
-                }
-              }, 50);
-            }
+            resetCircles(vCircles, signalV, "height");
+            resetCircles(hCircles, signalH, "width");
 
-            observer.unobserve(entry.target);
+            requestAnimationFrame(() => {
+              playStep(vCircles, signalV, "height");
+              playStep(hCircles, signalH, "width");
+            });
           }
         });
       },
@@ -211,30 +207,39 @@ export default function Home() {
 
 
   const heroImages = [
-  { src: "/hero1.jpg", pos: "center 20%" },
-    { src: "/hero16.jpg", pos: "center 20%" },
+  { desktopImage: "/hero9.JPG", mobileImage: "/hero9.JPG", desktopPosition: "center 20%", mobilePosition: "center 20%" },
+    { desktopImage: "/hero-pc2.png", mobileImage: "/hero-mobile3.jpeg", desktopPosition: "center 20%", mobilePosition: "38% 0%" },
+    { desktopImage: "/hero1.jpg", mobileImage: "/hero1.jpg", desktopPosition: "center 20%", mobilePosition: "center 10%" },
+    { desktopImage: "/hero-mobile16.jpg", mobileImage: "/hero-mobile10.jpg", desktopPosition: "center 10%", mobilePosition: "40% 20%" },
+    { desktopImage: "/hero202.jpg", mobileImage: "/hero-mobile122.jpg", desktopPosition: "center 20%", mobilePosition: "center bottom%" },
+    { desktopImage: "/hero204.jpg", mobileImage: "/hero204.jpg", desktopPosition: "center 0%", mobilePosition: "65% 0%" },
+    { desktopImage: "/hero-mobile11.png", mobileImage: "/hero-mobile11.png", desktopPosition: "center 20%", mobilePosition: "50% 10%" },
+    { desktopImage: "/hero206.jpg", mobileImage: "/hero-mobile144.jpg", desktopPosition: "center 20%", mobilePosition: "center 20%" },
+    { desktopImage: "/hero207.jpg", mobileImage: "/hero-mobile155.png", desktopPosition: "center 20%", mobilePosition: "center 20%" },
     
-  { src: "/hero3.jpg", pos: "center 20%" },
-  
-  { src: "/hero9.JPG", pos: "center 20%" },
-  { src: "/hero11.jpg", pos: "center 20%" },
-  { src: "/hero13.jpg", pos: "center 20%" },
-  { src: "/hero7.jpg", pos: "center 20%" },
-  { src: "/hero15.jpg", pos: "center 20%" },
-  
-];
+    { desktopImage: "/hero16.jpg", mobileImage: "/hero16.jpg", desktopPosition: "center 20%", mobilePosition: "center 20%" },
+    { desktopImage: "/hero3.jpg", mobileImage: "/hero3.jpg", desktopPosition: "center 20%", mobilePosition: "center 20%" },
+    
+    //chiense young man giving
+    { desktopImage: "/hero-mobile155.png", mobileImage: "/hero-mobile133.jpg", desktopPosition: "center 20%", mobilePosition: "65% bottom" },
+
+    //Risk advisory
+    { desktopImage: "/hero13.jpg", mobileImage: "/hero13.jpg", desktopPosition: "center 20%", mobilePosition: "center 20%" },
+    
+    { desktopImage: "/hero15.jpg", mobileImage: "/hero15.jpg", desktopPosition: "center 20%", mobilePosition: "center 20%" },
+  ];
 
   const divisions = [
     {
       index: "01",
-      name: "Guard Division",
+      name: "Manned Guarding",
       desc: "Physical security for offices, corporate campuses and industrial premises, plus event coverage and dedicated guard training.",
       href: "/services/guard",
       visual: { type: "photo", src: "/hero16.JPG", alt: "SecurityLink guard formation" },
     },
     {
       index: "02",
-      name: "Risk Management",
+      name: "Risk Advisory",
       desc: "Threat surveys, security plan design, consultancy, investigation and executive-level training.",
       href: "/services/risk-management",
       visual: {
@@ -245,14 +250,14 @@ export default function Home() {
     },
     {
       index: "03",
-      name: "Security Equipment",
+      name: "Security Technology",
       desc: "CCTV, access control, fire detection and scanning systems — specified, supplied and integrated.",
       href: "/services/equipments",
       visual: { type: "icons", icons: [CameraGlyph, FingerprintGlyph, FlameGlyph] },
     },
     {
       index: "04",
-      name: "Logistic Division",
+      name: "Logistics Services",
       desc: "Cleaning services for industrial facilities, hospitals and corporate offices, run by the same trained workforce.",
       href: "/services/logistics",
       visual: { type: "icons", icons: [BroomGlyph] },
@@ -271,10 +276,10 @@ export default function Home() {
   ];
 
   const credentials = [
-    { label: "CPP", detail: "ASIS International, Managing Director" },
-    { label: "NTMC", detail: "Security system design, Armed Forces Division" },
-    { label: "ASIS Chairman", detail: "ASIS International, Bangladesh chapter" },
-    { label: "C-110972/13", detail: "Certificate of Incorporation" },
+    { label: "Certified Protection Professionalist", detail: "Professional Certificate Board verified CPP from U.S. since 2008" },
+    { label: "National Telecommunications Monitoring Cell", detail: "successful implementation of integrated physical security design for NTMC" },
+    { label: "ASIS Chairman", detail: "American Society of Industrial Security (ASIS) International, Bangladesh chapter" },
+    { label: "Armed Forces Division", detail: "recognition of Incorporation for development of the security system of Armed Forces Division(AFD)" },
   ];
 
   const clients = [
@@ -287,6 +292,7 @@ export default function Home() {
     "Northeast Medical",
     "Samuda Chittagong",
     "Kazi Abedin",
+    "Armed Forces Division (AFD)",
   ];
 
   return (
@@ -331,14 +337,23 @@ export default function Home() {
       <main className="relative  min-h-[100dvh]  pt-20 pb-3 flex flex-col items-center justify-end overflow-hidden">
         {/* Hero Slider Background */}
         <div className="absolute top-20 inset-x-0 bottom-0 z-0" id="hero-slider">
-          {heroImages.map(({ src, pos }, idx) => (
+          {heroImages.map(({ desktopImage, mobileImage, desktopPosition, mobilePosition }, idx) => (
             <div key={idx} className={`hero-slider-item ${idx === 0 ? "active" : ""} absolute inset-0`}>
               <Image
-                src={src}
+                src={desktopImage}
                 alt="SecurityLink hero"
                 fill
-                className="object-cover"
-                style={{ objectPosition: pos }}
+                className="object-cover hidden lg:block"
+                style={{ objectPosition: desktopPosition }}
+                priority={idx === 0}
+                sizes="100vw"
+              />
+              <Image
+                src={mobileImage}
+                alt="SecurityLink hero"
+                fill
+                className="object-cover block lg:hidden"
+                style={{ objectPosition: mobilePosition }}
                 priority={idx === 0}
                 sizes="100vw"
               />
@@ -380,13 +395,13 @@ export default function Home() {
                 href="/services/guard"
                 className="inline-block bg-cobalt-electric text-white px-8 py-3 font-bold text-sm lg:text-base uppercase tracking-widest hover:scale-105 transition-all shadow-[0_0_30px_rgba(37,99,235,0.4)] rounded-none"
               >
-                Guard Division Services
+                Manned Guarding Division
               </Link>
               <Link
                 href="/services/logistics"
                 className="inline-block bg-on-surface text-obsidian-deep px-8 py-3 font-bold text-sm lg:text-base uppercase tracking-widest hover:bg-transparent hover:text-on-surface border-2 border-on-surface transition-all backdrop-blur-md rounded-none"
               >
-                Logistic Division Services
+                Logistics Services
               </Link>
             </div>
           </div>
@@ -649,13 +664,13 @@ export default function Home() {
       {/* DIVISIONS — service card grid (NEW)               */}
       {/* ═══════════════════════════════════════════════ */}
       <section className="bg-obsidian-deep border-y border-surface-border overflow-hidden">
-        <div className="max-w-6xl mx-auto px-6 md:px-12 py-20 md:py-28">
-          <div className="text-center mb-16" data-reveal>
+        <div className="max-w-auto mx-auto px-6 md:px-8 lg:px-20 py-10 md:py-14 ">
+          <div className="text-center mb-4 lg:mb-8" data-reveal>
             <span className="font-mono-data text-xs text-cobalt-electric uppercase tracking-[0.2em]">
               What We Do
             </span>
-            <h2 className="font-headline-lg text-4xl md:text-5xl text-on-surface uppercase tracking-tight mt-4">
-              Four divisions. One standard.
+            <h2 className="font-headline-lg text-3xl lg:text-5xl text-on-surface uppercase tracking-tight mt-2">
+              Four divisions. <br />One standard.
             </h2>
           </div>
 
@@ -665,12 +680,12 @@ export default function Home() {
                 data-reveal-child
                 key={div.index}
                 href={div.href}
-                className="group relative border border-surface-border bg-background/50 hover:bg-background/80 p-8 md:p-10 transition-all duration-300 hover:border-cobalt-electric/40 overflow-hidden"
+                className="group relative border border-cobalt-electric/40 bg-background/80 hover:bg-background/50 hover:border-surface-border p-6 md:p-10 transition-all duration-300 overflow-hidden"
               >
-                <span className="font-mono-data text-xs text-cobalt-electric/40 tracking-[0.2em] block mb-4">
+                <span className="absolute right-4 bottom-2 font-headline-xl text-[80px] sm:text-[100px] md:text-[120px] font-bold text-cobalt-electric/[0.08] leading-none select-none pointer-events-none">
                   {div.index}
                 </span>
-                <h3 className="font-headline-md text-xl md:text-2xl text-on-surface uppercase mb-3 group-hover:text-cobalt-electric transition-colors">
+                <h3 className="font-headline-md text-xl md:text-2xl text-cobalt-electric uppercase mb-3 group-hover:text-on-surface transition-colors relative z-10">
                   {div.name}
                 </h3>
                 <p className="font-mono-data text-sm text-on-surface-variant leading-relaxed mb-6">
@@ -680,7 +695,7 @@ export default function Home() {
                   Explore division
                   <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </span>
-                <div className="absolute top-0 right-0 w-0 h-0 border-t-[40px] border-t-cobalt-electric/0 border-l-[40px] border-l-transparent group-hover:border-t-cobalt-electric/20 transition-colors duration-300" />
+                <div className="absolute top-0 right-0 w-0 h-0 border-t-[40px] border-t-cobalt-electric/20 border-l-[40px] border-l-transparent group-hover:border-t-cobalt-electric/0 transition-colors duration-300" />
               </Link>
             ))}
           </div>
@@ -698,46 +713,44 @@ export default function Home() {
         <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-cobalt-electric/30 to-transparent" />
         <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-cobalt-electric/30 to-transparent" />
 
-        <div className="max-w-6xl mx-auto px-6 md:px-12 py-24 md:py-32">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-            <div className="lg:col-span-4" data-reveal>
-              <span className="font-mono-data text-xs text-cobalt-electric uppercase tracking-[0.2em]">
-                On the Record
-              </span>
-              <h2 className="font-headline-lg text-4xl md:text-5xl text-on-surface uppercase tracking-tight mt-4 leading-[1.1]">
-                Credentials
-              </h2>
-              <p className="font-body-sm text-sm text-on-surface-variant leading-relaxed mt-4">
-                Industry certifications and official registrations that back our operations.
-              </p>
-              <div className="flex flex-col gap-3 mt-8">
-                <Link
-                  href="/about/md"
-                  className="font-label-caps text-xs uppercase tracking-[0.15em] text-on-surface-variant hover:text-cobalt-electric transition-colors"
-                >
-                  Managing Director&apos;s Profile &rarr;
-                </Link>
-                <Link
-                  href="/about/achievements"
-                  className="font-label-caps text-xs uppercase tracking-[0.15em] text-on-surface-variant hover:text-cobalt-electric transition-colors"
-                >
-                  Achievements & Recognition &rarr;
-                </Link>
-              </div>
+        <div className="max-w-auto mx-auto px-6 md:px-8 lg:px-20 py-12 md:py-16">
+          <div data-reveal className="mb-12">
+            <span className="font-mono-data text-xs text-cobalt-electric uppercase tracking-[0.2em]">
+              On the Record
+            </span>
+            <h2 className="font-headline-lg text-4xl lg:text-5xl text-on-surface uppercase tracking-tight mt-4 leading-[1.1]">
+              Credentials
+            </h2>
+            <p className="font-body-sm text-sm text-on-surface-variant leading-relaxed mt-4 max-w-auto">
+              Hundreds of Industry recommendations, standard certifications and international recognition that back our operations. Our team is trained to the same standard across every site, every shift, every day. We are proud to be recognized for our work, and we continue to strive for excellence in all that we do.
+            </p>
+            <div className="flex flex-col gap-3 mt-8">
+              <Link
+                href="/about/md"
+                className="font-label-caps text-xs uppercase tracking-[0.15em] text-on-surface-variant hover:text-cobalt-electric transition-colors"
+              >
+                Managing Director&apos;s Profile &rarr;
+              </Link>
+              <Link
+                href="/about/achievements"
+                className="font-label-caps text-xs uppercase tracking-[0.15em] text-on-surface-variant hover:text-cobalt-electric transition-colors"
+              >
+                Achievements & Recognition &rarr;
+              </Link>
             </div>
+          </div>
 
-            <div ref={credRef} className="lg:col-span-8 grid grid-cols-2 gap-4 md:gap-5">
-              {credentials.map((c) => (
-                <div data-reveal-child key={c.label} className="border border-surface-border bg-obsidian-deep/50 p-6 md:p-8 hover:border-cobalt-electric/30 transition-colors">
-                  <span className="font-mono-data text-lg md:text-xl text-cobalt-electric font-bold block">
-                    {c.label}
-                  </span>
-                  <span className="font-body-sm text-sm text-on-surface-variant leading-snug mt-2 block">
-                    {c.detail}
-                  </span>
-                </div>
-              ))}
-            </div>
+          <div ref={credRef} className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
+            {credentials.map((c) => (
+              <div data-reveal-child key={c.label} className="border border-surface-border bg-obsidian-deep/50 p-6 md:p-8 hover:border-cobalt-electric/30 transition-colors">
+                <span className="font-mono-data text-lg md:text-xl text-cobalt-electric font-bold block">
+                  {c.label}
+                </span>
+                <span className="font-body-sm text-sm text-on-surface-variant leading-snug mt-2 block">
+                  {c.detail}
+                </span>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -777,39 +790,33 @@ export default function Home() {
       {/* ═══════════════════════════════════════════════ */}
       {/* CLOSING CTA — cinematic with visible image        */}
       {/* ═══════════════════════════════════════════════ */}
-      <section className="relative overflow-hidden border-t border-surface-border">
+      <section className="relative overflow-hidden border-t border-surface-border h-[60vh] md:h-[70vh] lg:h-[80vh]">
         <div className="absolute inset-0">
           <Image
-            src="/hero11.jpg"
+            src="/HnM.jpg"
             alt="SecurityLink team conducting an on-site security survey at a corporate facility"
             fill
             className="object-cover"
-            style={{ objectPosition: "center 30%" }}
+            style={{ objectPosition: "40% 20%" }}
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-background/40" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-background/25" />
           <div className="absolute bottom-0 inset-x-0 h-1/3 bg-gradient-to-t from-background to-transparent" />
-        </div>
 
-        <div className="relative max-w-3xl mx-auto px-6 md:px-12 py-32 md:py-44 text-left">
-          <div data-reveal className="mb-4">
-            <div className="w-12 h-px bg-cobalt-electric mb-6" />
-            <span className="font-mono-data text-xs text-cobalt-electric uppercase tracking-[0.2em]">
-              Get Started
-            </span>
+          <div className="absolute bottom-0 inset-x-0 max-w-3xl mx-auto px-6 md:px-12 pb-12 md:pb-16 lg:pb-20 text-center">
+            <h2 data-reveal className="font-headline-lg text-xxl md:text-2xl lg:text-4xl text-on-surface uppercase tracking-tight mb-4 lg:mb-6 leading-[1.1]">
+              Let&apos;s survey your premises
+            </h2>
+            <p data-reveal className="font-body-md text-sm md:text-lg text-on-surface-variant mb-5 max-w-2xl leading-relaxed ml-auto">
+              No obligation, no generic quote &mdash; just an honest look at where your risk actually sits.
+            </p>
+            <Link data-reveal
+              href="/contact"
+              className="inline-flex items-center gap-3 bg-gradient-to-r from-amber-500 to-orange-600 text-white px-6 lg:px-10 py-4 font-bold uppercase tracking-widest text-xs lg:sm hover:shadow-[0_0_40px_rgba(245,158,11,0.5)] hover:-translate-y-0.5 transition-all group"
+            >
+              Request a Site Survey
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </Link>
           </div>
-          <h2 data-reveal className="font-headline-lg text-4xl md:text-5xl lg:text-6xl text-on-surface uppercase tracking-tight mb-6 leading-[1.1]">
-            Let&apos;s survey your premises
-          </h2>
-          <p data-reveal className="font-body-md text-base md:text-lg text-on-surface-variant mb-10 max-w-xl leading-relaxed">
-            No obligation, no generic quote &mdash; just an honest look at where your risk actually sits.
-          </p>
-          <Link data-reveal
-            href="/contact"
-            className="inline-flex items-center gap-3 bg-gradient-to-r from-amber-500 to-orange-600 text-white px-10 py-4 font-bold uppercase tracking-widest text-sm hover:shadow-[0_0_40px_rgba(245,158,11,0.5)] hover:-translate-y-0.5 transition-all group"
-          >
-            Request a Site Survey
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </Link>
         </div>
       </section>
     </>

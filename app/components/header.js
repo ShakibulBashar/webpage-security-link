@@ -175,19 +175,19 @@ export default function Header() {
                 </span>
                 <div className="absolute left-0 mt-2 w-64 bg-surface-container-low border border-surface-border rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50 -translate-y-1 group-hover:translate-y-0">
                   <a href="/services/guard" className={dropdownItemClass("/services/guard")}>
-                    Guard Division
+                    Manned Guarding Division
                   </a>
                   <a href="/services/logistics" className={dropdownItemClass("/services/logistics")}>
-                    Logistics Division
+                    Logistics Services
                   </a>
                   <a
                     href="/services/risk-management"
                     className={dropdownItemClass("/services/risk-management")}
                   >
-                    Risk Management Division
+                    Risk Advisory
                   </a>
                   <a href="/services/equipments" className={dropdownItemClass("/services/equipments")}>
-                    Equipments Division
+                    Security Technology
                   </a>
                 </div>
               </div>
@@ -282,19 +282,19 @@ export default function Header() {
               </span>
               <div className="absolute left-0 mt-2 w-64 bg-surface-container-low border border-surface-border rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50 -translate-y-1 group-hover:translate-y-0">
                 <a href="/services/guard" className={dropdownItemClass("/services/guard")}>
-                  Guard Division
+                  Manned Guarding Division
                 </a>
                 <a href="/services/logistics" className={dropdownItemClass("/services/logistics")}>
-                  Logistics Division
+                  Logistics Services
                 </a>
                 <a
                   href="/services/risk-management"
                   className={dropdownItemClass("/services/risk-management")}
                 >
-                  Risk Management Division
+                  Risk Advisory
                 </a>
                 <a href="/services/equipments" className={dropdownItemClass("/services/equipments")}>
-                  Equipments Division
+                  Security Technology
                 </a>
               </div>
             </div>
@@ -454,7 +454,7 @@ export default function Header() {
                   }}
                   className={mobileDropdownItemClass("/services/guard")}
                 >
-                  Guard Division
+                  Manned Guarding Division
                 </a>
                 <a
                   href="/services/logistics"
@@ -464,7 +464,7 @@ export default function Header() {
                   }}
                   className={mobileDropdownItemClass("/services/logistics")}
                 >
-                  Logistics Division
+                  Logistics Services
                 </a>
                 <a
                   href="/services/risk-management"
@@ -474,7 +474,7 @@ export default function Header() {
                   }}
                   className={mobileDropdownItemClass("/services/risk-management")}
                 >
-                  Risk Management Division
+                  Risk Advisory
                 </a>
                 <a
                   href="/services/equipments"
@@ -484,7 +484,7 @@ export default function Header() {
                   }}
                   className={mobileDropdownItemClass("/services/equipments")}
                 >
-                  Equipments Division
+                  Security Technology
                 </a>
               </div>
             </div>

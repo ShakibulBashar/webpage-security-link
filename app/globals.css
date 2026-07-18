@@ -15,10 +15,10 @@
   --color-tertiary: #b4c5ff;
 
   /* --- FONTS: wired to CSS variables from layout.js --- */
-  --font-body-md: var(--font-body), sans-serif;
-  --font-body-lg: var(--font-body), sans-serif;
-  --font-body-sm: var(--font-body), sans-serif;
-  --font-label-caps: var(--font-body), sans-serif;
+  --font-body-md: var(--font-mono), monospace;
+  --font-body-lg: var(--font-mono), monospace;
+  --font-body-sm: var(--font-mono), monospace;
+  --font-label-caps: var(--font-mono), monospace;
   --font-headline-md: var(--font-headline), sans-serif;
   --font-headline-lg: var(--font-headline), sans-serif;
   --font-headline-xl: var(--font-headline), sans-serif;
