@@ -210,7 +210,7 @@ export default function Home() {
   { desktopImage: "/hero9.JPG", mobileImage: "/hero9.JPG", desktopPosition: "center 20%", mobilePosition: "center 20%" },
     { desktopImage: "/hero-pc2.png", mobileImage: "/hero-mobile3.jpeg", desktopPosition: "center 20%", mobilePosition: "38% 0%" },
     { desktopImage: "/hero1.jpg", mobileImage: "/hero1.jpg", desktopPosition: "center 20%", mobilePosition: "center 10%" },
-    { desktopImage: "/hero-mobile16.jpg", mobileImage: "/hero-mobile10.jpg", desktopPosition: "center 10%", mobilePosition: "40% 20%" },
+    { desktopImage: "/hero-mobile16.JPG", mobileImage: "/hero-mobile10.jpg", desktopPosition: "center 10%", mobilePosition: "40% 20%" },
     { desktopImage: "/hero202.jpg", mobileImage: "/hero-mobile122.jpg", desktopPosition: "center 20%", mobilePosition: "center bottom%" },
     { desktopImage: "/hero204.jpg", mobileImage: "/hero204.jpg", desktopPosition: "center 0%", mobilePosition: "65% 0%" },
     { desktopImage: "/hero-mobile11.png", mobileImage: "/hero-mobile11.png", desktopPosition: "center 20%", mobilePosition: "50% 10%" },

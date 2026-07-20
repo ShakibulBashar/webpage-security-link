@@ -1,4 +1,5 @@
 // Training Centre & Activities — how SecurityLink shapes its guards
+import Image from "next/image";
 import {
   Shield,
   Flame,
@@ -101,64 +102,87 @@ export default function TrainingPage() {
 
         .rigid-grid {
           background-image:
-            linear-gradient(to right, rgba(100,116,139,0.10) 1px, transparent 1px),
-            linear-gradient(rgba(100,116,139,0.10) 1px, transparent 1px);
+            linear-gradient(to right, rgba(100,116,139,0.25) 1px, transparent 1px),
+            linear-gradient(rgba(100,116,139,0.25) 1px, transparent 1px);
           background-size: 48px 48px;
+        }
+        
+         @keyframes shimmer {
+          0% { background-position: -1000px 0; }
+          100% { background-position: 1000px 0; }
+        }
+          
+        .shimmer-text {
+          background: linear-gradient(90deg, #2563EB 0%, #d3e4fe 50%, #2563EB 100%);
+          background-size: 1000px 100%;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          animation: shimmer 3s infinite;
+        }
+
+        .shimmers-text {
+          background: linear-gradient(90deg, #2563EB 0%, #d3e4fe 50%, #2563EB 100%);
+          background-size: 1000px 100%;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          
         }
       `}</style>
 
       {/* HERO — CSS only */}
-      <main className="relative min-h-[88vh] pt-20 overflow-hidden flex items-end">
+      <main className="relative min-h-screen pt-20 overflow-hidden flex items-end w-full">
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-obsidian-deep via-background to-background" />
-          <div className="absolute inset-0 rigid-grid opacity-40" />
-          <div className="absolute -top-20 -right-20 w-[480px] h-[480px] bg-cobalt-electric/15 rounded-full blur-[120px]" />
-          <div className="absolute top-1/3 left-0 w-[420px] h-[420px] bg-cobalt-electric/10 rounded-full blur-[120px]" />
-          <span className="absolute left-4 md:left-12 top-24 font-headline-xl text-[180px] md:text-[280px] font-bold text-cobalt-electric/[0.04] leading-none select-none pointer-events-none">
-            02
-          </span>
-          <div className="absolute left-0 right-0 top-0 h-px bg-gradient-to-r from-transparent via-cobalt-electric/60 to-transparent scan-line" />
+          {/* Mobile background */}
+          <div
+            className="absolute inset-0 lg:hidden"
+            style={{
+              backgroundImage: "url('/hero-mobile122.jpg')",
+              backgroundSize: "cover",
+              backgroundPosition: "center center",
+            }}
+          />
+          {/* Desktop background */}
+          <div
+            className="absolute inset-0 hidden lg:block"
+            style={{
+              backgroundImage: "url('/training2.jpg')",
+              backgroundSize: "cover",
+              backgroundPosition: "center 5%",
+            }}
+          />
+          
         </div>
 
-        <div className="relative z-10 w-full px-6 md:px-12 pb-20 pt-40">
-          <div className="max-w-5xl w-full">
-            <div className="flex items-center gap-3 mb-6 rise">
-              <span className="h-px w-8 bg-cobalt-electric" />
-              <span className="font-mono-data text-xs text-cobalt-electric uppercase tracking-[0.2em]">
-                Selection &amp; Training &mdash; Division 02
-              </span>
-            </div>
+        <div className="relative z-10 px-6 md:px-12 pb-5 pt-40 ">
+          <div >
+            
             <h1
-              className="font-headline-xl text-4xl md:text-6xl lg:text-7xl text-white uppercase tracking-tight leading-[1.05] mb-6 rise"
+              className="font-headline-xl text-3xl lg:text-5xl  uppercase tracking-tight leading-[1.05] mb-2 lg:mb-4 rise bg-obsidian-deep/60 backdrop-blur-sm p-4"
               style={{ animationDelay: "0.1s" }}
             >
               Training Centre
-              <br />
+              
               &amp; Activities
             </h1>
-            <p
-              className="font-body-lg text-lg md:text-xl text-on-surface-variant max-w-2xl leading-relaxed rise"
-              style={{ animationDelay: "0.2s" }}
-            >
-              First a gentleman, then a guard. We turn recruits into professionals through
-              disciplined, structured training &mdash; indoors and out.
-            </p>
+            
 
             <div
-              className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12 rise"
+              className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4 lg:mt-8 rise"
               style={{ animationDelay: "0.3s" }}
             >
               {[
                 { v: "3-WEEK", l: "Core Programme" },
                 { v: "80+", l: "Batches Led" },
-                { v: "500+", l: "Guards Trained" },
-                { v: "2", l: "Indoor + Outdoor" },
+                { v: "Equipped", l: "Trainers" },
+                { v: "Quality", l: "Training Centre" },
               ].map((s, i) => (
                 <div
                   key={i}
-                  className="border border-cobalt-electric/30 bg-obsidian-deep/60 backdrop-blur-sm p-4"
+                  className="border border-cobalt-electric/30 bg-obsidian-deep/80 backdrop-blur-md p-4"
                 >
-                  <div className="font-mono-data text-xl md:text-2xl text-cobalt-electric font-bold">
+                  <div className="font-mono-data text-xl md:text-2xl text-cobalt-electric font-bold shimmer-text">
                     {s.v}
                   </div>
                   <div className="text-[11px] text-on-surface-variant uppercase tracking-widest mt-1">
@@ -173,13 +197,13 @@ export default function TrainingPage() {
 
       {/* PHILOSOPHY */}
       <section className="bg-background">
-        <div className="max-w-6xl mx-auto px-6 md:px-12 py-24 md:py-32">
+        <div className="max-w-auto mx-auto px-6 lg:px-24 py-12 md:py-23">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
             <div className="lg:col-span-7">
-              <span className="font-mono-data text-xs text-cobalt-electric uppercase tracking-[0.2em]">
+              <span className="font-mono-data text-base lg:text-lg text-cobalt-electric uppercase tracking-[0.2em]">
                 The Belief
               </span>
-              <h2 className="font-headline-lg text-3xl md:text-4xl text-on-surface uppercase tracking-tight mt-4 mb-8 leading-tight">
+              <h2 className="font-headline-lg text-3xl md:text-4xl text-on-surface uppercase tracking-tight mt-4 mb-8 leading-tight shimmers-text">
                 The single most important factor
               </h2>
               <div className="space-y-6 font-body-md text-base md:text-lg text-on-surface-variant leading-relaxed">
@@ -222,27 +246,29 @@ export default function TrainingPage() {
 
       {/* TRAINING CENTRE — split with the single image container */}
       <section className="bg-obsidian-deep border-y border-surface-border">
-        <div className="max-w-6xl mx-auto px-6 md:px-12 py-24 md:py-32">
-          <div className="mb-16 max-w-2xl">
+        <div className="max-w-auto mx-auto px-6 lg:px-24 py-12 md:py-20">
+          <div className="mb-8 max-w-2xl">
             <span className="font-mono-data text-xs text-cobalt-electric uppercase tracking-[0.2em]">
               The Training Centre
             </span>
-            <h2 className="font-headline-lg text-3xl md:text-4xl text-on-surface uppercase tracking-tight mt-4 leading-tight">
-              Indoor &amp; outdoor, led from the top
+            <h2 className="font-headline-lg text-2xl lg:text-4xl text-on-surface uppercase tracking-tight mt-4 leading-tight shimmer-text">
+              A facility designed for the purpose
             </h2>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-stretch">
-            {/* IMAGE CONTAINER — upload your photo as /public/training.jpg */}
+            {/* IMAGE CONTAINER */}
             <div className="lg:col-span-5 order-1">
-              <div className="relative h-full min-h-[360px] md:min-h-[460px] border border-cobalt-electric/30 overflow-hidden group">
-                <div className="absolute inset-0 bg-gradient-to-br from-surface-container-low to-obsidian-deep" />
-                <div className="absolute inset-0 rigid-grid opacity-40" />
-                <div
-                  className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
-                  style={{ backgroundImage: "url('/training.jpg')" }}
-                />
-                <div className="absolute inset-0 ring-1 ring-inset ring-cobalt-electric/20" />
+              <div className="relative border border-cobalt-electric/30 overflow-hidden group bg-surface-container-low">
+                <div className="relative w-full" style={{ aspectRatio: "4 / 3" }}>
+                  <Image
+                    src="/training3.jpg"
+                    alt="SecurityLink training centre"
+                    fill
+                    className="object-contain p-2 transition-transform duration-700 group-hover:scale-[1.02]"
+                  />
+                </div>
+                <div className="absolute inset-0 ring-1 ring-inset ring-cobalt-electric/20 pointer-events-none" />
                 <div className="absolute top-3 left-3 w-6 h-6 border-t-2 border-l-2 border-cobalt-electric/60" />
                 <div className="absolute top-3 right-3 w-6 h-6 border-t-2 border-r-2 border-cobalt-electric/60" />
                 <div className="absolute bottom-3 left-3 w-6 h-6 border-b-2 border-l-2 border-cobalt-electric/60" />
@@ -284,12 +310,12 @@ export default function TrainingPage() {
                   {
                     icon: Award,
                     title: "80+ Batches Led",
-                    desc: "Supervised at Aegis Services (Square Group).",
+                    desc: "We prefer to supervise training ourselves, rather than delegate it.",
                   },
                   {
                     icon: Users,
-                    title: "500+ Guards Trained",
-                    desc: "Trained at Avant-garde Limited; Army instructor.",
+                    title: "Skilled Trainers",
+                    desc: "Our trainers are experienced security professionals with a track record of training guards.",
                   },
                 ].map((f, i) => {
                   const Icon = f.icon;

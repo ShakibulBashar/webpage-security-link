@@ -89,34 +89,57 @@ export default function LogisticsDivision() {
           to { opacity: 1; transform: translateY(0); }
         }
         .animate-fade-in { animation: fade-in-up 0.4s ease-out forwards; }
+
+        @keyframes shimmer {
+          0% { background-position: -1000px 0; }
+          100% { background-position: 1000px 0; }
+        }
+          
+        .shimmer-text {
+          background: linear-gradient(90deg, #2563EB 0%, #d3e4fe 50%, #2563EB 100%);
+          background-size: 1000px 100%;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          animation: shimmer 3s infinite;
+        }
+
+        .shimmers-text {
+          background: linear-gradient(90deg, #2563EB 0%, #d3e4fe 50%, #2563EB 100%);
+          background-size: 1000px 100%;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          
+        }
       `}</style>
 
       {/* HERO SECTION — Split Layout */}
-      <main className="relative h-screen pt-20 overflow-hidden flex">
+      <main className="relative h-[85vh] lg:h-screen pt-20 overflow-hidden flex">
         {/* LEFT: Content with Grid Background */}
-        <div className="w-full md:w-[45%] h-full relative flex flex-col justify-center px-8 md:px-16 lg:px-24 rigid-grid">
+        <div className="w-full lg:w-[45%] h-full relative flex flex-col justify-center px-8 md:px-12 lg:px-8 rigid-grid">
           <div className="absolute inset-0 bg-background/40" />
           <div className="relative z-10 max-w-2xl">
             <div className="mb-4 flex items-center gap-3 slide-in">
-              <div className="w-2 h-2 bg-cobalt-electric rounded-full animate-pulse" />
-              <span className="font-mono-data text-xs text-cobalt-electric uppercase tracking-widest">
+              <div className="w-4 h-4 bg-white rounded-full animate-pulse" />
+              <span className="font-mono-data text-sm  uppercase tracking-widest">
                 SEC-DIV: LOGISTICS
               </span>
             </div>
 
             <h1
-              className="font-headline-xl text-3xl md:text-5xl text-white uppercase tracking-tighter mb-4 leading-tight drop-shadow-2xl slide-in"
+              className="font-headline-lg text-3xl lg:text-5xl text-white uppercase tracking-tighter mb-2 lg:mb-4 leading-tight drop-shadow-2xl slide-in shimmers-text"
               style={{ animationDelay: "0.1s" }}
             >
               Logistics Services
             </h1>
 
             <p
-              className="text-on-surface-variant text-base md:text-lg max-w-xl mb-6 leading-relaxed slide-in"
+              className="text-on-surface-variant font-mono-data text-sm md:text-lg max-w-xl mb-3 lg:mb-6 leading-relaxed slide-in"
               style={{ animationDelay: "0.2s" }}
             >
               Comprehensive facility management and support services designed to enhance operational
-              efficiency and maintain pristine environments.
+              efficiency and maintain pristine environments. 
             </p>
 
             <div
@@ -124,25 +147,25 @@ export default function LogisticsDivision() {
               style={{ animationDelay: "0.3s" }}
             >
               <div className="border border-cobalt-electric/30 p-3 bg-obsidian-deep/60 backdrop-blur-sm">
-                <div className="font-mono-data text-xl text-cobalt-electric font-bold mb-1">3+</div>
+                <div className="font-mono-data text-xl text-cobalt-electric font-bold mb-1 shimmer-text">3+</div>
                 <div className="text-[10px] text-on-surface-variant uppercase tracking-widest">
                   Service Lines
                 </div>
               </div>
               <div className="border border-cobalt-electric/30 p-3 bg-obsidian-deep/60 backdrop-blur-sm">
-                <div className="font-mono-data text-xl text-cobalt-electric font-bold mb-1">100%</div>
+                <div className="font-mono-data text-xl text-cobalt-electric font-bold mb-1 shimmer-text">100%</div>
                 <div className="text-[10px] text-on-surface-variant uppercase tracking-widest">
                   Compliance
                 </div>
               </div>
               <div className="border border-cobalt-electric/30 p-3 bg-obsidian-deep/60 backdrop-blur-sm">
-                <div className="font-mono-data text-xl text-cobalt-electric font-bold mb-1">ECO</div>
+                <div className="font-mono-data text-xl text-cobalt-electric font-bold mb-1 shimmer-text">ECO</div>
                 <div className="text-[10px] text-on-surface-variant uppercase tracking-widest">
                   Friendly
                 </div>
               </div>
               <div className="border border-cobalt-electric/30 p-3 bg-obsidian-deep/60 backdrop-blur-sm">
-                <div className="font-mono-data text-xl text-cobalt-electric font-bold mb-1">24/7</div>
+                <div className="font-mono-data text-xl text-cobalt-electric font-bold mb-1 shimmer-text">24/7</div>
                 <div className="text-[10px] text-on-surface-variant uppercase tracking-widest">
                   Available
                 </div>
@@ -153,7 +176,7 @@ export default function LogisticsDivision() {
               <a href="/services/risk-management" className="inline-block bg-gradient-to-r from-amber-500 to-orange-600 text-white px-8 py-3 font-bold uppercase tracking-widest hover:shadow-[0_0_30px_rgba(245,158,11,0.6)] transition-all transform hover:scale-105 active:scale-95 text-sm">
                 Explore other Services
               </a>
-              <a href="/contact" className="inline-block border-2 border-cobalt-electric text-cobalt-electric px-8 py-3 font-bold uppercase tracking-widest hover:bg-cobalt-electric hover:text-white transition-all transform hover:scale-105 active:scale-95 text-sm">
+              <a href="/contact" className="inline-block border-2 border-cobalt-electric text-cobalt-electric px-8 py-3 font-bold uppercase tracking-widest bg-cobalt-electric text-white hover:transition-all transform hover:scale-105 active:scale-95 text-sm">
                 Get Quote
               </a>
             </div>
@@ -161,7 +184,7 @@ export default function LogisticsDivision() {
         </div>
 
         {/* RIGHT: Grayscale Hero Image */}
-        <div className="hidden md:block w-[55%] h-full relative">
+        <div className="hidden lg:block w-[55%] h-full relative">
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{
@@ -174,10 +197,10 @@ export default function LogisticsDivision() {
 
       {/* OVERVIEW — Tactical Operations Brief */}
       <section className="bg-background relative overflow-hidden">
-        <div className="h-[4px] w-full bg-gradient-to-r from-transparent via-cobalt-electric/50 to-transparent shadow-[0_-4px_20px_rgba(37,99,235,0.3)]" />
+        <div className="h-[4px] w-full bg-gradient-to-r from-cobalt-electric/10 via-cobalt-electric/90 to-cobalt-electric/10 shadow-[0_-4px_20px_rgba(37,99,235,0.3)]" />
         <div className="relative overflow-hidden ">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-obsidian-deep/80 via-background to-background" />
-          <div className="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-20 items-center px-6 md:px-12 py-25">
+          <div className="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-20 items-center px-6 lg:px-12 py-12 lg:py-25">
             
             {/* LEFT: Dense tactical brief (col-span-5) */}
             <div className="md:col-span-5 space-y-6">
@@ -189,24 +212,24 @@ export default function LogisticsDivision() {
               </div>
 
               <h2 className="font-headline-lg text-3xl md:text-4xl text-white uppercase tracking-tighter leading-[0.95]">
-                Environments <span className="text-cobalt-electric">That Work</span><br />
+                Environments <br /> <span className="text-cobalt-electric">That Work</span><br />
                 As Hard As You Do
               </h2>
 
-              <p className="text-on-surface-variant text-sm leading-relaxed max-w-sm">
+              <p className="text-on-surface-variant text-sm leading-relaxed max-w-sm font-mono-data">
                 Sanitation infrastructure is operational infrastructure. We maintain the unseen systems — air quality, surface protocols, waste streams — so your personnel focus on mission-critical output.
               </p>
 
               {/* HUD quote card */}
-              <div className="relative border border-cobalt-electric/20 bg-surface-container-low/30 p-4 backdrop-blur-sm">
+              <div className="relative border border-cobalt-electric/50 bg-surface-container-low/30 p-4 backdrop-blur-sm">
                 <div className="absolute -top-px -left-px w-2 h-2 border-t border-l border-cobalt-electric" />
                 <div className="absolute -bottom-px -right-px w-2 h-2 border-b border-r border-cobalt-electric" />
-                <p className="text-on-surface text-xs italic leading-relaxed">
+                <p className="text-on-surface text-xs italic leading-relaxed font-headline-lg">
                   &quot;Clean premises signal operational discipline. We treat facility management with the same rigor as perimeter security.&quot;
                 </p>
                 <div className="mt-2 flex items-center gap-2">
                   <div className="w-4 h-[1px] bg-cobalt-electric/50" />
-                  <span className="font-mono-data text-[10px] text-cobalt-electric uppercase">DIR. OPERATIONS</span>
+                  <span className="font-mono-data text-[10px] text-cobalt-electric uppercase">Managing Director</span>
                 </div>
               </div>
             </div>
@@ -214,7 +237,7 @@ export default function LogisticsDivision() {
             {/* RIGHT: Mission status display (col-span-7) */}
             <div className="md:col-span-7 relative">
               {/* Glass panel */}
-              <div className="relative border border-surface-border/50 bg-obsidian-deep/60 backdrop-blur-md p-6 md:p-8">
+              <div className="relative border border-cobalt-electric/50 bg-obsidian-deep/60 backdrop-blur-md p-6 md:p-8">
                 {/* Corner brackets */}
                 <div className="absolute top-0 left-0 w-4 h-4 border-t border-l border-cobalt-electric/40" />
                 <div className="absolute top-0 right-0 w-4 h-4 border-t border-r border-cobalt-electric/40" />
@@ -287,7 +310,7 @@ export default function LogisticsDivision() {
             <h2 className="font-headline-lg text-3xl md:text-4xl text-on-surface uppercase tracking-tighter leading-tight mb-4">
               Cleaning Services
             </h2>
-            <p className="text-on-surface-variant text-md max-w-3xl leading-relaxed">
+            <p className="text-on-surface-variant text-sm lg:text-base max-w-3xl leading-relaxed font-mono-data">
               Multi-sector sanitation protocols engineered for high-stakes environments. 
               From industrial facilities to medical-grade spaces, we deploy specialized teams 
               with sector-specific compliance training.
@@ -305,7 +328,7 @@ export default function LogisticsDivision() {
                   onClick={() => setActiveService(idx)}
                   className={`w-full text-left p-5 border transition-all duration-300 relative group ${
                     activeService === idx
-                      ? "border-cobalt-electric bg-cobalt-electric/5 glow-border"
+                      ? "border-cobalt-electric bg-cobalt-electric/10 glow-border"
                       : "border-surface-border bg-surface-container-low/20 hover:border-cobalt-electric/40"
                   }`}
                 >
@@ -346,8 +369,8 @@ export default function LogisticsDivision() {
             </div>
 
             {/* Right: Active Protocol Detail */}
-            <div className="lg:col-span-8">
-              <div className="h-full border border-surface-border/60 bg-obsidian-deep/30 backdrop-blur-sm px-8 py-5 md:px-10 md:py-7 relative h-auto">
+            <div className="lg:col-span-8 ">
+              <div className="h-full border border-cobalt-electric/70 bg-obsidian-deep/30 backdrop-blur-sm px-4  py-5 md:px-6 lg:px-10 md:py-7 relative h-auto">
                 {/* Corner brackets */}
                 <div className="absolute top-0 left-0 w-5 h-5 border-t border-l border-cobalt-electric/30" />
                 <div className="absolute top-0 right-0 w-5 h-5 border-t border-r border-cobalt-electric/30" />
@@ -370,7 +393,7 @@ export default function LogisticsDivision() {
                       <h3 className="font-headline-lg text-3xl md:text-4xl text-white uppercase tracking-tighter mb-3">
                         {services[activeService].title}
                       </h3>
-                      <p className="text-on-surface-variant text-sm md:text-base leading-relaxed max-w-xl">
+                      <p className="text-on-surface-variant text-xs md:text-base leading-relaxed max-w-xl font-mono-data">
                         {services[activeService].desc}
                       </p>
                     </div>
@@ -391,7 +414,7 @@ export default function LogisticsDivision() {
                       </h4>
                       <ul className="space-y-3">
                         {services[activeService].features.map((feature, i) => (
-                          <li key={i} className="flex items-start gap-3 text-on-surface-variant text-sm">
+                          <li key={i} className="flex items-start gap-3 font-mono-data text-on-surface-variant text-xs md:sm leading-relaxed tracking-wide">
                             <span className="w-1 h-1 bg-cobalt-electric rounded-full mt-2 flex-shrink-0" />
                             <span className="leading-relaxed">{feature}</span>
                           </li>
@@ -407,7 +430,7 @@ export default function LogisticsDivision() {
                       </h4>
                       <div className="flex flex-wrap gap-2 mb-8">
                         {services[activeService].compliance.map((item, i) => (
-                          <span key={i} className="px-3 py-1.5 border border-cobalt-electric/20 text-cobalt-electric text-[11px] font-mono-data uppercase tracking-wider bg-cobalt-electric/5">
+                          <span key={i} className="px-3 py-1.5 border border-cobalt-electric/20 text-cobalt-electric text-base font-mono-data  font-bold bg-cobalt-electric/5">
                             {item}
                           </span>
                         ))}

@@ -54,83 +54,101 @@ export default function RiskManagementDivision() {
             linear-gradient(rgba(100, 116, 139, 0.08) 1px, transparent 1px);
           background-size: 48px 48px;
         }
-      `}</style>
+          @keyframes shimmer {
+          0% { background-position: -1000px 0; }
+          100% { background-position: 1000px 0; }
+        }
+        .shimmer-text {
+          background: linear-gradient(90deg, #2563EB 0%, #d3e4fe 50%, #2563EB 100%);
+          background-size: 1000px 100%;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          animation: shimmer 3s infinite;
+        }
+        
+        .shimmers-text {
+          background: linear-gradient(90deg, #2563EB 0%, #d3e4fe 50%, #2563EB 100%);
+          background-size: 1000px 100%;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          
+        }
+            `}</style>
 
       {/* HERO */}
-      <main className="relative h-screen pt-20 overflow-hidden">
+      <main className="relative h-[85vh] lg:h-[100vh] pt-20 overflow-hidden ">
         <div className="absolute inset-0">
           <div
             className="absolute inset-0"
             style={{
               backgroundImage: "url('/hero13.JPG')",
               backgroundSize: "cover",
-              backgroundPosition: "center 20%",
+              backgroundPosition: "center 15%",
             }}
           />
-          <div className="absolute inset-0 bg-background/70" />
-          
-          <div className="absolute inset-0 rigid-grid opacity-30" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
         </div>
 
-        <div className="relative z-10 h-full flex flex-col items-center justify-end px-6 md:px-12 pb-24 pt-32">
-          <div className="max-w-5xl w-full">
-            <div className="mb-8 flex items-center gap-3 slide-in">
-              <div className="w-2 h-2 bg-cobalt-electric rounded-full animate-pulse" />
-              <span className="font-mono-data text-xs text-cobalt-electric uppercase tracking-widest">
-                SEC-DIV: RISK MANAGEMENT
-              </span>
-            </div>
-
+        <div className="relative z-10 h-full flex flex-col items-center justify-end px-6 lg:px-12 pb-2 lg:pb-4 pt-32">
+          <div className="max-w-auto w-full">
+          
             <h1
-              className="font-headline-xl text-5xl md:text-7xl text-white uppercase tracking-tighter mb-6 leading-tight drop-shadow-2xl slide-in"
+              className="font-headline-lg text-3xl md:text-7xl text-white uppercase tracking-tighter mb-6 leading-tight drop-shadow-2xl slide-in "
               style={{ animationDelay: "0.1s" }}
             >
-              Risk Advisory
+              Risk Advisory Divsion 
             </h1>
-
+            
             <p
-              className="text-on-surface-variant text-lg md:text-xl max-w-3xl mb-8 leading-relaxed slide-in"
+              className="text-lg font-mono-data  max-w-auto mb-8 leading-relaxed slide-in hidden lg:block text-white "
               style={{ animationDelay: "0.2s" }}
-            >
+            > 
+              
               Strategic security consulting grounded in threat analysis, integrated design, and decades
-              of field expertise.
+              of field expertise. Our team of certified professionals delivers comprehensive risk assessments, tailored security solutions, and ongoing advisory services to ensure your organization remains resilient against evolving threats.
             </p>
 
+            
+
             <div
-              className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12 slide-in"
+              className="grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-4 mb-3 lg:mb-5 lg:gap-12 slide-in"
               style={{ animationDelay: "0.3s" }}
             >
-              <div className="border border-cobalt-electric/30 p-4 bg-obsidian-deep/60 backdrop-blur-sm hover:border-cobalt-electric transition-colors">
-                <div className="font-mono-data text-2xl text-cobalt-electric font-bold mb-1">30+</div>
+              <div className="border border-cobalt-electric/30 p-2 bg-obsidian-deep/60 backdrop-blur-sm hover:border-cobalt-electric transition-colors">
+                <div className="font-mono-data text-base lg:text-2xl text-cobalt-electric font-bold mb-1 shimmer-text">30+</div>
                 <div className="text-xs text-on-surface-variant uppercase tracking-widest">
                   Years Exp
                 </div>
               </div>
               <div className="border border-cobalt-electric/30 p-4 bg-obsidian-deep/60 backdrop-blur-sm hover:border-cobalt-electric transition-colors">
-                <div className="font-mono-data text-2xl text-cobalt-electric font-bold mb-1">CERT</div>
+                <div className="font-mono-data text-base lg:text-2xl text-cobalt-electric font-bold mb-1 shimmer-text">CERT</div>
                 <div className="text-xs text-on-surface-variant uppercase tracking-widest">
                   Professionals
                 </div>
               </div>
               <div className="border border-cobalt-electric/30 p-4 bg-obsidian-deep/60 backdrop-blur-sm hover:border-cobalt-electric transition-colors">
-                <div className="font-mono-data text-2xl text-cobalt-electric font-bold mb-1">360°</div>
+                <div className="font-mono-data text-base lg:text-2xl text-cobalt-electric font-bold mb-1 shimmer-text">360°</div>
                 <div className="text-xs text-on-surface-variant uppercase tracking-widest">
                   Assessment
                 </div>
               </div>
               <div className="border border-cobalt-electric/30 p-4 bg-obsidian-deep/60 backdrop-blur-sm hover:border-cobalt-electric transition-colors">
-                <div className="font-mono-data text-2xl text-cobalt-electric font-bold mb-1">PROVEN</div>
+                <div className="font-mono-data text-base lg:text-2xl text-cobalt-electric font-bold mb-1 shimmer-text">PROVEN</div>
                 <div className="text-xs text-on-surface-variant uppercase tracking-widest">
                   Track Record
                 </div>
               </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 slide-in" style={{ animationDelay: "0.4s" }}>
-              <a href="/services/logistics" className="inline-block bg-gradient-to-r from-amber-500 to-orange-600 text-white px-8 py-4 font-bold uppercase tracking-widest hover:shadow-[0_0_30px_rgba(245,158,11,0.6)] transition-all transform hover:scale-105 active:scale-95">
+            
+
+            <div className="flex flex-col lg:flex-row gap-2 lg:gap-6 slide-in justify-center" style={{ animationDelay: "0.4s" }}>
+              <a href="/services/logistics" className="inline-block bg-gradient-to-r from-amber-500 to-orange-600 text-white px-8 py-4  font-bold uppercase tracking-widest hover:shadow-[0_0_30px_rgba(245,158,11,0.6)] transition-all transform hover:scale-105 active:scale-95">
                 Explore Services
               </a>
-              <a href="/contact" className="inline-block border-2 border-cobalt-electric text-cobalt-electric px-8 py-4 font-bold uppercase tracking-widest hover:bg-cobalt-electric hover:text-white transition-all transform hover:scale-105 active:scale-95">
+              <a href="/contact" className="inline-block border-2 border-cobalt-electric text-cobalt-electric px-8 py-4 font-bold uppercase tracking-widest bg-cobalt-electric text-white hover:transition-all transform hover:scale-105 active:scale-95">
                 Schedule Audit
               </a>
             </div>
@@ -139,49 +157,46 @@ export default function RiskManagementDivision() {
       </main>
 
       {/* CONTENT */}
-      <section className="bg-background border-x border-surface-border mx-auto max-w-[1920px] w-full">
-        <div className="max-w-6xl mx-auto px-6 md:px-12 py-24">
+      <section className="bg-background border-x border-surface-border mx-auto max-w-auto border-t border-surface-border">
+        <div className="max-w-auto mx-auto px-6 md:px-8 lg:px-16 py-12 lg:py-20 ">
           {/* PARADIGM SHIFT */}
-          <div className="mb-32 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+          <div className="mb-12 grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-16 items-center">
             <div>
               <div className="inline-block mb-6">
-                <span className="font-mono-data text-xs text-cobalt-electric uppercase tracking-widest bg-cobalt-electric/10 px-4 py-2 border border-cobalt-electric/30">
+                <span className="font-headline-lg text-sm text-cobalt-electric uppercase tracking-widest bg-cobalt-electric/10 px-4 py-2 border border-cobalt-electric/30">
                   Strategic Approach
                 </span>
               </div>
-              <h2 className="font-headline-lg text-4xl md:text-5xl text-on-surface uppercase tracking-tighter mb-8 leading-tight">
-                Beyond Guards: Integrated Security Design
+              <h2 className="font-headline-lg text-xl lg:text-5xl text-on-surface uppercase tracking-tighter mb-8 leading-tight">
+                Beyond Guards: <br /> Integrated Security Design
               </h2>
-              <p className="text-on-surface-variant text-lg leading-relaxed mb-6">
-                Traditional security thinking often reduces protection to guard posts alone. The Risk
-                Management Division represents a paradigm shift. We recognize that security is
-                multifaceted, requiring risk assessment, physical design, technology integration, and
-                human awareness working in concert.
+              <p className="text-on-surface-variant font-mono-data text-base lg:text-lg leading-relaxed mb-6">
+                Security Link&apos;s Risk
+                Advisory Division represents a paradigm shift. We understand that every asset faces a unique threat profile therefore therefore we tailor our solutions to the specific needs of each organization, ensuring that security measures are both effective and efficient.
               </p>
-              <p className="text-on-surface-variant text-lg leading-relaxed">
-                Every asset faces a unique threat profile. A methodical security management approach
-                helps organizations understand their likely threats, identify sources, track incidents,
-                and quantify potential losses.
+
+              <p className="text-on-surface-variant font-mono-data text-base lg:text-lg leading-relaxed hidden lg:block">
+                Our team of certified security consultants brings decades of combined experience across diverse sectors, from corporate enterprises to critical infrastructure. We combine threat analysis, physical design, technology assessment, and awareness training into a cohesive strategy that addresses both current and emerging risks.
               </p>
             </div>
-            <div className="relative group glow-border rounded-lg overflow-hidden h-96">
+            <div className="relative group glow-border rounded-lg overflow-hidden h-50 lg:h-[60vh]">
               <Image
-                src="/hero10.JPG"
+                src="/risk.jpg"
                 alt="Risk Advisory security consulting"
                 fill
                 className="object-cover group-hover:scale-105 transition-transform duration-500"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-obsidian-deep/80 to-transparent" />
+              
             </div>
           </div>
 
           {/* METHODOLOGY */}
-          <div className="mb-32 border-t border-surface-border pt-24">
-            <div className="mb-16">
+          <div className="mb-12 lg:mb-24 border-t border-surface-border pt-12 lg:pt-24">
+            <div className="mb-6 lg:mb-12">
               <span className="font-mono-data text-xs text-cobalt-electric uppercase tracking-widest bg-cobalt-electric/10 px-4 py-2 border border-cobalt-electric/30 inline-block mb-6">
                 Proven Process
               </span>
-              <h2 className="font-headline-lg text-4xl md:text-5xl text-on-surface uppercase tracking-tighter leading-tight">
+              <h2 className="font-headline-lg text-2xl md:text-5xl text-on-surface uppercase tracking-tighter leading-tight shimmer-text">
                 Systematic Risk Assessment & Design
               </h2>
             </div>
@@ -189,30 +204,32 @@ export default function RiskManagementDivision() {
               {methodologySteps.map((step, idx) => (
                 <div
                   key={idx}
-                  className="border border-surface-border p-8 hover:border-cobalt-electric transition-all hover:shadow-[0_0_20px_rgba(37,99,235,0.2)] group glow-border"
+                  className="border  border-cobalt-electric p-5 lg:p-8 hover:border-surface-border transition-all hover:shadow-[0_0_20px_rgba(37,99,235,0.2)] group glow-border"
                   style={{ animationDelay: `${idx * 0.1}s` }}
                 >
-                  <div className="text-5xl font-bold text-cobalt-electric/30 mb-4 group-hover:text-cobalt-electric/60 transition-colors">
+                  <div className="text-3xl lg:text-5xl font-bold  text-cobalt-electric/30 mb-2 lg:mb-4 group-hover:text-cobalt-electric/60 transition-colors">
                     {step.num}
                   </div>
-                  <h3 className="font-bold text-on-surface mb-3 uppercase tracking-wide">
+                  <h3 className="font-bold text-on-surface font-headline-lg mb-1 lg:mb-3 uppercase tracking-wide">
                     {step.title}
                   </h3>
-                  <p className="text-on-surface-variant leading-relaxed">{step.desc}</p>
+                  <p className="text-on-surface-variant leading-relaxed font-mono-data text-sm">{step.desc}</p>
                 </div>
               ))}
             </div>
           </div>
 
           {/* ONGOING MANAGEMENT */}
-          <div className="mb-32 border-t border-surface-border pt-24">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-              <div className="relative group glow-border rounded-lg overflow-hidden h-96 order-2 md:order-1">
+          <div className="mb-12 lg:mb-24 border-t border-surface-border pt-12 lg:pt-24 ">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
+              <div className="relative group glow-border rounded-lg overflow-hidden h-[30vh] lg:h-[55vh] order-2 md:order-1">
                 <Image
-                  src="/hero9.JPG"
+                  src="/risk3.jpg"
                   alt="Security audits and continuous improvement"
                   fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="object-cover 
+                  object-position-center
+                  group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-obsidian-deep/80 to-transparent" />
               </div>
@@ -222,7 +239,7 @@ export default function RiskManagementDivision() {
                     Continuous Improvement
                   </span>
                 </div>
-                <h2 className="font-headline-lg text-4xl md:text-5xl text-on-surface uppercase tracking-tighter mb-8 leading-tight">
+                <h2 className="font-headline-lg text-2xl lg:text-5xl text-on-surface uppercase tracking-tighter mb-8 leading-tight ">
                   Periodic Audits & Surveys
                 </h2>
                 <div className="space-y-6">
@@ -241,8 +258,8 @@ export default function RiskManagementDivision() {
                     },
                   ].map((item, idx) => (
                     <div key={idx} className="border-l-4 border-cobalt-electric pl-6 py-2">
-                      <h4 className="font-bold text-on-surface mb-2">{item.title}</h4>
-                      <p className="text-on-surface-variant text-sm">{item.desc}</p>
+                      <h4 className="font-bold text-on-surface mb-2 font-mono-data">{item.title}</h4>
+                      <p className="text-on-surface-variant text-sm font-headline-lg">{item.desc}</p>
                     </div>
                   ))}
                 </div>
@@ -251,18 +268,18 @@ export default function RiskManagementDivision() {
           </div>
 
           {/* EXPERT TEAM */}
-          <div className="border-t border-surface-border pt-24">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+          <div className="border-t border-surface-border pt-12 lg:px-12 ">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-32 items-center">
               <div>
                 <div className="inline-block mb-6">
                   <span className="font-mono-data text-xs text-cobalt-electric uppercase tracking-widest bg-cobalt-electric/10 px-4 py-2 border border-cobalt-electric/30">
                     Our Credentials
                   </span>
                 </div>
-                <h2 className="font-headline-lg text-4xl md:text-5xl text-on-surface uppercase tracking-tighter mb-8 leading-tight">
+                <h2 className="font-mono-data text-2xl lg:text-3xl text-on-surface uppercase tracking-tighter mb-8 leading-tight">
                   Experienced Security Professionals
                 </h2>
-                <p className="text-on-surface-variant text-lg leading-relaxed mb-8">
+                <p className="text-on-surface-variant font-headline-lg text-base lg:text-lg leading-relaxed mb-8">
                   SecurityLink&apos;s Risk Advisory is staffed by certified security
                   consultants with over 30 years of combined field experience. Our team has worked across
                   diverse sectors and threat environments.
@@ -287,16 +304,16 @@ export default function RiskManagementDivision() {
                         verified
                       </span>
                       <div>
-                        <h4 className="font-bold text-on-surface mb-1">{item.title}</h4>
-                        <p className="text-on-surface-variant text-sm">{item.desc}</p>
+                        <h4 className="font-bold text-on-surface mb-1 font-headline-lg">{item.title}</h4>
+                        <p className="text-on-surface-variant text-sm font-mono-data">{item.desc}</p>
                       </div>
                     </div>
                   ))}
                 </div>
               </div>
-              <div className="relative group glow-border rounded-lg overflow-hidden h-96">
+              <div className="relative group glow-border rounded-lg overflow-hidden h-[30vh] lg:h-[55vh] order-2 lg:order-1">
                 <Image
-                  src="/hero8.jpg"
+                  src="/risk222.JPG"
                   alt="Risk Advisory consulting team"
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -309,16 +326,16 @@ export default function RiskManagementDivision() {
       </section>
 
       {/* CTA */}
-      <section className="bg-obsidian-deep border-t border-surface-border py-20 md:py-32">
-        <div className="max-w-4xl mx-auto px-6 md:px-12 text-center">
-          <h2 className="font-headline-lg text-4xl md:text-5xl text-on-surface uppercase tracking-tighter mb-8">
+      <section className="bg-obsidian-deep border-t border-surface-border py-12 lg:py-20">
+        <div className="max-w-5xl mx-auto px-6 md:px-12 text-center">
+          <h2 className="font-headline-lg text-3xl lg:text-5xl text-on-surface uppercase tracking-tighter mb-8">
             Transform Your Security Strategy
           </h2>
-          <p className="text-on-surface-variant text-lg mb-12 leading-relaxed">
+          <p className="text-on-surface-variant text-sm lg:text-lg font-mono-data max-w-auto text-center mb-12 leading-relaxed">
             Engage SecurityLink&apos;s Risk Advisory to develop a comprehensive, integrated
-            security approach tailored to your organization&apos;s unique threat profile.
+            security approach tailored to your organization&apos;s unique threat profile. Proactively manage risks, enhance resilience, and ensure the safety of your assets and personnel.
           </p>
-          <button className="bg-gradient-to-r from-amber-500 to-orange-600 text-white px-10 py-4 font-bold uppercase tracking-widest hover:shadow-[0_0_40px_rgba(245,158,11,0.7)] transition-all transform hover:scale-105 active:scale-95 text-lg">
+          <button className="bg-gradient-to-r from-amber-500 to-orange-600 text-white px-5 lg:px-10 py-3 lg:py-4 font-semibold lg:font-bold uppercase tracking-widest font-sm hover:shadow-[0_0_40px_rgba(245,158,11,0.7)] transition-all transform hover:scale-105 active:scale-95 text-lg">
             Schedule Security Consultation
           </button>
         </div>
