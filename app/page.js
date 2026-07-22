@@ -365,14 +365,14 @@ export default function Home() {
         {/* Slider Nav Buttons */}
         <button
           onClick={() => heroSliderRef.current.goToSlide?.(heroSliderRef.current.current - 1)}
-          className="absolute left-3 md:left-6 top-[42%] -translate-y-1/2 z-40 w-12 h-12 md:w-14 md:h-14 flex items-center justify-center bg-black/40 hover:bg-cobalt-electric/80 border border-white/10 hover:border-cobalt-electric rounded-full text-white/70 hover:text-white backdrop-blur-sm transition-all duration-300 cursor-pointer active:scale-90"
+          className="absolute left-3 md:left-6 top-[55%] -translate-y-1/2 z-40 w-12 h-12 md:w-14 md:h-14 flex items-center justify-center bg-black/40 hover:bg-cobalt-electric/80 border border-white/10 hover:border-cobalt-electric rounded-full text-white/70 hover:text-white backdrop-blur-sm transition-all duration-300 cursor-pointer active:scale-90"
           aria-label="Previous slide"
         >
           <ChevronLeft className="w-6 h-6 md:w-7 md:h-7" />
         </button>
         <button
           onClick={() => heroSliderRef.current.goToSlide?.(heroSliderRef.current.current + 1)}
-          className="absolute right-3 md:right-6 top-[42%] -translate-y-1/2 z-40 w-12 h-12 md:w-14 md:h-14 flex items-center justify-center bg-black/40 hover:bg-cobalt-electric/80 border border-white/10 hover:border-cobalt-electric rounded-full text-white/70 hover:text-white backdrop-blur-sm transition-all duration-300 cursor-pointer active:scale-90"
+          className="absolute right-3 md:right-6 top-[55%] -translate-y-1/2 z-40 w-12 h-12 md:w-14 md:h-14 flex items-center justify-center bg-black/40 hover:bg-cobalt-electric/80 border border-white/10 hover:border-cobalt-electric rounded-full text-white/70 hover:text-white backdrop-blur-sm transition-all duration-300 cursor-pointer active:scale-90"
           aria-label="Next slide"
         >
           <ChevronRight className="w-6 h-6 md:w-7 md:h-7" />
