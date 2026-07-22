@@ -386,7 +386,7 @@ export default function Home() {
               <div className="absolute left-1/2 top-0 w-[1px] h-full bg-cobalt-electric" />
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 border border-cobalt-electric rounded-full" />
             </div>
-            <h1 className="hero-fade-in-left font-headline-xl text-headline-xl text-xl lg:text-6xl text-white uppercase tracking-tighter mb-5 leading-[0.95] drop-shadow-2xl" style={{ animationDelay: '0.8s' }}>
+            <h1 className="hero-fade-in-left font-headline-xl text-headline-xl text-xl md:text-2xl lg:text-6xl text-white uppercase tracking-tighter mb-5 leading-[0.95] drop-shadow-2xl" style={{ animationDelay: '0.8s' }}>
               Securing Capital, <br />
               <span className="text-cobalt-electric">Enterprise</span>, and Key Infrastructure
             </h1>
