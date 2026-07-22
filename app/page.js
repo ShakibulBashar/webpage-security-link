@@ -78,7 +78,7 @@ export default function Home() {
 
   useEffect(() => {
     const targetYears = 13;
-    const targetServices = 5;
+    const targetServices = 4;
     const targetCompliance = 100;
     const totalSteps = 20; // Number of visible increments
     const intervalMs = 80; // Time between each increment
