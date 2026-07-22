@@ -51,6 +51,10 @@ export default function Header() {
     return pathname.startsWith("/about");
   };
 
+  const isContactActive = () => {
+    return pathname.startsWith("/contact");
+  };
+
   const linkClass = (active) => `
     relative px-3 py-2 text-[13px] lg:text-[15px] xl:text-[17px] font-bold tracking-wide uppercase transition-all duration-300 rounded-full font-[family-name:var(--font-jakarta)] flex items-center gap-1
     ${
@@ -69,10 +73,10 @@ export default function Header() {
     }
   `;
 
-  const dropdownItemClass = (itemHref) => `
+  const dropdownItemClass = (itemHref, exact = false) => `
     block px-4 py-2.5 text-[13px] font-bold uppercase tracking-wide transition-colors
     ${
-      pathname.startsWith(itemHref)
+      exact ? pathname === itemHref : pathname.startsWith(itemHref)
         ? "text-cobalt-electric bg-surface-container-high"
         : "text-on-surface-variant hover:text-cobalt-electric hover:bg-surface-container-high"
     }
@@ -83,10 +87,10 @@ export default function Header() {
     ${active ? "bg-[#1e3a5f] text-white" : "text-on-surface-variant hover:bg-surface-container-high"}
   `;
 
-  const mobileDropdownItemClass = (itemHref) => `
+  const mobileDropdownItemClass = (itemHref, exact = false) => `
     px-4 py-2.5 text-xs font-bold uppercase tracking-wide rounded-lg transition-colors
     ${
-      pathname.startsWith(itemHref)
+      exact ? pathname === itemHref : pathname.startsWith(itemHref)
         ? "text-cobalt-electric bg-surface-container-high"
         : "text-on-surface-variant hover:text-cobalt-electric hover:bg-surface-container-high"
     }
@@ -226,9 +230,22 @@ export default function Header() {
                 </div>
               </div>
 
-              <a href="/contact" className={linkClass(pathname.startsWith("/contact"))}>
-                Contact
-              </a>
+              <div className="relative group">
+                <span className={dropdownParentClass(isContactActive())}>
+                  Contact
+                  <span className="material-symbols-outlined text-sm transition-transform duration-200 group-hover:rotate-180">
+                    expand_more
+                  </span>
+                </span>
+                <div className="absolute left-0 mt-2 w-64 bg-surface-container-low border border-surface-border rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50 -translate-y-1 group-hover:translate-y-0">
+                  <a href="/contact" className={dropdownItemClass("/contact", true)}>
+                    Contact Us
+                  </a>
+                  <a href="/contact/form" className={dropdownItemClass("/contact/form")}>
+                    Enquiry Form
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -320,9 +337,22 @@ export default function Header() {
               </div>
             </div>
 
-            <a href="/contact" className={linkClass(pathname.startsWith("/contact"))}>
-              Contact
-            </a>
+            <div className="relative group">
+              <span className={dropdownParentClass(isContactActive())}>
+                Contact
+                <span className="material-symbols-outlined text-sm transition-transform duration-200 group-hover:rotate-180">
+                  expand_more
+                </span>
+              </span>
+              <div className="absolute left-0 mt-2 w-64 bg-surface-container-low border border-surface-border rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50 -translate-y-1 group-hover:translate-y-0">
+                <a href="/contact" className={dropdownItemClass("/contact", true)}>
+                  Contact Us
+                </a>
+                <a href="/contact/form" className={dropdownItemClass("/contact/form")}>
+                  Enquiry Form
+                </a>
+              </div>
+            </div>
 
             {/* Gallery top-level — 2xl only */}
             {is2xl && (
@@ -527,13 +557,43 @@ export default function Header() {
               </div>
             </div>
 
-            <a
-              href="/contact"
-              onClick={() => setMobileMenuOpen(false)}
-              className={mobileLinkClass(pathname.startsWith("/contact"))}
-            >
-              Contact
-            </a>
+            <div className="flex flex-col">
+              <button
+                onClick={() => toggleMobileDropdown("Contact")}
+                className={`flex items-center justify-between px-4 py-3.5 text-sm font-bold uppercase tracking-wide transition-all duration-200 rounded-xl font-[family-name:var(--font-jakarta)] ${isContactActive() || mobileDropdown === "Contact" ? "bg-[#1e3a5f] text-white" : "text-on-surface-variant hover:bg-surface-container-high"}`}
+              >
+                Contact
+                <span
+                  className={`material-symbols-outlined text-lg transition-transform duration-200 ${mobileDropdown === "Contact" ? "rotate-180" : ""}`}
+                >
+                  expand_more
+                </span>
+              </button>
+              <div
+                className={`flex flex-col gap-1 pl-4 overflow-hidden transition-all duration-300 ${mobileDropdown === "Contact" ? "max-h-80 opacity-100 mt-1 mb-1" : "max-h-0 opacity-0"}`}
+              >
+                <a
+                  href="/contact"
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    setMobileDropdown(null);
+                  }}
+                  className={mobileDropdownItemClass("/contact", true)}
+                >
+                  Contact Us
+                </a>
+                <a
+                  href="/contact/form"
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    setMobileDropdown(null);
+                  }}
+                  className={mobileDropdownItemClass("/contact/form")}
+                >
+                  Enquiry Form
+                </a>
+              </div>
+            </div>
 
             <div className="mt-6 pt-6 border-t border-surface-border/30">
               <button

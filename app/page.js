@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, ArrowLeft, ArrowUpRight } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight, ArrowUpRight } from "lucide-react";
 import { useScrollReveal, useStaggerReveal } from "./hooks/useScrollReveal";
 // app/layout.js
 import { Space_Grotesk } from 'next/font/google';
@@ -365,17 +365,17 @@ export default function Home() {
         {/* Slider Nav Buttons */}
         <button
           onClick={() => heroSliderRef.current.goToSlide?.(heroSliderRef.current.current - 1)}
-          className="absolute left-3 md:left-6 top-[42%] -translate-y-1/2 z-40 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-black/40 hover:bg-black/60 border border-white/10 hover:border-white/25 rounded-full text-white/70 hover:text-white backdrop-blur-sm transition-all duration-200 cursor-pointer"
+          className="absolute left-3 md:left-6 top-[42%] -translate-y-1/2 z-40 w-12 h-12 md:w-14 md:h-14 flex items-center justify-center bg-black/40 hover:bg-cobalt-electric/80 border border-white/10 hover:border-cobalt-electric rounded-full text-white/70 hover:text-white backdrop-blur-sm transition-all duration-300 cursor-pointer active:scale-90"
           aria-label="Previous slide"
         >
-          <ArrowLeft className="w-4 h-4 md:w-5 md:h-5" />
+          <ChevronLeft className="w-6 h-6 md:w-7 md:h-7" />
         </button>
         <button
           onClick={() => heroSliderRef.current.goToSlide?.(heroSliderRef.current.current + 1)}
-          className="absolute right-3 md:right-6 top-[42%] -translate-y-1/2 z-40 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-black/40 hover:bg-black/60 border border-white/10 hover:border-white/25 rounded-full text-white/70 hover:text-white backdrop-blur-sm transition-all duration-200 cursor-pointer"
+          className="absolute right-3 md:right-6 top-[42%] -translate-y-1/2 z-40 w-12 h-12 md:w-14 md:h-14 flex items-center justify-center bg-black/40 hover:bg-cobalt-electric/80 border border-white/10 hover:border-cobalt-electric rounded-full text-white/70 hover:text-white backdrop-blur-sm transition-all duration-300 cursor-pointer active:scale-90"
           aria-label="Next slide"
         >
-          <ArrowRight className="w-4 h-4 md:w-5 md:h-5" />
+          <ChevronRight className="w-6 h-6 md:w-7 md:h-7" />
         </button>
 
         {/* HUD Content */}

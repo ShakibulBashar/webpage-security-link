@@ -1,55 +1,31 @@
 // Contact — redesigned tactical HUD contact experience
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import {
   Phone,
   Mail,
   Globe,
-  MapPin,
   Smartphone,
   ArrowUpRight,
-  Send,
+  ArrowRight,
+  ArrowLeft,
   Clock,
   ShieldCheck,
-  MessageCircle,
+  MapPin,
   Building2,
   User,
+  ClipboardCheck,
+  Headphones,
+  FileSearch,
+  BadgeCheck,
+  MessageCircle,
 } from "lucide-react";
 import { useScrollReveal, useStaggerReveal } from "../hooks/useScrollReveal";
 
 const MOBILE_NUMBERS = ["+8801777740993", "+8801777740984", "+8801777740897"];
-
-const INQUIRY_TYPES = [
-  "Manned Guarding Division",
-  "Risk Advisory",
-  "Security Technology",
-  "Logistics Services",
-  "General Enquiry",
-];
-
-const DIRECT_LINES = [
-  {
-    icon: Phone,
-    label: "Telephone",
-    value: "+8809611-223300",
-    href: "tel:+8809611223300",
-  },
-  {
-    icon: Mail,
-    label: "Email",
-    value: "info@securitylink-bd.com",
-    href: "mailto:info@securitylink-bd.com",
-  },
-  {
-    icon: Globe,
-    label: "Website",
-    value: "securitylink-bd.com",
-    href: "https://www.securitylink-bd.com",
-    external: true,
-  },
-];
 
 const OFFICES = [
   {
@@ -66,48 +42,89 @@ const OFFICES = [
   },
 ];
 
+const PROCESS_STEPS = [
+  {
+    icon: ClipboardCheck,
+    step: "01",
+    title: "Initial Assessment",
+    desc: "Share your requirements through the form or a direct call. We listen before we propose.",
+  },
+  {
+    icon: FileSearch,
+    step: "02",
+    title: "Site Survey",
+    desc: "Our team visits your premises to evaluate risks, access points, and operational flow firsthand.",
+  },
+  {
+    icon: Headphones,
+    step: "03",
+    title: "Tailored Proposal",
+    desc: "Receive a detailed security plan with staffing recommendations, technology specs, and pricing.",
+  },
+  {
+    icon: BadgeCheck,
+    step: "04",
+    title: "Deployment & Oversight",
+    desc: "Trained personnel on ground, real-time monitoring, and continuous quality audits from day one.",
+  },
+];
+
+const DIVISIONS = [
+  {
+    name: "Manned Guarding",
+    desc: "Armed and unarmed guards for commercial, industrial, and residential premises across Bangladesh.",
+    icon: ShieldCheck,
+  },
+  {
+    name: "Risk Advisory",
+    desc: "Threat assessments, vulnerability audits, and security consulting for high-risk environments.",
+    icon: FileSearch,
+  },
+  {
+    name: "Security Technology",
+    desc: "CCTV, access control, alarm systems, and integrated surveillance solutions for modern facilities.",
+    icon: Headphones,
+  },
+  {
+    name: "Logistics Services",
+    desc: "Industrial cleaning, hospital sanitization, and corporate facility maintenance with compliance standards.",
+    icon: ClipboardCheck,
+  },
+];
+
+const heroImages = [
+  { src: "/control-room2.jpg", position: "center 10%" },
+  { src: "/HnM.jpg", position: "40% 20%" },
+  { src: "/hero16.JPG", position: "center 25%" },
+];
+
 export default function ContactPage() {
   useScrollReveal();
   const officeRef = useStaggerReveal(140);
-  const lineRef = useStaggerReveal(100);
+  const processRef = useStaggerReveal(120);
+  const divisionRef = useStaggerReveal(100);
 
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    type: INQUIRY_TYPES[0],
-    message: "",
-  });
+  const heroSliderRef = useRef({ current: 0, timer: null, goToSlide: null });
 
-  const update = (key) => (e) => setForm((f) => ({ ...f, [key]: e.target.value }));
+  useEffect(() => {
+    const slideDelay = 8000;
+    const slides = document.querySelectorAll(".contact-hero-slide");
+    const slider = heroSliderRef.current;
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const subject = `Enquiry: ${form.type}`;
-    const body = [
-      `Name: ${form.name}`,
-      `Email: ${form.email}`,
-      `Phone: ${form.phone}`,
-      `Division: ${form.type}`,
-      "",
-      form.message,
-    ].join("\n");
-    window.location.href = `mailto:info@securitylink-bd.com?subject=${encodeURIComponent(
-      subject,
-    )}&body=${encodeURIComponent(body)}`;
-  };
+    function goToSlide(index) {
+      if (!slides.length) return;
+      slides[slider.current].classList.remove("active");
+      slider.current = ((index % slides.length) + slides.length) % slides.length;
+      slides[slider.current].classList.add("active");
+      clearTimeout(slider.timer);
+      slider.timer = setTimeout(() => goToSlide(slider.current + 1), slideDelay);
+    }
 
-  const whatsappMessage = () => {
-    const text = `Hello SecurityLink, I would like to enquire about ${form.type}.`;
-    window.open(
-      `https://wa.me/8801777740983?text=${encodeURIComponent(text)}`,
-      "_blank",
-      "noopener,noreferrer",
-    );
-  };
+    slider.goToSlide = goToSlide;
+    slider.timer = setTimeout(() => goToSlide(slider.current + 1), slideDelay);
 
-  const fieldClass =
-    "w-full bg-background/60 border border-surface-border focus:border-cobalt-electric outline-none px-4 py-3 text-on-surface font-body-md placeholder:text-on-surface-variant/50 transition-colors";
+    return () => clearTimeout(slider.timer);
+  }, []);
 
   return (
     <>
@@ -117,6 +134,13 @@ export default function ContactPage() {
             linear-gradient(to right, rgba(100, 116, 139, 0.08) 1px, transparent 1px),
             linear-gradient(rgba(100, 116, 139, 0.08) 1px, transparent 1px);
           background-size: 48px 48px;
+        }
+        .contact-hero-slide {
+          opacity: 0;
+          transition: opacity 1.2s ease-in-out;
+        }
+        .contact-hero-slide.active {
+          opacity: 1;
         }
         @keyframes ping-dot {
           0% { transform: scale(1); opacity: 1; }
@@ -132,235 +156,222 @@ export default function ContactPage() {
         }
       `}</style>
 
-      {/* ══════════ HERO ══════════ */}
-      <section className="relative min-h-[68vh] pt-20 flex items-end overflow-hidden">
-        <div className="absolute inset-0">
-          <Image
-            src="/control-room2.jpg"
-            alt="SecurityLink control room operations"
-            fill
-            priority
-            className="object-cover"
-            style={{ objectPosition: "center 30%" }}
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background/40" />
-          <div className="absolute inset-0 contact-grid opacity-40" />
+      {/* ══════════ HERO — homepage style with slider ══════════ */}
+      <main className="relative min-h-[100dvh] pt-20 pb-3 flex flex-col items-center justify-end overflow-hidden">
+        {/* Slider Background */}
+        <div className="absolute top-20 inset-x-0 bottom-0 z-0">
+          {heroImages.map(({ src, position }, idx) => (
+            <div key={idx} className={`contact-hero-slide ${idx === 0 ? "active" : ""} absolute inset-0`}>
+              <Image
+                src={src}
+                alt="SecurityLink contact"
+                fill
+                className="object-cover"
+                style={{ objectPosition: position }}
+                priority={idx === 0}
+                sizes="100vw"
+              />
+            </div>
+          ))}
+          <div className="absolute inset-0 bg-black/40 z-10" />
+          <div className="absolute inset-0 contact-grid opacity-30 z-10" />
         </div>
 
-        <div className="relative z-10 w-full max-w-[1400px] mx-auto px-6 md:px-12 pb-14 md:pb-20">
-          <div className="flex items-center gap-3 mb-6">
-            <span className="relative w-2 h-2 rounded-full bg-cobalt-electric live-dot" />
-            <span className="font-mono-data text-xs md:text-sm text-cobalt-electric uppercase tracking-[0.25em]">
-              SEC-NET: Establish Contact
-            </span>
-          </div>
-          <h1 className="font-headline-xl text-5xl md:text-7xl lg:text-8xl text-white uppercase tracking-tighter leading-[0.9] mb-6 drop-shadow-2xl text-balance">
-            Let&apos;s Secure
-            <br />
-            <span className="text-cobalt-electric">What Matters</span>
-          </h1>
-          <p className="font-body-lg text-lg md:text-xl text-on-surface-variant max-w-2xl leading-relaxed">
-            Speak directly with our operations desk. Phone, email, or the form below — every enquiry
-            reaches a member of the SecurityLink team.
-          </p>
+        {/* Slider Nav Buttons */}
+        <button
+          onClick={() => heroSliderRef.current.goToSlide?.(heroSliderRef.current.current - 1)}
+          className="absolute left-3 md:left-6 top-[42%] -translate-y-1/2 z-40 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-black/40 hover:bg-black/60 border border-white/10 hover:border-white/25 rounded-full text-white/70 hover:text-white backdrop-blur-sm transition-all duration-200"
+        >
+          <ArrowLeft className="w-4 h-4 md:w-5 md:h-5" />
+        </button>
+        <button
+          onClick={() => heroSliderRef.current.goToSlide?.(heroSliderRef.current.current + 1)}
+          className="absolute right-3 md:right-6 top-[42%] -translate-y-1/2 z-40 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-black/40 hover:bg-black/60 border border-white/10 hover:border-white/25 rounded-full text-white/70 hover:text-white backdrop-blur-sm transition-all duration-200"
+        >
+          <ArrowRight className="w-4 h-4 md:w-5 md:h-5" />
+        </button>
 
-          {/* Quick assurance strip */}
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-px mt-10 border border-surface-border bg-surface-border max-w-3xl">
-            {[
-              { icon: Clock, k: "Response", v: "Within 24 hrs" },
-              { icon: ShieldCheck, k: "Consultation", v: "No obligation" },
-              { icon: MapPin, k: "Offices", v: "2 in Dhaka" },
-            ].map(({ icon: Icon, k, v }) => (
-              <div key={k} className="bg-background/85 backdrop-blur-sm px-5 py-4 flex items-center gap-3">
-                <Icon className="w-5 h-5 text-cobalt-electric shrink-0" />
-                <div className="min-w-0">
-                  <div className="font-label-caps text-[10px] uppercase tracking-[0.18em] text-on-surface-variant">
-                    {k}
-                  </div>
-                  <div className="font-headline-md text-sm text-on-surface truncate">{v}</div>
-                </div>
-              </div>
-            ))}
+        {/* HUD Content */}
+        <div className="relative z-30 w-full max-w-[1400px] px-2 md:px-12 flex flex-col items-center">
+          <div className="text-center max-w-auto pb-2">
+            <div className="flex items-center justify-center gap-3 mb-6 ] hidden lg:block">
+              <span className="relative w-2 h-2 rounded-full bg-cobalt-electric live-dot" />
+              <span className="font-mono-data text-xs md:text-sm text-cobalt-electric uppercase tracking-[0.25em">
+                SEC-NET: Establish Contact
+              </span>
+            </div>
+            <h1 className="font-headline-xl text-2xl md:text-4xl lg:text-8xl text-white uppercase tracking-tighter leading-[0.9] mb-3 lg:mb-6 drop-shadow-2xl">
+              Let&apos;s Secure<br className="hidden lg:block" />
+              <span className="text-cobalt-electric">What Matters</span>
+            </h1>
+            <p className="font-body-lg text-sm lg:text-lg text-on-surface-variant max-w-2xl leading-relaxed mx-auto">
+              Speak directly with our operations desk. Phone, email, or the form below — every enquiry
+              reaches a member of the SecurityLink team.
+            </p>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-3 lg:gap-6 justify-center mt-4 lg:mt-8">
+              <Link
+                href="/contact/form"
+                className="inline-flex items-center justify-center gap-2 bg-cobalt-electric text-white px-8 py-3 font-bold text-sm uppercase tracking-widest hover:scale-105 transition-all shadow-[0_0_30px_rgba(37,99,235,0.4)]"
+              >
+                Send Enquiry
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+              <a
+                href="https://wa.me/8801777740983"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-amber-500 to-orange-600 text-white px-8 py-3 font-bold text-sm uppercase tracking-widest hover:scale-105 transition-all shadow-[0_0_20px_rgba(245,158,11,0.4)]"
+              >
+                <MessageCircle className="w-4 h-4" />
+                WhatsApp Us
+              </a>
+            </div>
           </div>
         </div>
-      </section>
+      </main>
 
-      {/* ══════════ FORM + DIRECT LINES ══════════ */}
-      <section className="bg-background py-16 md:py-24">
+      {/* ══════════ DIRECT LINES + WHATSAPP ══════════ */}
+      <section className="bg-background border-y border-surface-border py-16 md:py-20">
         <div className="max-w-[1400px] mx-auto px-6 md:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14">
-            {/* Form */}
-            <div data-reveal="left" className="lg:col-span-7">
-              <span className="font-mono-data text-xs text-cobalt-electric uppercase tracking-[0.2em]">
-                Send a Message
-              </span>
-              <h2 className="font-headline-lg text-3xl md:text-4xl text-on-surface uppercase tracking-tight mt-3 mb-8">
-                Request a Consultation
-              </h2>
+          <div className="mb-10">
+            <span className="font-mono-data text-xs text-cobalt-electric uppercase tracking-[0.2em]">
+              Reach Us Directly
+            </span>
+            <h2 className="font-headline-lg text-3xl md:text-4xl text-on-surface uppercase tracking-tight mt-3">
+              All Channels Open
+            </h2>
+          </div>
 
-              <form onSubmit={handleSubmit} className="space-y-5">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                  <div>
-                    <label htmlFor="name" className="font-label-caps text-xs uppercase tracking-[0.15em] text-on-surface-variant block mb-2">
-                      Full Name
-                    </label>
-                    <input
-                      id="name"
-                      type="text"
-                      required
-                      value={form.name}
-                      onChange={update("name")}
-                      placeholder="Your name"
-                      className={fieldClass}
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="email" className="font-label-caps text-xs uppercase tracking-[0.15em] text-on-surface-variant block mb-2">
-                      Email
-                    </label>
-                    <input
-                      id="email"
-                      type="email"
-                      required
-                      value={form.email}
-                      onChange={update("email")}
-                      placeholder="you@company.com"
-                      className={fieldClass}
-                    />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                  <div>
-                    <label htmlFor="phone" className="font-label-caps text-xs uppercase tracking-[0.15em] text-on-surface-variant block mb-2">
-                      Phone
-                    </label>
-                    <input
-                      id="phone"
-                      type="tel"
-                      value={form.phone}
-                      onChange={update("phone")}
-                      placeholder="+880 ..."
-                      className={fieldClass}
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="type" className="font-label-caps text-xs uppercase tracking-[0.15em] text-on-surface-variant block mb-2">
-                      Division of Interest
-                    </label>
-                    <select
-                      id="type"
-                      value={form.type}
-                      onChange={update("type")}
-                      className={`${fieldClass} appearance-none cursor-pointer`}
-                    >
-                      {INQUIRY_TYPES.map((t) => (
-                        <option key={t} value={t} className="bg-surface-container-low text-on-surface">
-                          {t}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                </div>
-
-                <div>
-                  <label htmlFor="message" className="font-label-caps text-xs uppercase tracking-[0.15em] text-on-surface-variant block mb-2">
-                    Message
-                  </label>
-                  <textarea
-                    id="message"
-                    required
-                    rows={5}
-                    value={form.message}
-                    onChange={update("message")}
-                    placeholder="Tell us about the site, assets, or challenge you need to secure."
-                    className={`${fieldClass} resize-none`}
-                  />
-                </div>
-
-                <div className="flex flex-col sm:flex-row gap-4 pt-2">
-                  <button
-                    type="submit"
-                    className="group inline-flex items-center justify-center gap-2 bg-cobalt-electric text-white px-8 py-3.5 font-bold text-sm uppercase tracking-widest hover:scale-[1.02] transition-all shadow-[0_0_30px_rgba(37,99,235,0.35)]"
-                  >
-                    <Send className="w-4 h-4" />
-                    Send Enquiry
-                  </button>
-                  <button
-                    type="button"
-                    onClick={whatsappMessage}
-                    className="group inline-flex items-center justify-center gap-2 border border-surface-border hover:border-cobalt-electric text-on-surface px-8 py-3.5 font-bold text-sm uppercase tracking-widest transition-all"
-                  >
-                    <MessageCircle className="w-4 h-4 text-cobalt-electric" />
-                    WhatsApp Us
-                  </button>
-                </div>
-              </form>
-            </div>
-
-            {/* Direct lines */}
-            <div data-reveal="right" className="lg:col-span-5">
-              <span className="font-mono-data text-xs text-cobalt-electric uppercase tracking-[0.2em]">
-                Direct Lines
-              </span>
-              <h2 className="font-headline-lg text-3xl md:text-4xl text-on-surface uppercase tracking-tight mt-3 mb-8">
-                Reach Us Now
-              </h2>
-
-              <div ref={lineRef} className="space-y-4">
-                {DIRECT_LINES.map(({ icon: Icon, label, value, href, external }) => (
-                  <a
-                    key={label}
-                    data-reveal-child
-                    href={href}
-                    {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                    className="group flex items-center gap-4 border border-surface-border hover:border-cobalt-electric bg-surface-container-low/40 p-5 transition-all duration-300"
-                  >
-                    <div className="w-11 h-11 shrink-0 border border-cobalt-electric/30 bg-cobalt-electric/10 flex items-center justify-center group-hover:bg-cobalt-electric/20 transition-colors">
-                      <Icon className="w-5 h-5 text-cobalt-electric" />
-                    </div>
-                    <div className="min-w-0">
-                      <div className="font-label-caps text-[10px] uppercase tracking-[0.18em] text-on-surface-variant">
-                        {label}
-                      </div>
-                      <div className="font-headline-md text-lg text-on-surface group-hover:text-cobalt-electric transition-colors break-all">
-                        {value}
-                      </div>
-                    </div>
-                    <ArrowUpRight className="w-4 h-4 text-on-surface-variant group-hover:text-cobalt-electric ml-auto shrink-0 opacity-0 group-hover:opacity-100 transition-all" />
-                  </a>
-                ))}
-
-                {/* Mobile numbers */}
-                <div className="border border-surface-border bg-surface-container-low/40 p-5">
-                  <div className="flex items-center gap-2 mb-4">
-                    <Smartphone className="w-4 h-4 text-cobalt-electric" />
-                    <span className="font-label-caps text-[10px] uppercase tracking-[0.18em] text-on-surface-variant">
-                      Mobile
-                    </span>
-                  </div>
-                  <div className="flex flex-col gap-3">
-                    {MOBILE_NUMBERS.map((num) => (
-                      <a
-                        key={num}
-                        href={`tel:${num.replace(/\D/g, "")}`}
-                        className="font-mono-data text-base text-on-surface hover:text-cobalt-electric transition-colors"
-                      >
-                        {num}
-                      </a>
-                    ))}
-                  </div>
-                </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* Phone */}
+            <a href="tel:+8809611223300" className="group relative border border-surface-border hover:border-cobalt-electric/50 bg-surface-container-low/20 p-6 transition-all duration-300">
+              <span className="absolute top-2 left-2 w-4 h-4 border-t border-l border-cobalt-electric/40" />
+              <span className="absolute top-2 right-2 w-4 h-4 border-t border-r border-cobalt-electric/40" />
+              <span className="absolute bottom-2 left-2 w-4 h-4 border-b border-l border-cobalt-electric/40" />
+              <span className="absolute bottom-2 right-2 w-4 h-4 border-b border-r border-cobalt-electric/40" />
+              <div className="w-12 h-12 border border-cobalt-electric/30 bg-cobalt-electric/10 flex items-center justify-center mb-4 group-hover:bg-cobalt-electric/20 transition-colors">
+                <Phone className="w-6 h-6 text-cobalt-electric" />
               </div>
-            </div>
+              <span className="font-label-caps text-[10px] uppercase tracking-[0.15em] text-on-surface-variant block mb-1">Telephone</span>
+              <span className="font-headline-md text-xl text-on-surface group-hover:text-cobalt-electric transition-colors block">+8809611-223300</span>
+            </a>
+
+            {/* Email */}
+            <a href="mailto:info@securitylink-bd.com" className="group relative border border-surface-border hover:border-cobalt-electric/50 bg-surface-container-low/20 p-6 transition-all duration-300">
+              <span className="absolute top-2 left-2 w-4 h-4 border-t border-l border-cobalt-electric/40" />
+              <span className="absolute top-2 right-2 w-4 h-4 border-t border-r border-cobalt-electric/40" />
+              <span className="absolute bottom-2 left-2 w-4 h-4 border-b border-l border-cobalt-electric/40" />
+              <span className="absolute bottom-2 right-2 w-4 h-4 border-b border-r border-cobalt-electric/40" />
+              <div className="w-12 h-12 border border-cobalt-electric/30 bg-cobalt-electric/10 flex items-center justify-center mb-4 group-hover:bg-cobalt-electric/20 transition-colors">
+                <Mail className="w-6 h-6 text-cobalt-electric" />
+              </div>
+              <span className="font-label-caps text-[10px] uppercase tracking-[0.15em] text-on-surface-variant block mb-1">Email</span>
+              <span className="font-headline-md text-xl text-on-surface group-hover:text-cobalt-electric transition-colors block break-all">info@securitylink-bd.com</span>
+            </a>
+
+            {/* WhatsApp */}
+            <a href="https://wa.me/8801777740983" target="_blank" rel="noopener noreferrer" className="group relative border border-surface-border hover:border-green-500/50 bg-surface-container-low/20 p-6 transition-all duration-300">
+              <span className="absolute top-2 left-2 w-4 h-4 border-t border-l border-green-500/40" />
+              <span className="absolute top-2 right-2 w-4 h-4 border-t border-r border-green-500/40" />
+              <span className="absolute bottom-2 left-2 w-4 h-4 border-b border-l border-green-500/40" />
+              <span className="absolute bottom-2 right-2 w-4 h-4 border-b border-r border-green-500/40" />
+              <div className="w-12 h-12 border border-green-500/30 bg-green-500/10 flex items-center justify-center mb-4 group-hover:bg-green-500/20 transition-colors">
+                <MessageCircle className="w-6 h-6 text-green-500" />
+              </div>
+              <span className="font-label-caps text-[10px] uppercase tracking-[0.15em] text-on-surface-variant block mb-1">WhatsApp</span>
+              <span className="font-headline-md text-xl text-on-surface group-hover:text-green-500 transition-colors block">+8801777740983</span>
+            </a>
+
+            {/* Mobile 1 */}
+            <a href="tel:+8801777740993" className="group relative border border-surface-border hover:border-cobalt-electric/50 bg-surface-container-low/20 p-6 transition-all duration-300">
+              <div className="w-12 h-12 border border-cobalt-electric/30 bg-cobalt-electric/10 flex items-center justify-center mb-4 group-hover:bg-cobalt-electric/20 transition-colors">
+                <Smartphone className="w-6 h-6 text-cobalt-electric" />
+              </div>
+              <span className="font-label-caps text-[10px] uppercase tracking-[0.15em] text-on-surface-variant block mb-1">Mobile</span>
+              <span className="font-headline-md text-xl text-on-surface group-hover:text-cobalt-electric transition-colors block">+8801777740993</span>
+            </a>
+
+            {/* Mobile 2 */}
+            <a href="tel:+8801777740984" className="group relative border border-surface-border hover:border-cobalt-electric/50 bg-surface-container-low/20 p-6 transition-all duration-300">
+              <div className="w-12 h-12 border border-cobalt-electric/30 bg-cobalt-electric/10 flex items-center justify-center mb-4 group-hover:bg-cobalt-electric/20 transition-colors">
+                <Smartphone className="w-6 h-6 text-cobalt-electric" />
+              </div>
+              <span className="font-label-caps text-[10px] uppercase tracking-[0.15em] text-on-surface-variant block mb-1">Mobile</span>
+              <span className="font-headline-md text-xl text-on-surface group-hover:text-cobalt-electric transition-colors block">+8801777740984</span>
+            </a>
+
+            {/* Mobile 3 */}
+            <a href="tel:+8801777740897" className="group relative border border-surface-border hover:border-cobalt-electric/50 bg-surface-container-low/20 p-6 transition-all duration-300">
+              <div className="w-12 h-12 border border-cobalt-electric/30 bg-cobalt-electric/10 flex items-center justify-center mb-4 group-hover:bg-cobalt-electric/20 transition-colors">
+                <Smartphone className="w-6 h-6 text-cobalt-electric" />
+              </div>
+              <span className="font-label-caps text-[10px] uppercase tracking-[0.15em] text-on-surface-variant block mb-1">Mobile</span>
+              <span className="font-headline-md text-xl text-on-surface group-hover:text-cobalt-electric transition-colors block">+8801777740897</span>
+            </a>
+          </div>
+
+          {/* Website */}
+          <div className="mt-6">
+            <a href="https://www.securitylink-bd.com" target="_blank" rel="noopener noreferrer" className="group inline-flex items-center gap-3 border border-surface-border hover:border-cobalt-electric/50 bg-surface-container-low/20 px-6 py-4 transition-all duration-300">
+              <Globe className="w-5 h-5 text-cobalt-electric" />
+              <span className="font-headline-md text-lg text-on-surface group-hover:text-cobalt-electric transition-colors">securitylink-bd.com</span>
+              <ArrowUpRight className="w-4 h-4 text-on-surface-variant group-hover:text-cobalt-electric transition-colors" />
+            </a>
           </div>
         </div>
       </section>
+
+      {/* ══════════ HOW WE RESPOND — process steps ══════════ */}
+      <section className="bg-obsidian-deep border-y border-surface-border py-16 md:py-24">
+        <div className="max-w-[1400px] mx-auto px-6 md:px-12">
+          <div className="mb-12 md:mb-16 max-w-2xl">
+            <span className="font-mono-data text-xs text-cobalt-electric uppercase tracking-[0.2em]">
+              From Enquiry to Deployment
+            </span>
+            <h2 className="font-headline-lg text-3xl md:text-4xl text-on-surface uppercase tracking-tight mt-3 leading-tight">
+              How we respond
+            </h2>
+            <p className="font-body-md text-sm md:text-base text-on-surface-variant mt-4 leading-relaxed">
+              Every enquiry follows the same four-step protocol — no shortcuts, no assumptions.
+            </p>
+          </div>
+
+          <div ref={processRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {PROCESS_STEPS.map((s) => {
+              const Icon = s.icon;
+              return (
+                <div
+                  key={s.step}
+                  data-reveal-child
+                  className="relative border border-cobalt-electric/20 bg-surface-container-low/20 p-6 group hover:border-cobalt-electric/50 transition-colors"
+                >
+                  <span className="absolute top-4 right-4 font-mono-data text-[10px] text-cobalt-electric/40 uppercase tracking-widest">
+                    {s.step}
+                  </span>
+                  <div className="w-12 h-12 border border-cobalt-electric/30 bg-cobalt-electric/10 flex items-center justify-center mb-5 group-hover:bg-cobalt-electric/20 transition-colors">
+                    <Icon className="w-6 h-6 text-cobalt-electric" />
+                  </div>
+                  <h3 className="font-headline-md text-lg text-on-surface mb-2 uppercase tracking-wide">
+                    {s.title}
+                  </h3>
+                  <p className="font-body-sm text-sm text-on-surface-variant leading-relaxed">
+                    {s.desc}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      
 
       {/* ══════════ OFFICES + MAPS ══════════ */}
-      <section className="bg-background pb-16 md:pb-24">
+      <section id="offices" className="bg-background py-16 md:py-24">
         <div className="max-w-[1400px] mx-auto px-6 md:px-12">
-          <div className="border-t border-surface-border pt-14 md:pt-20 mb-10">
+          <div className="mb-10">
             <span className="font-mono-data text-xs text-cobalt-electric uppercase tracking-[0.2em]">
               Our Locations
             </span>
@@ -397,9 +408,7 @@ export default function ContactPage() {
                       </h3>
                       <address className="font-body-md text-on-surface-variant not-italic leading-relaxed">
                         {office.lines.map((l) => (
-                          <span key={l} className="block">
-                            {l}
-                          </span>
+                          <span key={l} className="block">{l}</span>
                         ))}
                       </address>
                     </div>

@@ -397,30 +397,34 @@ export default function TrainingPage() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {packages.map((p, idx) => {
               const Icon = p.icon;
               return (
                 <div
                   key={idx}
-                  className="group relative border border-surface-border p-6 md:p-8 hover:border-cobalt-electric/50 transition-all bg-surface-container-low/20 hover:bg-surface-container-low/40 overflow-hidden"
+                  className="group relative border  p-6 md:p-8 
+                  bg-surface-container-low/40
+                  border-cobalt-electric/50
+
+                  hover:border-surface-border transition-all bg-surface-container-low/20 hover:bg-surface-container-low/40 overflow-hidden"
                 >
                   <div className="flex items-start justify-between gap-4 mb-5">
                     <div className="w-14 h-14 bg-cobalt-electric/10 border border-cobalt-electric/30 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-cobalt-electric/20 transition-colors">
                       <Icon className="w-7 h-7 text-cobalt-electric" strokeWidth={1.75} />
                     </div>
-                    <span className="font-mono-data text-[11px] text-cobalt-electric uppercase tracking-[0.15em] border border-cobalt-electric/30 bg-cobalt-electric/10 px-3 py-1.5">
+                    <span className="font-mono-data text-sm lg:text-base text-cobalt-electric uppercase tracking-[0.15em] border border-cobalt-electric/30 bg-cobalt-electric/10 px-3 py-1.5">
                       {p.duration}
                     </span>
                   </div>
-                  <span className="font-mono-data text-[11px] text-on-surface-variant uppercase tracking-[0.2em]">
+                  <span className="font-headline-lg text-xs lg:text-base text-on-surface-variant uppercase tracking-[0.2em]">
                     {p.tag}
                   </span>
-                  <h3 className="font-headline-md text-xl text-on-surface mt-1 mb-3 leading-snug">
+                  <h3 className="font-headline-lg text-xl lg:text-2xl text-on-surface mt-1 mb-3 leading-snug">
                     {p.title}
                   </h3>
-                  <p className="text-on-surface-variant text-sm leading-relaxed">{p.desc}</p>
-                  <span className="absolute -bottom-8 -right-4 font-headline-xl text-[120px] font-bold text-cobalt-electric/[0.04] leading-none select-none pointer-events-none">
+                  <p className="text-on-surface-variant text-sm lg:text-base leading-relaxed font-mono-data">{p.desc}</p>
+                  <span className="absolute -bottom-5 -right-2 font-headline-xl text-[120px] font-bold text-cobalt-electric/[0.1] leading-none select-none pointer-events-none">
                     {String(idx + 1).padStart(2, "0")}
                   </span>
                 </div>
