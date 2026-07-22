@@ -2,6 +2,13 @@ import { readdir } from "node:fs/promises";
 import path from "node:path";
 import GalleryGrid from "./gallery-grid";
 
+export const metadata = {
+  title: "Photo Gallery",
+  description:
+    "Photos from SecurityLink's operations, training sessions and client engagements across Bangladesh.",
+  alternates: { canonical: "/gallery" },
+};
+
 const IMAGE_EXTENSIONS = new Set([
   ".jpg",
   ".jpeg",

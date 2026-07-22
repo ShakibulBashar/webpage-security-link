@@ -15,16 +15,114 @@ const jetbrainsMono = JetBrains_Mono({
   weight: ['400', '500'],
 });
 
+// TODO: replace with the actual live domain once deployed
+const siteUrl = 'https://www.securitylink-bd.com';
+
+const defaultTitle = 'SecurityLink Ltd. | Corporate Security & Risk Management in Dhaka';
+const defaultDescription =
+  'SecurityLink Ltd. provides manned guarding, risk management, security equipment and logistics support for corporate, industrial and institutional clients across Bangladesh.';
+
 export const metadata = {
-  title: 'SECURITYLINK | Elite Corporate Asset Protection',
-  description: 'Industry-leading protection for corporate assets and critical facilities.',
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: defaultTitle,
+    template: '%s | SecurityLink Ltd.',
+  },
+  description: defaultDescription,
+  keywords: [
+    'security company Dhaka',
+    'security services Bangladesh',
+    'manned guarding Bangladesh',
+    'corporate security Dhaka',
+    'risk management security Bangladesh',
+    'CCTV access control Bangladesh',
+    'security guard company Bangladesh',
+    'SecurityLink Ltd',
+  ],
+  authors: [{ name: 'SecurityLink Ltd.' }],
+  creator: 'SecurityLink Ltd.',
+  publisher: 'SecurityLink Ltd.',
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: siteUrl,
+    siteName: 'SecurityLink Ltd.',
+    title: defaultTitle,
+    description: defaultDescription,
+    images: [
+      {
+        url: '/logo.png',
+        width: 512,
+        height: 512,
+        alt: 'SecurityLink Ltd.',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: defaultTitle,
+    description: defaultDescription,
+    images: ['/logo.png'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+      'max-video-preview': -1,
+    },
+  },
+  icons: {
+    icon: '/logo.png',
+    apple: '/logo.png',
+  },
+  category: 'business',
+};
+
+export const viewport = {
+  themeColor: '#031427',
+  width: 'device-width',
+  initialScale: 1,
+};
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: 'SecurityLink Ltd.',
+  image: `${siteUrl}/logo.png`,
+  url: siteUrl,
+  telephone: '+8801777740993',
+  email: 'info@securitylink-bd.com',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'House #95/2, Road #01, Ward #05, Dia Bari',
+    addressLocality: 'Uttara, Dhaka',
+    postalCode: '1230',
+    addressCountry: 'BD',
+  },
+  areaServed: 'Bangladesh',
+  description: defaultDescription,
+  priceRange: '$$',
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`dark ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}>
       <head>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=optional"
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </head>
       <body className="overflow-x-hidden bg-background text-on-surface">
         <Header />

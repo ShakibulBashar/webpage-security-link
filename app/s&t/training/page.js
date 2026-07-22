@@ -17,6 +17,13 @@ import {
   Users,
 } from "lucide-react";
 
+export const metadata = {
+  title: "Training Centre & Activities",
+  description:
+    "Inside SecurityLink's guard training programme — post-specific instruction, safety training and ongoing refresher courses.",
+  alternates: { canonical: "/s&t/training" },
+};
+
 const syllabus = [
   {
     icon: Shield,
