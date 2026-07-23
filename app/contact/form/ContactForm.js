@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Send, ChevronDown, User, Building2, MapPin, ClipboardList, DollarSign, Settings } from "lucide-react";
+import { Send, ChevronDown, User, Building2, MapPin, ClipboardList, DollarSign, Settings, CheckCircle2, AlertCircle } from "lucide-react";
 
 const DIVISIONS = [
   "Manned Guarding Division",
@@ -36,14 +36,7 @@ const PREMISES_TYPES = [
   "Other",
 ];
 
-const GUARD_COUNTS = [
-  "Not sure yet",
-  "1 - 10",
-  "11 - 50",
-  "51 - 100",
-  "101 - 250",
-  "250+",
-];
+const GUARD_COUNTS = ["Not sure yet", "1 - 10", "11 - 50", "51 - 100", "101 - 250", "250+"];
 
 const BUDGET_RANGES = [
   "Not decided yet",
@@ -62,88 +55,16 @@ const TIMELINES = [
   "Just exploring options",
 ];
 
-const CONTACT_PREFERENCES = [
-  "Phone Call",
-  "Email",
-  "WhatsApp",
-  "In-Person Meeting",
-  "No Preference",
-];
+const CONTACT_PREFERENCES = ["Phone Call", "Email", "WhatsApp", "In-Person Meeting", "No Preference"];
 
-export default function ContactForm() {
-  const [form, setForm] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    company: "",
-    designation: "",
-    division: DIVISIONS[0],
-    inquiryType: INQUIRY_TYPES[0],
-    premisesType: PREMISES_TYPES[0],
-    premisesAddress: "",
-    premisesCity: "",
-    guardCount: GUARD_COUNTS[0],
-    currentSecurity: "",
-    specificConcerns: "",
-    budgetRange: BUDGET_RANGES[0],
-    timeline: TIMELINES[0],
-    contactPreference: CONTACT_PREFERENCES[0],
-    bestTimeToCall: "",
-    message: "",
-    referralSource: "",
-  });
+const fieldClass =
+  "w-full bg-surface-container-low/50 border border-surface-border focus:border-cobalt-electric focus:bg-surface-container-low outline-none px-5 py-3.5 text-on-surface font-body-lg placeholder:text-on-surface-variant/40 transition-all duration-200 text-base";
+const selectClass = `${fieldClass} appearance-none cursor-pointer`;
 
-  const update = (key) => (e) => setForm((f) => ({ ...f, [key]: e.target.value }));
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const subject = `Enquiry: ${form.inquiryType} — ${form.division}`;
-    const body = [
-      "=== CONTACT INFORMATION ===",
-      `Name: ${form.firstName} ${form.lastName}`,
-      `Email: ${form.email}`,
-      `Phone: ${form.phone}`,
-      `Company: ${form.company}`,
-      `Designation: ${form.designation}`,
-      "",
-      "=== INQUIRY DETAILS ===",
-      `Division: ${form.division}`,
-      `Type: ${form.inquiryType}`,
-      "",
-      "=== SITE INFORMATION ===",
-      `Premises Type: ${form.premisesType}`,
-      `Address: ${form.premisesAddress}`,
-      `City: ${form.premisesCity}`,
-      `Estimated Guards: ${form.guardCount}`,
-      "",
-      "=== CURRENT SETUP ===",
-      `Current Security: ${form.currentSecurity || "N/A"}`,
-      `Specific Concerns: ${form.specificConcerns || "N/A"}`,
-      "",
-      "=== BUDGET & TIMELINE ===",
-      `Budget Range: ${form.budgetRange}`,
-      `Timeline: ${form.timeline}`,
-      "",
-      "=== PREFERENCES ===",
-      `Preferred Contact: ${form.contactPreference}`,
-      `Best Time to Call: ${form.bestTimeToCall || "N/A"}`,
-      `Referral Source: ${form.referralSource || "N/A"}`,
-      "",
-      "=== MESSAGE ===",
-      form.message,
-    ].join("\n");
-    window.location.href = `mailto:info@securitylink-bd.com?subject=${encodeURIComponent(
-      subject,
-    )}&body=${encodeURIComponent(body)}`;
-  };
-
-  const fieldClass =
-    "w-full bg-surface-container-low/50 border border-surface-border focus:border-cobalt-electric focus:bg-surface-container-low outline-none px-5 py-3.5 text-on-surface font-body-lg placeholder:text-on-surface-variant/40 transition-all duration-200 text-base";
-
-  const selectClass = `${fieldClass} appearance-none cursor-pointer`;
-
-  const Select = ({ label, id, value, onChange, options }) => (
+// Hoisted out of ContactForm — these must NOT be defined inside the component,
+// or React re-creates them (and remounts every field) on every keystroke.
+function Select({ label, id, value, onChange, options }) {
+  return (
     <div>
       <label htmlFor={id} className="font-label-caps text-xs uppercase tracking-[0.15em] text-on-surface-variant block mb-2.5">
         {label}
@@ -158,16 +79,16 @@ export default function ContactForm() {
       </div>
     </div>
   );
+}
 
-  const FormPanel = ({ icon: Icon, number, title, subtitle, children }) => (
+function FormPanel({ icon: Icon, number, title, subtitle, children }) {
+  return (
     <div className="relative border border-surface-border hover:border-cobalt-electric/30 bg-surface-container-low/20 p-7 md:p-10 transition-colors duration-300 group">
-      {/* Corner brackets */}
       <span className="absolute top-2 left-2 w-4 h-4 border-t border-l border-cobalt-electric/40" />
       <span className="absolute top-2 right-2 w-4 h-4 border-t border-r border-cobalt-electric/40" />
       <span className="absolute bottom-2 left-2 w-4 h-4 border-b border-l border-cobalt-electric/40" />
       <span className="absolute bottom-2 right-2 w-4 h-4 border-b border-r border-cobalt-electric/40" />
 
-      {/* Panel header */}
       <div className="flex items-center gap-4 mb-8 pb-5 border-b border-surface-border/60">
         <div className="w-12 h-12 border border-cobalt-electric/30 bg-cobalt-electric/10 flex items-center justify-center shrink-0 group-hover:bg-cobalt-electric/20 transition-colors">
           <Icon className="w-6 h-6 text-cobalt-electric" />
@@ -184,6 +105,60 @@ export default function ContactForm() {
       {children}
     </div>
   );
+}
+
+const initialForm = {
+  firstName: "",
+  lastName: "",
+  email: "",
+  phone: "",
+  company: "",
+  designation: "",
+  division: DIVISIONS[0],
+  inquiryType: INQUIRY_TYPES[0],
+  premisesType: PREMISES_TYPES[0],
+  premisesAddress: "",
+  premisesCity: "",
+  guardCount: GUARD_COUNTS[0],
+  currentSecurity: "",
+  specificConcerns: "",
+  budgetRange: BUDGET_RANGES[0],
+  timeline: TIMELINES[0],
+  contactPreference: CONTACT_PREFERENCES[0],
+  bestTimeToCall: "",
+  message: "",
+  referralSource: "",
+  botcheck: false,
+};
+
+export default function ContactForm() {
+  const [form, setForm] = useState(initialForm);
+  // status: "idle" | "submitting" | "success" | "error"
+  const [status, setStatus] = useState("idle");
+
+  const update = (key) => (e) => setForm((f) => ({ ...f, [key]: e.target.value }));
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus("submitting");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setStatus("success");
+        setForm(initialForm);
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
+  };
 
   return (
     <form onSubmit={handleSubmit} className="space-y-8">
@@ -288,16 +263,44 @@ export default function ContactForm() {
 
       {/* Submit */}
       <div className="relative border border-cobalt-electric/30 bg-surface-container-low/20 p-7 md:p-10">
+        {/* Honeypot — invisible to real visitors, catches basic bots */}
+        <input
+          type="checkbox"
+          name="botcheck"
+          checked={form.botcheck}
+          onChange={(e) => setForm((f) => ({ ...f, botcheck: e.target.checked }))}
+          className="hidden"
+          style={{ display: "none" }}
+          tabIndex={-1}
+          autoComplete="off"
+        />
         <span className="absolute top-2 left-2 w-4 h-4 border-t border-l border-cobalt-electric/40" />
         <span className="absolute top-2 right-2 w-4 h-4 border-t border-r border-cobalt-electric/40" />
         <span className="absolute bottom-2 left-2 w-4 h-4 border-b border-l border-cobalt-electric/40" />
         <span className="absolute bottom-2 right-2 w-4 h-4 border-b border-r border-cobalt-electric/40" />
 
-        <div className="flex flex-col sm:flex-row gap-4">
-          <button type="submit" className="group inline-flex items-center justify-center gap-2 bg-gradient-to-r from-cobalt-electric to-blue-600 text-white px-12 py-4.5 font-bold text-base uppercase tracking-widest hover:scale-[1.02] transition-all shadow-[0_0_30px_rgba(37,99,235,0.35)]">
+        <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
+          <button
+            type="submit"
+            disabled={status === "submitting"}
+            className="group inline-flex items-center justify-center gap-2 bg-gradient-to-r from-cobalt-electric to-blue-600 text-white px-12 py-4.5 font-bold text-base uppercase tracking-widest hover:scale-[1.02] transition-all shadow-[0_0_30px_rgba(37,99,235,0.35)] disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100"
+          >
             <Send className="w-5 h-5" />
-            Submit Enquiry
+            {status === "submitting" ? "Sending..." : "Submit Enquiry"}
           </button>
+
+          {status === "success" && (
+            <span className="inline-flex items-center gap-2 text-cobalt-electric font-body-sm text-sm">
+              <CheckCircle2 className="w-5 h-5" />
+              Sent — we&apos;ll be in touch within 24 hours.
+            </span>
+          )}
+          {status === "error" && (
+            <span className="inline-flex items-center gap-2 text-red-400 font-body-sm text-sm">
+              <AlertCircle className="w-5 h-5" />
+              Something went wrong — please email sakibbashar3@gmail.com directly.
+            </span>
+          )}
         </div>
 
         <p className="font-body-sm text-sm text-on-surface-variant leading-relaxed mt-5">
