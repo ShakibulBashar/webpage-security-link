@@ -16,7 +16,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 // TODO: replace with the actual live domain once deployed
-const siteUrl = 'https://www.securitylink-bd.com';
+const siteUrl = 'https://securitylinkbd.com/';
 
 const defaultTitle = 'SecurityLink Ltd. | Corporate Security & Risk Management in Dhaka';
 const defaultDescription =
