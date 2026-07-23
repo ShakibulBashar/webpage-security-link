@@ -59,7 +59,7 @@ export default function GuardDivision() {
           <div
             className="absolute inset-0"
             style={{
-              backgroundImage: "url('/hero1.jpg')",
+              backgroundImage: "url('/hero1.webp')",
               backgroundSize: "cover",
               backgroundPosition: "center 20%",
             }}
@@ -230,7 +230,7 @@ export default function GuardDivision() {
 
       <div className="relative h-64 md:h-80 lg:h-96 border-y border-surface-border overflow-hidden">
         <Image
-          src="/hero204.jpg"
+          src="/hero204.webp"
           alt="SecurityLink guard team in professional formation"
           fill
           className="object-cover"

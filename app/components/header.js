@@ -76,9 +76,11 @@ export default function Header() {
   const dropdownItemClass = (itemHref, exact = false) => `
     block px-4 py-2.5 text-[13px] font-bold uppercase tracking-wide transition-colors
     ${
-      exact ? pathname === itemHref : pathname.startsWith(itemHref)
-        ? "text-cobalt-electric bg-surface-container-high"
-        : "text-on-surface-variant hover:text-cobalt-electric hover:bg-surface-container-high"
+      exact
+        ? pathname === itemHref
+        : pathname.startsWith(itemHref)
+          ? "text-cobalt-electric bg-surface-container-high"
+          : "text-on-surface-variant hover:text-cobalt-electric hover:bg-surface-container-high"
     }
   `;
 
@@ -90,9 +92,11 @@ export default function Header() {
   const mobileDropdownItemClass = (itemHref, exact = false) => `
     px-4 py-2.5 text-xs font-bold uppercase tracking-wide rounded-lg transition-colors
     ${
-      exact ? pathname === itemHref : pathname.startsWith(itemHref)
-        ? "text-cobalt-electric bg-surface-container-high"
-        : "text-on-surface-variant hover:text-cobalt-electric hover:bg-surface-container-high"
+      exact
+        ? pathname === itemHref
+        : pathname.startsWith(itemHref)
+          ? "text-cobalt-electric bg-surface-container-high"
+          : "text-on-surface-variant hover:text-cobalt-electric hover:bg-surface-container-high"
     }
   `;
 
@@ -115,11 +119,12 @@ export default function Header() {
           <div className="flex items-center gap-2 h-full shrink-0 min-w-0">
             <div className="relative w-[80px] h-[70px] md:w-[100px] md:h-[70px] lg:w-[70px] lg:h-[70px] xl:w-[80px] xl:h-[75px] shrink-0">
               <Image
-                src="/logo.png"
+                src="/logo.webp"
                 alt="SECURITYLINK"
                 fill
                 className="object-contain drop-shadow-[0_0_12px_rgba(37,99,235,0.3)]"
                 priority
+                sizes="100px"
               />
             </div>
             <div className="flex flex-col justify-center min-w-0">
@@ -195,8 +200,6 @@ export default function Header() {
                   </a>
                 </div>
               </div>
-
-              
             </div>
 
             {/* Row 2 */}
@@ -204,9 +207,6 @@ export default function Header() {
               <a href="/gallery" className={linkClass(pathname.startsWith("/gallery"))}>
                 Gallery
               </a>
-
-
-              
 
               <div className="relative group">
                 <span

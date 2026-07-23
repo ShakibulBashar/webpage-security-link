@@ -54,7 +54,7 @@ export const metadata = {
     description: defaultDescription,
     images: [
       {
-        url: '/logo.png',
+        url: '/logo.webp',
         width: 512,
         height: 512,
         alt: 'SecurityLink Ltd.',
@@ -65,7 +65,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: defaultTitle,
     description: defaultDescription,
-    images: ['/logo.png'],
+    images: ['/logo.webp'],
   },
   robots: {
     index: true,
@@ -79,8 +79,8 @@ export const metadata = {
     },
   },
   icons: {
-    icon: '/logo.png',
-    apple: '/logo.png',
+    icon: '/logo.webp',
+    apple: '/logo.webp',
   },
   category: 'business',
 };
@@ -95,7 +95,7 @@ const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'LocalBusiness',
   name: 'SecurityLink Ltd.',
-  image: `${siteUrl}/logo.png`,
+  image: `${siteUrl}/logo.webp`,
   url: siteUrl,
   telephone: '+8801777740993',
   email: 'info@securitylink-bd.com',

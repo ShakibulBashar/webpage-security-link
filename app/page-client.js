@@ -109,6 +109,12 @@ export default function Home() {
   }, []);
 
   const heroSliderRef = useRef({ current: 0, timer: null, goToSlide: null });
+  // Only the active slide + the next one are actually rendered with an <Image>.
+  // Previously all 14 slides (28 <Image> tags) were mounted at once, and since
+  // they're all position:absolute inset:0 on top of each other, the browser's
+  // native lazy-loading treated every single one as "in viewport" and fetched
+  // them all immediately - that's what was driving the 24MB+ page weight.
+  const [mountedSlides, setMountedSlides] = useState(() => new Set([0, 1]));
 
   useEffect(() => {
     const slideDelay = 10000;
@@ -122,6 +128,14 @@ export default function Home() {
       heroSlides[slider.current].classList.remove("active");
       slider.current = ((index % heroSlides.length) + heroSlides.length) % heroSlides.length;
       heroSlides[slider.current].classList.add("active");
+      const nextIdx = (slider.current + 1) % heroSlides.length;
+      setMountedSlides((prev) => {
+        if (prev.has(slider.current) && prev.has(nextIdx)) return prev;
+        const next = new Set(prev);
+        next.add(slider.current);
+        next.add(nextIdx);
+        return next;
+      });
       clearTimeout(slider.timer);
       slider.timer = setTimeout(() => goToSlide(slider.current + 1), slideDelay);
     }
@@ -207,26 +221,26 @@ export default function Home() {
 
 
   const heroImages = [
-  { desktopImage: "/hero9.JPG", mobileImage: "/hero9.JPG", desktopPosition: "center 20%", mobilePosition: "center 20%" },
-    { desktopImage: "/hero-pc2.png", mobileImage: "/hero-mobile3.jpeg", desktopPosition: "center 20%", mobilePosition: "38% 0%" },
-    { desktopImage: "/hero1.jpg", mobileImage: "/hero1.jpg", desktopPosition: "center 20%", mobilePosition: "center 10%" },
-    { desktopImage: "/hero-mobile16.JPG", mobileImage: "/hero-mobile10.jpg", desktopPosition: "center 10%", mobilePosition: "40% 20%" },
-    { desktopImage: "/hero202.jpg", mobileImage: "/hero-mobile122.jpg", desktopPosition: "center 20%", mobilePosition: "center bottom%" },
-    { desktopImage: "/hero204.jpg", mobileImage: "/hero204.jpg", desktopPosition: "center 0%", mobilePosition: "65% 0%" },
-    { desktopImage: "/hero-mobile11.png", mobileImage: "/hero-mobile11.png", desktopPosition: "center 20%", mobilePosition: "50% 10%" },
-    { desktopImage: "/hero206.jpg", mobileImage: "/hero-mobile144.jpg", desktopPosition: "center 20%", mobilePosition: "center 20%" },
-    { desktopImage: "/hero207.jpg", mobileImage: "/hero-mobile155.png", desktopPosition: "center 20%", mobilePosition: "center 20%" },
+  { desktopImage: "/hero9.webp", mobileImage: "/hero9.webp", desktopPosition: "center 20%", mobilePosition: "center 20%" },
+    { desktopImage: "/hero-pc2.webp", mobileImage: "/hero-mobile3.webp", desktopPosition: "center 20%", mobilePosition: "38% 0%" },
+    { desktopImage: "/hero1.webp", mobileImage: "/hero1.webp", desktopPosition: "center 20%", mobilePosition: "center 10%" },
+    { desktopImage: "/hero-mobile16.webp", mobileImage: "/hero-mobile10.webp", desktopPosition: "center 10%", mobilePosition: "40% 20%" },
+    { desktopImage: "/hero202.webp", mobileImage: "/hero-mobile122.webp", desktopPosition: "center 20%", mobilePosition: "center bottom%" },
+    { desktopImage: "/hero204.webp", mobileImage: "/hero204.webp", desktopPosition: "center 0%", mobilePosition: "65% 0%" },
+    { desktopImage: "/hero-mobile11.webp", mobileImage: "/hero-mobile11.webp", desktopPosition: "center 20%", mobilePosition: "50% 10%" },
+    { desktopImage: "/hero206.webp", mobileImage: "/hero-mobile144.webp", desktopPosition: "center 20%", mobilePosition: "center 20%" },
+    { desktopImage: "/hero207.webp", mobileImage: "/hero-mobile155.webp", desktopPosition: "center 20%", mobilePosition: "center 20%" },
     
-    { desktopImage: "/hero16.jpg", mobileImage: "/hero16.jpg", desktopPosition: "center 20%", mobilePosition: "center 20%" },
-    { desktopImage: "/hero3.jpg", mobileImage: "/hero3.jpg", desktopPosition: "center 20%", mobilePosition: "center 20%" },
+    { desktopImage: "/hero16.webp", mobileImage: "/hero16.webp", desktopPosition: "center 20%", mobilePosition: "center 20%" },
+    { desktopImage: "/hero3.webp", mobileImage: "/hero3.webp", desktopPosition: "center 20%", mobilePosition: "center 20%" },
     
     //chiense young man giving
-    { desktopImage: "/hero-mobile155.png", mobileImage: "/hero-mobile133.jpg", desktopPosition: "center 20%", mobilePosition: "65% bottom" },
+    { desktopImage: "/hero-mobile155.webp", mobileImage: "/hero-mobile133.webp", desktopPosition: "center 20%", mobilePosition: "65% bottom" },
 
     //Risk advisory
-    { desktopImage: "/hero13.jpg", mobileImage: "/hero13.jpg", desktopPosition: "center 20%", mobilePosition: "center 20%" },
+    { desktopImage: "/hero13.webp", mobileImage: "/hero13.webp", desktopPosition: "center 20%", mobilePosition: "center 20%" },
     
-    { desktopImage: "/hero15.jpg", mobileImage: "/hero15.jpg", desktopPosition: "center 20%", mobilePosition: "center 20%" },
+    { desktopImage: "/hero15.webp", mobileImage: "/hero15.webp", desktopPosition: "center 20%", mobilePosition: "center 20%" },
   ];
 
   const divisions = [
@@ -235,7 +249,7 @@ export default function Home() {
       name: "Manned Guarding",
       desc: "Physical security for offices, corporate campuses and industrial premises, plus event coverage and dedicated guard training.",
       href: "/services/guard",
-      visual: { type: "photo", src: "/hero16.JPG", alt: "SecurityLink guard formation" },
+      visual: { type: "photo", src: "/hero16.webp", alt: "SecurityLink guard formation" },
     },
     {
       index: "02",
@@ -244,7 +258,7 @@ export default function Home() {
       href: "/services/risk-management",
       visual: {
         type: "photo",
-        src: "/hero13.jpg",
+        src: "/hero13.webp",
         alt: "SecurityLink officer conducting a vehicle inspection",
       },
     },
@@ -339,24 +353,28 @@ export default function Home() {
         <div className="absolute top-20 inset-x-0 bottom-0 z-0" id="hero-slider">
           {heroImages.map(({ desktopImage, mobileImage, desktopPosition, mobilePosition }, idx) => (
             <div key={idx} className={`hero-slider-item ${idx === 0 ? "active" : ""} absolute inset-0`}>
-              <Image
-                src={desktopImage}
-                alt="SecurityLink hero"
-                fill
-                className="object-cover hidden lg:block"
-                style={{ objectPosition: desktopPosition }}
-                priority={idx === 0}
-                sizes="100vw"
-              />
-              <Image
-                src={mobileImage}
-                alt="SecurityLink hero"
-                fill
-                className="object-cover block lg:hidden"
-                style={{ objectPosition: mobilePosition }}
-                priority={idx === 0}
-                sizes="100vw"
-              />
+              {mountedSlides.has(idx) && (
+                <>
+                  <Image
+                    src={desktopImage}
+                    alt="SecurityLink hero"
+                    fill
+                    className="object-cover hidden lg:block"
+                    style={{ objectPosition: desktopPosition }}
+                    priority={idx === 0}
+                    sizes="100vw"
+                  />
+                  <Image
+                    src={mobileImage}
+                    alt="SecurityLink hero"
+                    fill
+                    className="object-cover block lg:hidden"
+                    style={{ objectPosition: mobilePosition }}
+                    priority={idx === 0}
+                    sizes="100vw"
+                  />
+                </>
+              )}
             </div>
           ))}
           <div className="absolute inset-0 bg-black/30 z-10" />
@@ -484,7 +502,7 @@ export default function Home() {
         {/* Edge-to-edge image strip */}
         <div data-reveal="scale" className="relative h-64 md:h-80 lg:h-96 border-y border-surface-border overflow-hidden">
           <Image
-            src="/hero16.JPG"
+            src="/hero16.webp"
             alt="SecurityLink guard team in professional formation during inspection"
             fill
             className="object-cover"
@@ -793,7 +811,7 @@ export default function Home() {
       <section className="relative overflow-hidden border-t border-surface-border h-[60vh] md:h-[70vh] lg:h-[80vh]">
         <div className="absolute inset-0">
           <Image
-            src="/HnM.jpg"
+            src="/HnM.webp"
             alt="SecurityLink team conducting an on-site security survey at a corporate facility"
             fill
             className="object-cover"

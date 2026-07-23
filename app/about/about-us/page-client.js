@@ -508,7 +508,7 @@ export default function AboutUsPage() {
             <div className="lg:col-span-6 order-1 lg:order-2">
               <div className="relative h-72 md:h-96 border border-surface-border overflow-hidden">
                 <Image
-                  src="/hero33.jpg"
+                  src="/hero33.webp"
                   alt="SecurityLink guard stationed at a client compound gate"
                   fill
                   className="object-cover"

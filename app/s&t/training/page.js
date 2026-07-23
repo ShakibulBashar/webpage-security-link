@@ -145,7 +145,7 @@ export default function TrainingPage() {
           <div
             className="absolute inset-0 lg:hidden"
             style={{
-              backgroundImage: "url('/hero-mobile122.jpg')",
+              backgroundImage: "url('/hero-mobile122.webp')",
               backgroundSize: "cover",
               backgroundPosition: "center center",
             }}
@@ -154,7 +154,7 @@ export default function TrainingPage() {
           <div
             className="absolute inset-0 hidden lg:block"
             style={{
-              backgroundImage: "url('/training2.jpg')",
+              backgroundImage: "url('/training2.webp')",
               backgroundSize: "cover",
               backgroundPosition: "center 5%",
             }}
@@ -269,7 +269,7 @@ export default function TrainingPage() {
               <div className="relative border border-cobalt-electric/30 overflow-hidden group bg-surface-container-low">
                 <div className="relative w-full" style={{ aspectRatio: "4 / 3" }}>
                   <Image
-                    src="/training3.jpg"
+                    src="/training3.webp"
                     alt="SecurityLink training centre"
                     fill
                     className="object-contain p-2 transition-transform duration-700 group-hover:scale-[1.02]"

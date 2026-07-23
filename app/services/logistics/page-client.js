@@ -188,7 +188,7 @@ export default function LogisticsDivision() {
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: "url('/logistics2.png')",
+              backgroundImage: "url('/logistics2.webp')",
             }}
           />
           <div className="absolute inset-0 bg-gradient-to-l from-transparent to-background/60" />

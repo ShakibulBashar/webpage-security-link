@@ -83,7 +83,7 @@ export default function RiskManagementDivision() {
           <div
             className="absolute inset-0"
             style={{
-              backgroundImage: "url('/hero13.JPG')",
+              backgroundImage: "url('/hero13.webp')",
               backgroundSize: "cover",
               backgroundPosition: "center 15%",
             }}
@@ -181,7 +181,7 @@ export default function RiskManagementDivision() {
             </div>
             <div className="relative group glow-border rounded-lg overflow-hidden h-50 lg:h-[60vh]">
               <Image
-                src="/risk.jpg"
+                src="/risk.webp"
                 alt="Risk Advisory security consulting"
                 fill
                 className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -224,7 +224,7 @@ export default function RiskManagementDivision() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
               <div className="relative group glow-border rounded-lg overflow-hidden h-[30vh] lg:h-[55vh] order-2 md:order-1">
                 <Image
-                  src="/risk3.jpg"
+                  src="/risk3.webp"
                   alt="Security audits and continuous improvement"
                   fill
                   className="object-cover 
@@ -313,7 +313,7 @@ export default function RiskManagementDivision() {
               </div>
               <div className="relative group glow-border rounded-lg overflow-hidden h-[30vh] lg:h-[55vh] order-2 lg:order-1">
                 <Image
-                  src="/risk222.JPG"
+                  src="/risk222.webp"
                   alt="Risk Advisory consulting team"
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-500"

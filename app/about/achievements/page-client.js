@@ -15,28 +15,28 @@ const keywordBoxes = [
 
 const credentials = [
   {
-    src: "/achivements-images/ASIS.jpg",
+    src: "/achivements-images/ASIS.webp",
     type: "image",
     org: "ASIS International Professional Certification Board",
     title: "Certified Protection Professional (CPP)",
     note: "Board certification in security management held by the firm’s managing director.",
   },
   {
-    src: "/achivements-images/ISO Certificate.jpeg",
+    src: "/achivements-images/ISO Certificate.webp",
     type: "image",
     org: "TÜV SÜD South Asia / CQI-IRCA",
     title: "ISO/IEC 27001 Lead Auditor",
     note: "Information security management systems auditor and lead auditor training.",
   },
   {
-    src: "/achivements-images/ARC.jpg",
+    src: "/achivements-images/ARC.webp",
     type: "image",
     org: "International Academy for Security Management",
     title: "Advanced Security Management Certification",
     note: "Advanced certification in security management preparation.",
   },
   {
-    src: "/achivements-images/13. 360 Degree Certificate.jpg",
+    src: "/achivements-images/13. 360 Degree Certificate.webp",
     type: "image",
     org: "360training.com / OSHA Authorized Outreach",
     title: "OSHA 30-Hour General Industry",
@@ -46,14 +46,14 @@ const credentials = [
 
 const recognitions = [
   {
-    src: "/achivements-images/AFD.jpg",
+    src: "/achivements-images/AFD.webp",
     type: "image",
     org: "National Security Institution",
     title: "System design & integration advisory",
     note: "Advised on technology-based security design and system integration for a national defence-level body.",
   },
   {
-    src: "/achivements-images/CERT- CARE.jpg",
+    src: "/achivements-images/CERT- CARE.webp",
     type: "image",
     org: "International Development Sector",
     title: "Security service recognition",
@@ -95,28 +95,28 @@ const recognitions = [
     note: "Well-trained, proficient and rapid security service support at an EPZ facility.",
   },
   {
-    src: "/achivements-images/Plan Bangladeh.jpg",
+    src: "/achivements-images/Plan Bangladeh.webp",
     type: "image",
     org: "International Development Sector",
     title: "Training delivery record",
     note: "Delivered physical security, investigation and crisis management training.",
   },
   {
-    src: "/achivements-images/8. Prothom alo.jpg",
+    src: "/achivements-images/8. Prothom alo.webp",
     type: "image",
     org: "Media House",
     title: "Voluntary security survey",
     note: "Conducted a security survey and advised on a viable physical protection system.",
   },
   {
-    src: "/achivements-images/1. Jamuna Future Park.jpg",
+    src: "/achivements-images/1. Jamuna Future Park.webp",
     type: "image",
     org: "Large Retail Complex",
     title: "Security development advisory",
     note: "Consulted on a security development programme for one of the region’s largest retail complexes.",
   },
   {
-    src: "/achivements-images/New Doc 2018-12-26 11.33.15_6.jpg",
+    src: "/achivements-images/New Doc 2018-12-26 11.33.15_6.webp",
     type: "image",
     org: "Broadcast Media",
     title: "Security service recognition",
@@ -130,7 +130,7 @@ const recognitions = [
     note: "Engaged to review physical security, access control, CCTV, fire detection and firefighting systems.",
   },
   {
-    src: "/achivements-images/New Doc 2018-12-26 11.33.15_12.jpg",
+    src: "/achivements-images/New Doc 2018-12-26 11.33.15_12.webp",
     type: "image",
     org: "Telecom Sector",
     title: "Employee background screening engagement",
@@ -144,14 +144,14 @@ const recognitions = [
     note: "Prepared total physical security plan and counter-measures for a resort development.",
   },
   {
-    src: "/achivements-images/Dhaka Stock Exchange.jpg",
+    src: "/achivements-images/Dhaka Stock Exchange.webp",
     type: "image",
     org: "Capital Market Institution",
     title: "Security consultancy engagement",
     note: "Security consultancy support for the country’s primary stock exchange.",
   },
   {
-    src: "/achivements-images/lafa.jpg",
+    src: "/achivements-images/lafa.webp",
     type: "image",
     org: "Cement & Construction Materials",
     title: "Security assessment & operational support",
@@ -374,7 +374,7 @@ export default function AchievementsPage() {
               <div className="relative border border-surface-border overflow-hidden bg-obsidian-deep">
                 <div className="relative aspect-[4/3]">
                   <Image
-                    src="/hero-mobile11.png"
+                    src="/hero-mobile11.webp"
                     alt="Managing Director receiving recognition from ASIS International at the Asia-Pacific Conference 2025"
                     fill
                     className="object-contain"
@@ -403,7 +403,7 @@ export default function AchievementsPage() {
               <div className="relative border border-surface-border overflow-hidden bg-obsidian-deep">
                 <div className="relative aspect-[4/3]">
                   <Image
-                    src="/hero-mobile13.jpg"
+                    src="/hero-mobile13.webp"
                     alt="Managing Director receiving a commemorative crest from an overseas delegation at SecurityLink headquarters"
                     fill
                     className="object-contain"

@@ -476,7 +476,7 @@ export default function SelectionProcedurePage() {
             <div className="lg:col-span-7 order-1">
               <div className="relative w-full aspect-[697/518] border border-cobalt-electric/30 overflow-hidden group bg-surface-container-low">
                 <Image
-                  src="/recruitment.png"
+                  src="/recruitment.webp"
                   alt="SecurityLink recruitment"
                   fill
                   className="object-contain p-2 transition-transform duration-700 group-hover:scale-[1.02]"

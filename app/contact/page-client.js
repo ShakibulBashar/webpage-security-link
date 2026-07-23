@@ -93,9 +93,9 @@ const DIVISIONS = [
 ];
 
 const heroImages = [
-  { src: "/control-room2.jpg", position: "center 10%" },
-  { src: "/HnM.jpg", position: "40% 20%" },
-  { src: "/hero16.JPG", position: "center 25%" },
+  { src: "/control-room2.webp", position: "center 10%" },
+  { src: "/HnM.webp", position: "40% 20%" },
+  { src: "/hero16.webp", position: "center 25%" },
 ];
 
 export default function ContactPage() {

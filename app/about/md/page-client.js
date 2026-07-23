@@ -36,19 +36,19 @@ const timeline = [
 // Behind-the-scenes: hands-on expertise in the field
 const fieldWork = [
   {
-    src: "/md/md103.jpg",
+    src: "/md/md103.webp",
     alt: "Md. Nurul Mannan Choudhury examining and calibrating surveillance camera equipment at the office",
     caption: "Selecting the right lens for the job",
     label: "Technical",
   },
   {
-    src: "/md/md101.jpg",
+    src: "/md/md101.webp",
     alt: "Md. Nurul Mannan Choudhury monitoring a multi-camera CCTV feed from the operations desk",
     caption: "Watching every angle, all at once",
     label: "Operations",
   },
   {
-    src: "/md/md107.jpg",
+    src: "/md/md107.webp",
     alt: "Md. Nurul Mannan Choudhury briefing a room of uniformed SecurityLink guards during a training session",
     caption: "The briefing before the briefing",
     label: "Field Leadership",
@@ -58,31 +58,31 @@ const fieldWork = [
 // Conferences, trade shows, and the global circuit
 const globalEngagements = [
   {
-    src: "/md/md105.jpg",
+    src: "/md/md105.webp",
     alt: "Md. Nurul Mannan Choudhury speaking at a podium during an international security conference",
     caption: "Taking the stage at GSX",
     label: "Keynote",
   },
   {
-    src: "/md/md108.jpg",
+    src: "/md/md108.webp",
     alt: "Md. Nurul Mannan Choudhury addressing a First Aid Training session organized by Bangladesh Red Crescent Society for SecurityLink",
     caption: "When safety is the subject, not just the slogan",
     label: "Training",
   },
   {
-    src: "/md/md106.jpg",
+    src: "/md/md106.webp",
     alt: "Md. Nurul Mannan Choudhury at a security technology trade show alongside global exhibitors",
     caption: "Scanning the horizon for what's next",
     label: "Trade Show",
   },
   {
-    src: "/md/md104.jpg",
+    src: "/md/md104.webp",
     alt: "Md. Nurul Mannan Choudhury with fellow delegates at the Global Security Exchange conference",
     caption: "Where the industry gathers",
     label: "Networking",
   },
   {
-    src: "/md/md102.jpg",
+    src: "/md/md102.webp",
     alt: "Md. Nurul Mannan Choudhury with international delegates at a cross-border security collaboration event",
     caption: "Conversations that cross borders",
     label: "International",
@@ -284,7 +284,7 @@ export default function ManagingDirectorPage() {
             {/* Inner image container */}
             <div className="absolute inset-4 overflow-hidden">
               <Image
-                src="/MD.jpg"
+                src="/MD.webp"
                 alt="Major (Retd.) Md. Nurul Mannan Choudhury, CPP, MBA (HRM), Managing Director of SecurityLink Ltd., seated at his office desk"
                 fill
                 priority
@@ -314,7 +314,7 @@ export default function ManagingDirectorPage() {
           <div className="lg:hidden relative max-w-sm mx-auto">
             <div className="relative aspect-[4/5] overflow-hidden border border-cobalt-electric/30">
               <Image
-                src="/MD.jpg"
+                src="/MD.webp"
                 alt="Major (Retd.) Md. Nurul Mannan Choudhury, CPP, MBA (HRM), Managing Director of SecurityLink Ltd., seated at his office desk"
                 fill
                 priority
