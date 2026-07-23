@@ -314,9 +314,9 @@ export default function ContactPage() {
 
           {/* Website */}
           <div className="mt-6">
-            <a href="https://www.securitylink-bd.com" target="_blank" rel="noopener noreferrer" className="group inline-flex items-center gap-3 border border-surface-border hover:border-cobalt-electric/50 bg-surface-container-low/20 px-6 py-4 transition-all duration-300">
+            <a href="https://securitylinkbd.com" target="_blank" rel="noopener noreferrer" className="group inline-flex items-center gap-3 border border-surface-border hover:border-cobalt-electric/50 bg-surface-container-low/20 px-6 py-4 transition-all duration-300">
               <Globe className="w-5 h-5 text-cobalt-electric" />
-              <span className="font-headline-md text-lg text-on-surface group-hover:text-cobalt-electric transition-colors">securitylink-bd.com</span>
+              <span className="font-headline-md text-lg text-on-surface group-hover:text-cobalt-electric transition-colors">securitylinkbd.com</span>
               <ArrowUpRight className="w-4 h-4 text-on-surface-variant group-hover:text-cobalt-electric transition-colors" />
             </a>
           </div>

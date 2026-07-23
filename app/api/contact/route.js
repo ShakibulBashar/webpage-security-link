@@ -86,8 +86,8 @@ export async function POST(request) {
   try {
     const resend = new Resend(process.env.RESEND_API_KEY);
     const { error } = await resend.emails.send({
-      // TODO: once you verify securitylink-bd.com in Resend, switch this to
-      // something like "SecurityLink Website <enquiries@securitylink-bd.com>"
+      // TODO: once you verify securitylinkbd.com in Resend, switch this to
+      // something like "SecurityLink Website <enquiries@securitylinkbd.com>"
       from: "SecurityLink Website <onboarding@resend.dev>",
       to: TO_EMAIL,
       replyTo: data.email,

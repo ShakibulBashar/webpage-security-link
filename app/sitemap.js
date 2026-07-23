@@ -1,7 +1,7 @@
 export const dynamic = 'force-static';
 
 export default function sitemap() {
-  const base = 'https://www.securitylink-bd.com';
+  const base = 'https://securitylinkbd.com';
   const routes = [
     { path: '', priority: 1 },
     { path: '/about/about-us', priority: 0.8 },

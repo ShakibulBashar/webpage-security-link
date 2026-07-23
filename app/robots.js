@@ -6,6 +6,6 @@ export default function robots() {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://www.securitylink-bd.com/sitemap.xml',
+    sitemap: 'https://securitylinkbd.com/sitemap.xml',
   };
 }
