@@ -1,7 +1,7 @@
 //Homepage code
 "use client";
 import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
+import Image, { getImageProps } from "next/image";
 import Link from "next/link";
 import { ArrowRight, ChevronLeft, ChevronRight, ArrowUpRight } from "lucide-react";
 import { useScrollReveal, useStaggerReveal } from "./hooks/useScrollReveal";
@@ -15,6 +15,39 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 // Tailwind font family settings belong in tailwind.config.js
+
+// Renders one <picture> with two <source>s instead of two separate <Image>s
+// hidden with `hidden lg:block` / `lg:hidden`. That old pattern still had the
+// browser fetch BOTH the desktop and mobile image on every load - CSS display
+// only controls what's painted, not what's requested. A native <picture> lets
+// the browser itself pick (and only fetch) the matching source before any CSS
+// or JS runs, which is what actually fixes the mobile LCP/network payload.
+function HeroSlideImage({ desktopSrc, mobileSrc, desktopPosition, mobilePosition, alt, priority }) {
+  const common = {
+    alt,
+    fill: true,
+    sizes: "100vw",
+    priority,
+    className: "object-cover",
+  };
+
+  const {
+    props: { srcSet: desktopSrcSet, ...desktopProps },
+  } = getImageProps({ ...common, src: desktopSrc, style: { objectPosition: desktopPosition } });
+
+  const {
+    props: { srcSet: mobileSrcSet, ...mobileProps },
+  } = getImageProps({ ...common, src: mobileSrc, style: { objectPosition: mobilePosition } });
+
+  return (
+    <picture style={{ display: "block", position: "relative", width: "100%", height: "100%" }}>
+      <source media="(min-width: 1024px)" srcSet={desktopSrcSet} />
+      {mobileSrcSet && <source media="(max-width: 1023px)" srcSet={mobileSrcSet} />}
+      {/* eslint-disable-next-line jsx-a11y/alt-text -- alt comes through {...desktopProps} */}
+      <img {...desktopProps} />
+    </picture>
+  );
+}
 
 const iconProps = (c) => ({
   viewBox: "0 0 32 32",
@@ -354,26 +387,14 @@ export default function Home() {
           {heroImages.map(({ desktopImage, mobileImage, desktopPosition, mobilePosition }, idx) => (
             <div key={idx} className={`hero-slider-item ${idx === 0 ? "active" : ""} absolute inset-0`}>
               {mountedSlides.has(idx) && (
-                <>
-                  <Image
-                    src={desktopImage}
-                    alt="SecurityLink hero"
-                    fill
-                    className="object-cover hidden lg:block"
-                    style={{ objectPosition: desktopPosition }}
-                    priority={idx === 0}
-                    sizes="100vw"
-                  />
-                  <Image
-                    src={mobileImage}
-                    alt="SecurityLink hero"
-                    fill
-                    className="object-cover block lg:hidden"
-                    style={{ objectPosition: mobilePosition }}
-                    priority={idx === 0}
-                    sizes="100vw"
-                  />
-                </>
+                <HeroSlideImage
+                  desktopSrc={desktopImage}
+                  mobileSrc={mobileImage}
+                  desktopPosition={desktopPosition}
+                  mobilePosition={mobilePosition}
+                  alt="SecurityLink hero"
+                  priority={idx === 0}
+                />
               )}
             </div>
           ))}
