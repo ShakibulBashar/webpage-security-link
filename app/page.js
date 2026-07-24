@@ -1,3 +1,4 @@
+import Image from "next/image";
 import PageClient from "./page-client";
 
 export const metadata = {
@@ -14,25 +15,18 @@ export const metadata = {
 export default function Page() {
   return (
     <>
-      {/* Server-rendered LCP image — discoverable by browser before JS loads */}
-      <img
-        src="/hero9-mobile.webp"
-        alt="SecurityLink hero"
-        width="768"
-        height="432"
-        fetchPriority="high"
-        style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          objectFit: 'cover',
-          objectPosition: 'center 20%',
-          zIndex: -1,
-          pointerEvents: 'none',
-        }}
-      />
+      {/* Server-rendered LCP image — <Image priority> auto-adds a preload
+          link in <head> so the browser starts downloading before parsing body */}
+      <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', zIndex: -1, pointerEvents: 'none' }}>
+        <Image
+          src="/hero9-mobile.webp"
+          alt="SecurityLink hero"
+          fill
+          sizes="100vw"
+          priority
+          style={{ objectFit: 'cover', objectPosition: 'center 20%' }}
+        />
+      </div>
       <PageClient />
     </>
   );

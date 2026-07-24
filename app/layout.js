@@ -118,6 +118,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`dark ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}>
       <head>
+        {/* Preload LCP hero images — browser starts download before body parsing */}
+        <link rel="preload" href="/hero9-mobile.webp" as="image" fetchPriority="high" />
+        <link rel="preload" href="/hero9-desktop.webp" as="image" media="(min-width: 1024px)" fetchPriority="high" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link

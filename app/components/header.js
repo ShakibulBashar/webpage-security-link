@@ -119,7 +119,6 @@ export default function Header() {
                 fill
                 className="object-contain drop-shadow-[0_0_12px_rgba(37,99,235,0.3)]"
                 priority
-                fetchPriority="high"
                 sizes="100px"
               />
             </div>
