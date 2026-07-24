@@ -4,6 +4,12 @@ import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 
+const ChevronDown = ({ className }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="m6 9 6 6 6-6" />
+  </svg>
+);
+
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileDropdown, setMobileDropdown] = useState(null);
@@ -102,17 +108,6 @@ export default function Header() {
 
   return (
     <>
-      <style>{`
-        @keyframes blink {
-          0% { transform: translateX(-100%) skewX(-15deg); }
-          20% { transform: translateX(200%) skewX(-15deg); }
-          100% { transform: translateX(200%) skewX(-15deg); }
-        }
-        .shimmer-blink {
-          animation: blink 2s ease-in-out infinite;
-        }
-      `}</style>
-
       <div ref={navRef} className="fixed top-0 w-full z-50">
         <nav className="min-h-20 h-auto py-1 bg-background/85 backdrop-blur-xl border-b border-surface-border/40 flex justify-between items-center px-4 md:px-8 lg:px-4">
           {/* Brand */}
@@ -124,6 +119,7 @@ export default function Header() {
                 fill
                 className="object-contain drop-shadow-[0_0_12px_rgba(37,99,235,0.3)]"
                 priority
+                fetchPriority="high"
                 sizes="100px"
               />
             </div>
@@ -150,9 +146,7 @@ export default function Header() {
               <div className="relative group">
                 <span className={dropdownParentClass(isAboutActive())}>
                   About
-                  <span className="material-symbols-outlined text-sm transition-transform duration-200 group-hover:rotate-180">
-                    expand_more
-                  </span>
+                  <ChevronDown className="w-4 h-4 transition-transform duration-200 group-hover:rotate-180" />
                 </span>
                 <div className="absolute left-0 mt-2 w-64 bg-surface-container-low border border-surface-border rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50 -translate-y-1 group-hover:translate-y-0">
                   <a href="/about/about-us" className={dropdownItemClass("/about/about-us")}>
@@ -178,9 +172,7 @@ export default function Header() {
                   )}
                 >
                   Services
-                  <span className="material-symbols-outlined text-sm transition-transform duration-200 group-hover:rotate-180">
-                    expand_more
-                  </span>
+                  <ChevronDown className="w-4 h-4 transition-transform duration-200 group-hover:rotate-180" />
                 </span>
                 <div className="absolute left-0 mt-2 w-64 bg-surface-container-low border border-surface-border rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50 -translate-y-1 group-hover:translate-y-0">
                   <a href="/services/guard" className={dropdownItemClass("/services/guard")}>
@@ -215,9 +207,7 @@ export default function Header() {
                   )}
                 >
                   Recruitment
-                  <span className="material-symbols-outlined text-sm transition-transform duration-200 group-hover:rotate-180">
-                    expand_more
-                  </span>
+                  <ChevronDown className="w-4 h-4 transition-transform duration-200 group-hover:rotate-180" />
                 </span>
 
                 <div className="absolute left-0 mt-2 w-64 bg-surface-container-low border border-surface-border rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50 -translate-y-1 group-hover:translate-y-0">
@@ -233,9 +223,7 @@ export default function Header() {
               <div className="relative group">
                 <span className={dropdownParentClass(isContactActive())}>
                   Contact
-                  <span className="material-symbols-outlined text-sm transition-transform duration-200 group-hover:rotate-180">
-                    expand_more
-                  </span>
+                  <ChevronDown className="w-4 h-4 transition-transform duration-200 group-hover:rotate-180" />
                 </span>
                 <div className="absolute left-0 mt-2 w-64 bg-surface-container-low border border-surface-border rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50 -translate-y-1 group-hover:translate-y-0">
                   <a href="/contact" className={dropdownItemClass("/contact", true)}>
@@ -258,9 +246,7 @@ export default function Header() {
             <div className="relative group">
               <span className={dropdownParentClass(isAboutActive())}>
                 About
-                <span className="material-symbols-outlined text-sm transition-transform duration-200 group-hover:rotate-180">
-                  expand_more
-                </span>
+                <ChevronDown className="w-4 h-4 transition-transform duration-200 group-hover:rotate-180" />
               </span>
               <div className="absolute left-0 mt-2 w-64 bg-surface-container-low border border-surface-border rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50 -translate-y-1 group-hover:translate-y-0">
                 <a href="/about/about-us" className={dropdownItemClass("/about/about-us")}>
@@ -293,9 +279,7 @@ export default function Header() {
                 )}
               >
                 Services
-                <span className="material-symbols-outlined text-sm transition-transform duration-200 group-hover:rotate-180">
-                  expand_more
-                </span>
+                <ChevronDown className="w-4 h-4 transition-transform duration-200 group-hover:rotate-180" />
               </span>
               <div className="absolute left-0 mt-2 w-64 bg-surface-container-low border border-surface-border rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50 -translate-y-1 group-hover:translate-y-0">
                 <a href="/services/guard" className={dropdownItemClass("/services/guard")}>
@@ -323,9 +307,7 @@ export default function Header() {
                 )}
               >
                 Recruitment
-                <span className="material-symbols-outlined text-sm transition-transform duration-200 group-hover:rotate-180">
-                  expand_more
-                </span>
+                <ChevronDown className="w-4 h-4 transition-transform duration-200 group-hover:rotate-180" />
               </span>
               <div className="absolute left-0 mt-2 w-64 bg-surface-container-low border border-surface-border rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50 -translate-y-1 group-hover:translate-y-0">
                 <a href="/s&t/selection" className={dropdownItemClass("/s&t/selection")}>
@@ -340,9 +322,7 @@ export default function Header() {
             <div className="relative group">
               <span className={dropdownParentClass(isContactActive())}>
                 Contact
-                <span className="material-symbols-outlined text-sm transition-transform duration-200 group-hover:rotate-180">
-                  expand_more
-                </span>
+                <ChevronDown className="w-4 h-4 transition-transform duration-200 group-hover:rotate-180" />
               </span>
               <div className="absolute left-0 mt-2 w-64 bg-surface-container-low border border-surface-border rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50 -translate-y-1 group-hover:translate-y-0">
                 <a href="/contact" className={dropdownItemClass("/contact", true)}>
@@ -411,11 +391,9 @@ export default function Header() {
                 className={`flex items-center justify-between px-4 py-3.5 text-sm font-bold uppercase tracking-wide transition-all duration-200 rounded-xl font-[family-name:var(--font-jakarta)] ${isAboutActive() || mobileDropdown === "About" ? "bg-[#1e3a5f] text-white" : "text-on-surface-variant hover:bg-surface-container-high"}`}
               >
                 About
-                <span
-                  className={`material-symbols-outlined text-lg transition-transform duration-200 ${mobileDropdown === "About" ? "rotate-180" : ""}`}
-                >
-                  expand_more
-                </span>
+                <ChevronDown
+                  className={`w-5 h-5 transition-transform duration-200 ${mobileDropdown === "About" ? "rotate-180" : ""}`}
+                />
               </button>
               <div
                 className={`flex flex-col gap-1 pl-4 overflow-hidden transition-all duration-300 ${mobileDropdown === "About" ? "max-h-80 opacity-100 mt-1 mb-1" : "max-h-0 opacity-0"}`}
@@ -467,11 +445,9 @@ export default function Header() {
                 className={`flex items-center justify-between px-4 py-3.5 text-sm font-bold uppercase tracking-wide transition-all duration-200 rounded-xl font-[family-name:var(--font-jakarta)] ${["/services/guard", "/services/logistics", "/services/risk-management", "/services/equipments"].some((p) => pathname.startsWith(p)) || mobileDropdown === "Services" ? "bg-[#1e3a5f] text-white" : "text-on-surface-variant hover:bg-surface-container-high"}`}
               >
                 Services
-                <span
-                  className={`material-symbols-outlined text-lg transition-transform duration-200 ${mobileDropdown === "Services" ? "rotate-180" : ""}`}
-                >
-                  expand_more
-                </span>
+                <ChevronDown
+                  className={`w-5 h-5 transition-transform duration-200 ${mobileDropdown === "Services" ? "rotate-180" : ""}`}
+                />
               </button>
               <div
                 className={`flex flex-col gap-1 pl-4 overflow-hidden transition-all duration-300 ${mobileDropdown === "Services" ? "max-h-80 opacity-100 mt-1 mb-1" : "max-h-0 opacity-0"}`}
@@ -525,11 +501,9 @@ export default function Header() {
                 className={`flex items-center justify-between px-4 py-3.5 text-sm font-bold uppercase tracking-wide transition-all duration-200 rounded-xl font-[family-name:var(--font-jakarta)] ${["/s&t/selection", "/s&t/training"].some((p) => pathname.startsWith(p)) || mobileDropdown === "Recruitment" ? "bg-[#1e3a5f] text-white" : "text-on-surface-variant hover:bg-surface-container-high"}`}
               >
                 Recruitment
-                <span
-                  className={`material-symbols-outlined text-lg transition-transform duration-200 ${mobileDropdown === "Recruitment" ? "rotate-180" : ""}`}
-                >
-                  expand_more
-                </span>
+                <ChevronDown
+                  className={`w-5 h-5 transition-transform duration-200 ${mobileDropdown === "Recruitment" ? "rotate-180" : ""}`}
+                />
               </button>
               <div
                 className={`flex flex-col gap-1 pl-4 overflow-hidden transition-all duration-300 ${mobileDropdown === "Recruitment" ? "max-h-80 opacity-100 mt-1 mb-1" : "max-h-0 opacity-0"}`}
@@ -563,11 +537,9 @@ export default function Header() {
                 className={`flex items-center justify-between px-4 py-3.5 text-sm font-bold uppercase tracking-wide transition-all duration-200 rounded-xl font-[family-name:var(--font-jakarta)] ${isContactActive() || mobileDropdown === "Contact" ? "bg-[#1e3a5f] text-white" : "text-on-surface-variant hover:bg-surface-container-high"}`}
               >
                 Contact
-                <span
-                  className={`material-symbols-outlined text-lg transition-transform duration-200 ${mobileDropdown === "Contact" ? "rotate-180" : ""}`}
-                >
-                  expand_more
-                </span>
+                <ChevronDown
+                  className={`w-5 h-5 transition-transform duration-200 ${mobileDropdown === "Contact" ? "rotate-180" : ""}`}
+                />
               </button>
               <div
                 className={`flex flex-col gap-1 pl-4 overflow-hidden transition-all duration-300 ${mobileDropdown === "Contact" ? "max-h-80 opacity-100 mt-1 mb-1" : "max-h-0 opacity-0"}`}

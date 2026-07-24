@@ -5,16 +5,6 @@ import Image, { getImageProps } from "next/image";
 import Link from "next/link";
 import { ArrowRight, ChevronLeft, ChevronRight, ArrowUpRight } from "lucide-react";
 import { useScrollReveal, useStaggerReveal } from "./hooks/useScrollReveal";
-// app/layout.js
-import { Space_Grotesk } from 'next/font/google';
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ['latin'],
-  variable: '--font-headline',
-  weight: ['500', '700'],
-});
-
-// Tailwind font family settings belong in tailwind.config.js
 
 // Renders one <picture> with two <source>s instead of two separate <Image>s
 // hidden with `hidden lg:block` / `lg:hidden`. That old pattern still had the
@@ -29,6 +19,7 @@ function HeroSlideImage({ desktopSrc, mobileSrc, desktopPosition, mobilePosition
     sizes: "100vw",
     priority,
     className: "object-cover",
+    fetchPriority: priority ? "high" : "auto",
   };
 
   const {
@@ -44,7 +35,7 @@ function HeroSlideImage({ desktopSrc, mobileSrc, desktopPosition, mobilePosition
       <source media="(min-width: 1024px)" srcSet={desktopSrcSet} />
       {mobileSrcSet && <source media="(max-width: 1023px)" srcSet={mobileSrcSet} />}
       {/* eslint-disable-next-line jsx-a11y/alt-text -- alt comes through {...desktopProps} */}
-      <img {...desktopProps} />
+      <img {...desktopProps} fetchPriority={priority ? "high" : "auto"} />
     </picture>
   );
 }
@@ -344,42 +335,6 @@ export default function Home() {
 
   return (
     <>
-      <style>{`
-        @keyframes marquee {
-          from { transform: translateX(0); }
-          to { transform: translateX(-50%); }
-        }
-        .marquee-track {
-          animation: marquee 32s linear infinite;
-        }
-        .marquee-wrap:hover .marquee-track {
-          animation-play-state: paused;
-        }
-
-        @keyframes fadeInLeft {
-          from { opacity: 0; transform: translateX(-30px); }
-          to { opacity: 1; transform: translateX(0); }
-        }
-        @keyframes fadeInUp {
-          from { opacity: 0; transform: translateY(20px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        .hero-fade-in-left {
-          animation: fadeInLeft 1.8s cubic-bezier(0.16, 1, 0.3, 1) both;
-        }
-        .hero-fade-in-up {
-          animation: fadeInUp 1.5s cubic-bezier(0.16, 1, 0.3, 1) both;
-        }
-        @media (prefers-reduced-motion: reduce) {
-          .hero-fade-in-left,
-          .hero-fade-in-up {
-            animation: none !important;
-            opacity: 1 !important;
-            transform: none !important;
-          }
-        }
-      `}</style>
-
       {/* HERO SECTION  */}
       <main className="relative  min-h-[100dvh]  pt-20 pb-3 flex flex-col items-center justify-end overflow-hidden">
         {/* Hero Slider Background */}
@@ -496,15 +451,6 @@ export default function Home() {
       <div className="h-px bg-gradient-to-r from-transparent via-cobalt-electric/50 to-transparent" />
 
       <section className="bg-background overflow-hidden">
-        <style>{`
-    @keyframes ticker-scroll {
-      from { transform: translateX(0); }
-      to { transform: translateX(-50%); }
-    }
-    .ticker-track { animation: ticker-scroll 22s linear infinite; }
-    .ticker-wrap:hover .ticker-track { animation-play-state: paused; }
-  `}</style>
-
         <div className="max-w-auto mx-auto px-6 lg:px-12 pt-8 lg:pt-18 pb-8 lg:pb-18 flex flex-col items-center text-center">
           <span data-reveal className="font-mono-data text-xs md:text-base lg:text-lg  text-cobalt-electric uppercase tracking-[0.2em] block">
             Our Standard
@@ -562,41 +508,6 @@ export default function Home() {
           backgroundImage: "linear-gradient(var(--color-cobalt-electric) 0.5px, transparent 0.5px), linear-gradient(90deg, var(--color-cobalt-electric) 0.5px, transparent 0.5px)",
           backgroundSize: "60px 60px"
         }} />
-
-        <style>{`
-          @keyframes circlePulse {
-            0% { transform: scale(1); box-shadow: 0 0 0 rgba(37,99,235,0); }
-            40% { transform: scale(1.12); box-shadow: 0 0 28px rgba(37,99,235,0.6); }
-            100% { transform: scale(1); box-shadow: 0 0 16px rgba(37,99,235,0.35); }
-          }
-          .process-circle {
-            transition: border-color 0.4s ease, box-shadow 0.4s ease;
-          }
-          .process-circle.active {
-            border-color: rgba(37, 99, 235, 0.9) !important;
-            animation: circlePulse 0.9s ease-out forwards;
-          }
-          .process-circle.active .process-num {
-            color: white;
-            background: rgba(37, 99, 235, 0.3);
-          }
-                    .process-signal-v {
-            position: absolute;
-            width: 3px;
-            background: linear-gradient(to bottom, rgba(37,99,235,0.5), rgba(37,99,235,1));
-            border-radius: 2px;
-          }
-          .process-signal-h {
-            position: absolute;
-            height: 3px;
-            background: linear-gradient(to right, rgba(37,99,235,0.5), rgba(37,99,235,1));
-            border-radius: 2px;
-          }
-          @media (prefers-reduced-motion: reduce) {
-            .process-circle.active { animation: none !important; }
-            .process-signal-v, .process-signal-h { transition: none !important; }
-          }
-        `}</style>
 
         <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-12 py-8 lg:py-18 relative">
           <div className="flex items-end justify-between mb-12 lg:mb-20 flex-wrap gap-4">
