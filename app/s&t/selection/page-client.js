@@ -254,7 +254,7 @@ export default function SelectionProcedurePage() {
         }
           
         .shimmer-text {
-          background: linear-gradient(90deg, #2563EB 0%, #d3e4fe 50%, #2563EB 100%);
+          background: linear-gradient(90deg, #3B82F6 0%, #d3e4fe 50%, #3B82F6 100%);
           background-size: 1000px 100%;
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
@@ -263,7 +263,7 @@ export default function SelectionProcedurePage() {
         }
 
         .shimmers-text {
-          background: linear-gradient(90deg, #2563EB 0%, #d3e4fe 50%, #2563EB 100%);
+          background: linear-gradient(90deg, #3B82F6 0%, #d3e4fe 50%, #3B82F6 100%);
           background-size: 1000px 100%;
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
