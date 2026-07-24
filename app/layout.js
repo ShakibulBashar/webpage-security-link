@@ -86,6 +86,13 @@ export const metadata = {
     apple: '/logo.webp',
   },
   category: 'business',
+  other: {
+    'profile:facebook': 'https://web.facebook.com/sll2013',
+    'profile:linkedin': 'https://www.linkedin.com/company/security-link-limited/',
+    'profile:instagram': 'https://www.instagram.com/security_link_limited/',
+    'profile:twitter': 'https://twitter.com/SecurityLinkLi1',
+    'profile:pinterest': 'https://www.pinterest.com/Securitylinklimited/',
+  },
 };
 
 export const viewport = {
