@@ -1,5 +1,3 @@
-'use client'
-
 import { Smartphone, Mail, Phone, MapPin } from 'lucide-react'
 
 const FacebookIcon = ({ className }) => (

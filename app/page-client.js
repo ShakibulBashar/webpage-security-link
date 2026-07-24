@@ -323,8 +323,8 @@ export default function Home() {
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 border border-cobalt-electric rounded-full" />
             </div>
             <h1 className="hero-fade-in-left font-headline-xl text-headline-xl text-xl md:text-2xl lg:text-6xl text-white uppercase tracking-tighter mb-5 leading-[0.95] drop-shadow-2xl" style={{ animationDelay: '0.8s' }}>
-              Securing Capital, <br />
-              <span className="text-cobalt-electric">Enterprise</span>, and Key Infrastructure
+              Corporate Security <br />
+              <span className="text-cobalt-electric">& Risk Management</span> in Bangladesh
             </h1>
             <div className="hero-fade-in-up flex flex-col sm:flex-row gap-3 md:gap-6 justify-center" style={{ animationDelay: '2s' }}>
               <Link

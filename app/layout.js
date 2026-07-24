@@ -21,9 +21,9 @@ const jetbrainsMono = JetBrains_Mono({
 // TODO: replace with the actual live domain once deployed
 const siteUrl = 'https://securitylinkbd.com/';
 
-const defaultTitle = 'SecurityLink Ltd. | Corporate Security & Risk Management in Dhaka';
+const defaultTitle = 'SecurityLink Ltd. | Corporate Security in Dhaka';
 const defaultDescription =
-  'SecurityLink Ltd. provides manned guarding, risk management, security equipment and logistics support for corporate, industrial and institutional clients across Bangladesh.';
+  'Corporate security, manned guarding, risk management, CCTV and logistics services for businesses across Bangladesh.';
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
@@ -123,18 +123,11 @@ export default function RootLayout({ children }) {
         <link rel="preload" href="/hero9-desktop.webp" as="image" media="(min-width: 1024px)" fetchPriority="high" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          rel="preload"
-          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap"
-          as="style"
-          onLoad="this.onload=null;this.rel='stylesheet'"
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `var l=document.createElement('link');l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap';document.head.appendChild(l);`,
+          }}
         />
-        <noscript>
-          <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap"
-          />
-        </noscript>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
