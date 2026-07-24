@@ -16,10 +16,10 @@ export default function Page() {
     <>
       {/* Server-rendered LCP image — discoverable by browser before JS loads */}
       <img
-        src="/hero9.webp"
+        src="/hero9-mobile.webp"
         alt="SecurityLink hero"
-        width="1920"
-        height="1080"
+        width="768"
+        height="432"
         fetchPriority="high"
         style={{
           position: 'fixed',

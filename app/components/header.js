@@ -114,7 +114,7 @@ export default function Header() {
           <div className="flex items-center gap-2 h-full shrink-0 min-w-0">
             <div className="relative w-[80px] h-[70px] md:w-[100px] md:h-[70px] lg:w-[70px] lg:h-[70px] xl:w-[80px] xl:h-[75px] shrink-0">
               <Image
-                src="/logo.webp"
+                src="/logo-sm.webp"
                 alt="SECURITYLINK"
                 fill
                 className="object-contain drop-shadow-[0_0_12px_rgba(37,99,235,0.3)]"

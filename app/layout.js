@@ -2,6 +2,7 @@ import './globals.css';
 import { Space_Grotesk, JetBrains_Mono } from 'next/font/google';
 import Header from './components/header';
 import Footer from './components/footer';
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
@@ -140,6 +141,7 @@ export default function RootLayout({ children }) {
         <Header />
         {children}
         <Footer />
+         <SpeedInsights />
       </body>
     </html>
   );

@@ -40,62 +40,12 @@ function HeroSlideImage({ desktopSrc, mobileSrc, desktopPosition, mobilePosition
   );
 }
 
-const iconProps = (c) => ({
-  viewBox: "0 0 32 32",
-  className: c,
-  fill: "none",
-  stroke: "currentColor",
-  strokeWidth: 1.5,
-  strokeLinecap: "round",
-  strokeLinejoin: "round",
-});
-
-const CameraGlyph = ({ className }) => (
-  <svg {...iconProps(className)}>
-    <rect x="5" y="11" width="17" height="10" rx="3" />
-    <circle cx="19" cy="16" r="3" />
-    <path d="M22 13l5-2v10l-5-2" />
-  </svg>
-);
-const FingerprintGlyph = ({ className }) => (
-  <svg {...iconProps(className)}>
-    <path d="M16 10a6 6 0 0 1 6 6v3M9 16v3a6 6 0 0 0 3 5.2M12 9.4A8 8 0 0 1 27 16v4M12.5 27A8 8 0 0 1 8 20v-1" />
-  </svg>
-);
-const FlameGlyph = ({ className }) => (
-  <svg {...iconProps(className)}>
-    <path d="M16 6c2.5 3 3.5 5.5 3.5 8a3.5 3.5 0 0 1-7 0c0-1.1.5-2 1.3-3 .4.8.7 1.2 1.2 1.2.8 0 .9-1.2.9-3z" />
-  </svg>
-);
-const BroomGlyph = ({ className }) => (
-  <svg {...iconProps(className)}>
-    <path d="M20 6 8 26" />
-    <path d="M8 26l-2 2M8 26l4-1M6 24l4 1" />
-    <path d="M20 6l6 6" />
-  </svg>
-);
-const ShieldGlyph = ({ className }) => (
-  <svg {...iconProps(className)}>
-    <path d="M16 4l10 4v8c0 6.5-4.3 10.8-10 12-5.7-1.2-10-5.5-10-12V8z" />
-    <path d="M11 16l3.5 3.5L21 12" />
-  </svg>
-);
-const RadarGlyph = ({ className }) => (
-  <svg {...iconProps(className)}>
-    <circle cx="16" cy="16" r="11" />
-    <circle cx="16" cy="16" r="6" />
-    <circle cx="16" cy="16" r="1.3" fill="currentColor" />
-    <path d="M16 16 25 9" />
-  </svg>
-);
-
 export default function Home() {
   const [yearsCount, setYearsCount] = useState(0);
   const [servicesCount, setServicesCount] = useState(0);
   const [complianceCount, setComplianceCount] = useState(0);
 
   const divisionsRef = useStaggerReveal(100);
-  const workforceRef = useStaggerReveal(120);
   const credRef = useStaggerReveal(100);
 
   useScrollReveal();
@@ -245,7 +195,7 @@ export default function Home() {
 
 
   const heroImages = [
-  { desktopImage: "/hero9.webp", mobileImage: "/hero9.webp", desktopPosition: "center 20%", mobilePosition: "center 20%" },
+  { desktopImage: "/hero9-desktop.webp", mobileImage: "/hero9-mobile.webp", desktopPosition: "center 20%", mobilePosition: "center 20%" },
     { desktopImage: "/hero-pc2.webp", mobileImage: "/hero-mobile3.webp", desktopPosition: "center 20%", mobilePosition: "38% 0%" },
     { desktopImage: "/hero1.webp", mobileImage: "/hero1.webp", desktopPosition: "center 20%", mobilePosition: "center 10%" },
     { desktopImage: "/hero-mobile16.webp", mobileImage: "/hero-mobile10.webp", desktopPosition: "center 10%", mobilePosition: "40% 20%" },
@@ -273,32 +223,24 @@ export default function Home() {
       name: "Manned Guarding",
       desc: "Physical security for offices, corporate campuses and industrial premises, plus event coverage and dedicated guard training.",
       href: "/services/guard",
-      visual: { type: "photo", src: "/hero16.webp", alt: "SecurityLink guard formation" },
     },
     {
       index: "02",
       name: "Risk Advisory",
       desc: "Threat surveys, security plan design, consultancy, investigation and executive-level training.",
       href: "/services/risk-management",
-      visual: {
-        type: "photo",
-        src: "/hero13.webp",
-        alt: "SecurityLink officer conducting a vehicle inspection",
-      },
     },
     {
       index: "03",
       name: "Security Technology",
       desc: "CCTV, access control, fire detection and scanning systems — specified, supplied and integrated.",
       href: "/services/equipments",
-      visual: { type: "icons", icons: [CameraGlyph, FingerprintGlyph, FlameGlyph] },
     },
     {
       index: "04",
       name: "Logistics Services",
       desc: "Cleaning services for industrial facilities, hospitals and corporate offices, run by the same trained workforce.",
       href: "/services/logistics",
-      visual: { type: "icons", icons: [BroomGlyph] },
     },
   ];
 
@@ -743,7 +685,7 @@ export default function Home() {
       <section className="relative overflow-hidden border-t border-surface-border h-[60vh] md:h-[70vh] lg:h-[80vh]">
         <div className="absolute inset-0">
           <Image
-            src="/HnM.webp"
+            src="/HnM-opt.webp"
             alt="SecurityLink team conducting an on-site security survey at a corporate facility"
             fill
             className="object-cover"
